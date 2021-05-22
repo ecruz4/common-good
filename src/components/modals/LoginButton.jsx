@@ -1,18 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Button } from '@material-ui/core';
-import React from 'react';
+import React, { useContext } from 'react';
 import firebase from 'firebase/app';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 import fire from '../../db/firebase';
+import UserContext from '../../contexts/UserContext';
 
 function LoginButton() {
+  const { user } = useContext(UserContext);
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     fire.auth.signInWithPopup(provider);
   };
 
-  const [user] = useAuthState(fire.auth);
   console.log(user && user.uid);
 
   // fire.firestore
