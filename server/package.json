@@ -10,14 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "express": "^4.17.1",
     "firebase": "^8.6.2",
     "morgan": "^1.10.0",
     "react-firebase-hooks": "^3.0.4"
-=======
-    "express": "^4.17.1"
->>>>>>> parent of d2cf50d... Added some necessary dependencies
   },
   "devDependencies": {
     "eslint": "^7.26.0",
