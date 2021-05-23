@@ -1,10 +1,10 @@
 import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 
 import SignupModal from './SignupModal';
 
 function SignupButton() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
