@@ -4,9 +4,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
-import DonorModal from './components/modals/DonorModal';
 import LoginButton from './components/modals/LoginButton';
 import LogoutButton from './components/modals/LogoutButton';
+import SignupButton from './components/modals/SignupButton';
 
 // To use context:
 // In the file you want to access the value in,
@@ -21,8 +21,7 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user }}>
-        <h1>Hello World!</h1>
-        <DonorModal />
+        <SignupButton />
         <LoginButton />
         <LogoutButton />
       </UserContext.Provider>

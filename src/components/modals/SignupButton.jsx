@@ -1,10 +1,10 @@
 import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 
-import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
 
-function LoginButton() {
-  const [open, setOpen] = useState(false);
+function SignupButton() {
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,9 +17,9 @@ function LoginButton() {
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle>Login</DialogTitle>
+        <DialogTitle>Create an Account</DialogTitle>
         <DialogContent>
-          <LoginModal handleClose={handleClose} />
+          <SignupModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
       <Button
@@ -28,10 +28,10 @@ function LoginButton() {
         onClick={handleClickOpen}
         onClose={handleClose}
       >
-        Login
+        Create an Account
       </Button>
     </>
   );
 }
 
-export default LoginButton;
+export default SignupButton;
