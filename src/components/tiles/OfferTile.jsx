@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import firestore from '../../db/firebase';
 
+import {makeStyles, Card, CardHeader, CardContent, Avatar, Typography} from '@material-ui/core';
+
 
 const OfferTile = ({ doc, isProfilePage }) => {
 
@@ -30,7 +32,9 @@ const OfferTile = ({ doc, isProfilePage }) => {
           <div>{description}</div>
           <div>{`x ${quantity}`}</div>
           <div>{`${donor.city}, ${donor.state}`}</div>
-        </div> :
+        </div>
+
+        :
 
         <div>
           <AccountCircleIcon />

@@ -2,6 +2,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 import DonorModal from './components/modals/DonorModal';
@@ -30,9 +31,9 @@ function App() {
         <LoginButton />
         <LogoutButton />
         {/* <AllRequests />
-        <div>--------------------</div>
-        <AllOffers />
         <div>--------------------</div> */}
+        <AllOffers />
+        <div>--------------------</div>
         <AllCharities />
       </UserContext.Provider>
     </div>
