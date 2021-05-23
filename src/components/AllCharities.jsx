@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import firestore from '../db/firebase';
-// import UserContext from '../contexts/UserContext';
-import OfferTile from './tiles/OfferTile';
+import CharityTile from './tiles/CharityTile';
 
 
-const AllOffers = () => {
+const AllCharities = () => {
 
   const [docs, setDocs] = useState([]);
 
-
   useEffect(() => {
     const allDocs = [];
-    firestore.firestore.collection("offers").where("donor_id", "==", "mVYqsR5DJDbMoI51VlmZBrceX6Y2")
-      .get()
+    firestore.firestore.collection("organizations").get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           allDocs.push(doc.data());
@@ -22,10 +19,10 @@ const AllOffers = () => {
       .catch((err) => console.log(err.message))
   }, []);
 
-return (
+  return (
     <div>
       {docs.map((doc) =>
-        <OfferTile doc={doc} isProfilePage={false} key={doc.title}/>
+        <CharityTile doc={doc} />
       )}
     </div>
   );
@@ -33,4 +30,4 @@ return (
 }
 
 
-export default AllOffers;
+export default AllCharities;

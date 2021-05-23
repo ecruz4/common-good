@@ -10,6 +10,7 @@ import LogoutButton from './components/modals/LogoutButton';
 
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
+import AllCharities from './components/AllCharities';
 
 // To use context:
 // In the file you want to access the value in,
@@ -31,6 +32,8 @@ function App() {
         <AllRequests />
         <div>--------------------</div>
         <AllOffers />
+        <div>--------------------</div>
+        <AllCharities />
       </UserContext.Provider>
     </div>
   );
