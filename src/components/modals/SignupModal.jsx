@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-function DonorModal({ handleClose }) {
+function SignupModal({ handleClose }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
@@ -38,6 +38,7 @@ function DonorModal({ handleClose }) {
           photo_url: '',
           bio: '',
         };
+
         db.firestore
           .collection('users')
           .doc()
@@ -110,4 +111,4 @@ function DonorModal({ handleClose }) {
   );
 }
 
-export default DonorModal;
+export default SignupModal;
