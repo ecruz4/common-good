@@ -8,7 +8,8 @@ import DonorModal from './components/modals/DonorModal';
 import LoginButton from './components/modals/LoginButton';
 import LogoutButton from './components/modals/LogoutButton';
 
-import SearchGoods from './components/SearchGoods';
+import AllRequests from './components/AllRequests';
+import AllOffers from './components/AllOffers';
 
 // To use context:
 // In the file you want to access the value in,
@@ -27,7 +28,9 @@ function App() {
         <DonorModal />
         <LoginButton />
         <LogoutButton />
-        <SearchGoods />
+        <AllRequests />
+        <div>--------------------</div>
+        <AllOffers />
       </UserContext.Provider>
     </div>
   );
