@@ -29,10 +29,10 @@ function App() {
         <DonorModal />
         <LoginButton />
         <LogoutButton />
-        <AllRequests />
+        {/* <AllRequests />
         <div>--------------------</div>
         <AllOffers />
-        <div>--------------------</div>
+        <div>--------------------</div> */}
         <AllCharities />
       </UserContext.Provider>
     </div>

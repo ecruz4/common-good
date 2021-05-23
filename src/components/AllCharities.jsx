@@ -22,7 +22,7 @@ const AllCharities = () => {
   return (
     <div>
       {docs.map((doc) =>
-        <CharityTile doc={doc} />
+        <CharityTile doc={doc} key={doc.name}/>
       )}
     </div>
   );
