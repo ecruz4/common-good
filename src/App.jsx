@@ -8,6 +8,8 @@ import DonorModal from './components/modals/DonorModal';
 import LoginButton from './components/modals/LoginButton';
 import LogoutButton from './components/modals/LogoutButton';
 
+import SearchGoods from './components/SearchGoods';
+
 // To use context:
 // In the file you want to access the value in,
 // import React, { useContext } from 'react';
@@ -25,6 +27,7 @@ function App() {
         <DonorModal />
         <LoginButton />
         <LogoutButton />
+        <SearchGoods />
       </UserContext.Provider>
     </div>
   );

@@ -30,7 +30,7 @@ function LoginButton() {
       </Button>
       {user && (
         <>
-          <p>Name: {fire.auth.currentUser.name}</p>
+          <p>Name: {fire.auth.currentUser.displayName}</p>
           <p>Email: {fire.auth.currentUser.email}</p>
           <p>Phone: {fire.auth.currentUser.phoneNumber}</p>
           {/* <p>photoUrl: {user.getIdToken()}</p> */}
