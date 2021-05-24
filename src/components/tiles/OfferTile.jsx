@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import {makeStyles, Card, CardMedia, CardHeader, CardContent, Avatar, Typography} from '@material-ui/core';
+import {makeStyles, Card, CardMedia, CardHeader, CardActions, CardContent, Avatar, Typography, Grid} from '@material-ui/core';
 import firestore from '../../db/firebase';
-
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 350,
+    minHeight: 380,
   },
   image: {
     border: '1px solid red',
@@ -19,9 +19,17 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: '#33bfff',
   },
+  content: {
+    minHeight: 60
+  },
+  cardactions: {
+    paddingLeft: 16,
+    paddingTop: 0
+  }
 }));
 
-const OfferTile = ({ doc, isProfilePage }) => {
+
+const OfferTile = ({ doc }) => {
 
   const classes = useStyles();
   const { donor_id, title, description, quantity, date } = doc;
@@ -41,47 +49,38 @@ const OfferTile = ({ doc, isProfilePage }) => {
 
 
   return (
-    <>
-      {isProfilePage ?
+    <Grid item xs={12} sm={6} md={4} lg={3}>
+      <Card variant="outlined" className={classes.root}>
 
-        <Card variant="outlined" className={classes.root}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="offer" className={classes.avatar}>
-                <AccountCircleIcon />
-              </Avatar>
-            }
-            title={`${title} (x${quantity})`}
-            subheader={donor.name}
-          />
-          <CardMedia
-            className={classes.media}
-            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHWg74rYh0ee1LQPLhyQxGFTxg4YBGMSUJQ&usqp=CAU"
-            title="Paella dish"
-          />
-          <CardContent>
-            <Typography variant="body2" color="textSecondary">
-              {description}
-            </Typography>
-            <br/>
-            <Typography variant="overline">
-              {`${donor.city}, ${donor.state}`}
-            </Typography>
-          </CardContent>
-        </Card>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="offer" className={classes.avatar}>
+              <AccountCircleIcon />
+            </Avatar>
+          }
+          title={`${title} (x${quantity})`}
+          subheader={donor.name}
+        />
+        <CardMedia
+          className={classes.media}
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHWg74rYh0ee1LQPLhyQxGFTxg4YBGMSUJQ&usqp=CAU"
+          title="Paella dish"
+        />
+        <CardContent className={classes.content}>
+          <Typography variant="body2" color="textSecondary">
+            {description}
+          </Typography>
+        </CardContent>
 
-        :
+        <CardActions className={classes.cardactions}>
+          <Typography variant="overline">
+            {`${donor.city}, ${donor.state}`}
+          </Typography>
+        </CardActions>
 
-        <div>
-          <AccountCircleIcon />
-          <div>{title}</div>
-          <div>{description}</div>
-          <div>{`x ${quantity}`}</div>
-          <div>{`${donor.city}, ${donor.state}`}</div>
-        </div>
+      </Card>
 
-      }
-    </>
+    </Grid>
   );
 
 }
