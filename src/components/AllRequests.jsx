@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Grid } from '@material-ui/core';
 import firestore from '../db/firebase';
 // import UserContext from '../contexts/UserContext';
 import RequestTile from './tiles/RequestTile';
@@ -23,14 +24,11 @@ const AllRequests = () => {
   }, []);
 
   return (
-    <>
-      <div>
-        {docs.map((doc) =>
-          <RequestTile doc={doc} isProfilePage={false} key={doc.title}/>
-        )}
-      </div>
-
-    </>
+    <Grid container spacing={3}>
+      {docs.map((doc) =>
+        <RequestTile doc={doc} key={doc.title}/>
+      )}
+    </Grid>
   );
 
 }

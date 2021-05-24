@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import { makeStyles } from '@material-ui/core/styles';
-// import firebase from 'firebase/app';
 
 import db from '../../db/firebase';
+import UserContext from '../../contexts/UserContext';
 
 const useStyles = makeStyles({
   container: {
@@ -16,40 +15,37 @@ const useStyles = makeStyles({
   },
 });
 
-function SignupModal({ handleClose }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [zip, setZip] = useState('');
-  const [password, setPassword] = useState('');
+function OfferModal({ handleClose }) {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [imgURL, setImgURL] = useState('');
+  const { user } = useContext(UserContext);
 
   const classes = useStyles();
 
   const handleSubmit = () => {
-    db.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((cred) => {
-        const userData = {
-          uid: cred.user.uid,
-          name,
-          email,
-          zip,
-          phone: '',
-          photo_url: '',
-          bio: '',
-        };
-
-        db.firestore
-          .collection('users')
-          .doc()
-          .set(userData)
-          .then(() => {
-            handleClose();
-          });
+    if (!user) {
+      console.log('Must be logged in to make a donation');
+      return;
+    }
+    const requestData = {
+      donor_id: user.uid,
+      date: new Date(),
+      title,
+      description,
+      quantity,
+      imgURL,
+    };
+    db.firestore
+      .collection('requests')
+      .doc()
+      .set(requestData)
+      .then(() => {
+        handleClose();
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        console.error(error);
       });
   };
 
@@ -57,51 +53,53 @@ function SignupModal({ handleClose }) {
     <Container className={classes.container}>
       <TextField
         id="standard-full-width"
-        label="Name"
+        label="Title"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
           shrink: true,
         }}
-        value={name}
-        onChange={(event) => setName(event.target.value)}
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
       />
       <TextField
         id="standard-full-width"
-        label="Email"
+        label="Description"
         style={{ margin: 8 }}
         margin="normal"
+        multiline
         InputLabelProps={{
           shrink: true,
         }}
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
       />
       <TextField
         id="standard-full-width"
-        label="Zip"
+        label="Quantity"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
           shrink: true,
         }}
-        value={zip}
-        onChange={(event) => setZip(event.target.value)}
+        value={quantity}
+        onChange={(event) => setQuantity(event.target.value)}
       />
       <TextField
         id="standard-full-width"
-        label="Password"
+        label="Image URL"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
           shrink: true,
         }}
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
+        value={imgURL}
+        onChange={(event) => setImgURL(event.target.value)}
       />
+
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Sign Up
+          Make a Request
         </Button>
         <Button onClick={handleClose} color="primary">
           Cancel
@@ -111,4 +109,4 @@ function SignupModal({ handleClose }) {
   );
 }
 
-export default SignupModal;
+export default OfferModal;

@@ -1,21 +1,20 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
-import LoginButton from './components/modals/LoginButton';
-import LogoutButton from './components/modals/LogoutButton';
 import SignupButton from './components/modals/SignupButton';
 import OrgSignupButton from './components/modals/OrgSignupButton';
 import Donations from './details/donations';
 import Map from './details/map';
+import LogoutButton from './components/modals/LogoutButton';
 
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
 import AllCharities from './components/AllCharities';
-
+import Profile from './components/profile-page/Profile';
 // To use context:
 // In the file you want to access the value in,
 // import React, { useContext } from 'react';
@@ -27,7 +26,7 @@ function App() {
   // user stores authentication data, like email and uid
   const [user] = useAuthState(db.auth);
   // userInfo will store a lot more, like email, and uid, but also bio, pic, etc...
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     if (user === null) {
@@ -51,17 +50,24 @@ function App() {
     <div className="App">
       <UserContext.Provider value={{ user, userInfo }}>
         <SignupButton />
-        <LoginButton />
         <LogoutButton />
         <OrgSignupButton />
         <Donations />
         <Map />
 
-        {/* <AllRequests />
-        <div>--------------------</div>
+        {/* <br/>
+        <div>-----REQUEST TILES------</div>
+        <br/>
+        <AllRequests />
+        <br/>
+        <div>-----DONATION TILES------</div>
+        <br/>
         <AllOffers />
-        <div>--------------------</div>
+        <br/>
+        <div>-----CHARITY ORGS TILES------</div>
+        <br/>
         <AllCharities /> */}
+
       </UserContext.Provider>
     </div>
   );

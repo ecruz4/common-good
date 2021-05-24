@@ -27,9 +27,10 @@ function LoginModal({ handleClose }) {
         // const user = userCredential.user;
         handleClose();
       })
-      .catch((/* error */) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
       });
   };
 

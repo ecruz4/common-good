@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Grid } from '@material-ui/core';
 import firestore from '../db/firebase';
 import CharityTile from './tiles/CharityTile';
 
@@ -20,11 +21,11 @@ const AllCharities = () => {
   }, []);
 
   return (
-    <div>
+    <Grid container spacing={3}>
       {docs.map((doc) =>
         <CharityTile doc={doc} key={doc.name}/>
       )}
-    </div>
+    </Grid>
   );
 
 }
