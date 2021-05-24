@@ -4,18 +4,18 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 import {makeStyles, Card, CardHeader, CardContent, Avatar, Typography} from '@material-ui/core';
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 500,
+    maxWidth: 350,
   },
   avatar: {
-    backgroundColor: 'skyblue',
+    backgroundColor: '#33bfff',
   },
 }));
 
 const CharityTile = ({ doc }) => {
   const classes = useStyles();
-  const {name, bio, theme, city, state} = doc;
+  const {name, bio, focus, city, state} = doc;
 
   return (
     <>
@@ -27,7 +27,7 @@ const CharityTile = ({ doc }) => {
             </Avatar>
           }
           title={name}
-          subheader={theme}
+          subheader={focus}
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">

@@ -25,7 +25,7 @@ const AllOffers = () => {
 return (
     <div>
       {docs.map((doc) =>
-        <OfferTile doc={doc} isProfilePage={false} key={doc.title}/>
+        <OfferTile doc={doc} isProfilePage key={doc.title}/>
       )}
     </div>
   );

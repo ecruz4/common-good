@@ -30,8 +30,9 @@ function App() {
         <DonorModal />
         <LoginButton />
         <LogoutButton />
-        {/* <AllRequests />
-        <div>--------------------</div> */}
+
+        <AllRequests />
+        <div>--------------------</div>
         <AllOffers />
         <div>--------------------</div>
         <AllCharities />

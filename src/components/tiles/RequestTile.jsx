@@ -1,31 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
+import {makeStyles, Card, CardHeader, CardContent, Avatar, Typography} from '@material-ui/core';
+import firestore from '../../db/firebase';
 
-/*
-- Charity request tile (profile page)**
-    - Data required
-        - Request object (mapped over in parent component)
-            - title
-            - date
-            - description
-            - quantity
-            - emergency
-*/
 
-/*
-  {
-    "org_id":"mVYqsR5DJDbMoI51VlmZBrceX6Y2","title":"Desks",
-    "description":"We urgently need desks for our students.",
-    "quantity":5,
-    "emergency":true,
-    "date":{"seconds":1621699200,"nanoseconds":0}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 350,
+  },
+  image: {
+    border: '1px solid red',
+    margin: 20
+  },
+  media: {
+    height: 180,
+  },
+  avatar: {
+    backgroundColor: '#33bfff',
+  },
+  avatarEmg: {
+    backgroundColor: '#FF0000',
   }
-*/
+}));
 
 
 const RequestTile = ({ doc, isProfilePage }) => {
 
-  const { title, description, quantity, emergency, date } = doc;
+  const classes = useStyles();
+  const { org_id, title, description, quantity, emergency, date } = doc;
+
+  const [org, setOrg] = useState({});
+
+
+  useEffect(() => {
+    firestore.firestore.collection("organizations").where("uid", "==", org_id)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        setOrg(doc.data());
+      });
+    })
+    .catch((err) => console.log(err.message))
+  }, []);
 
   return (
     <>
@@ -38,13 +54,31 @@ const RequestTile = ({ doc, isProfilePage }) => {
           {emergency ? <div>Emergency</div> : <></>}
         </div> :
 
-        <div>
-          <LocationCityIcon />
-          <div>{title}</div>
-          <div>{description}</div>
-          <div>{`x ${quantity}`}</div>
-          {emergency ? <div>Emergency</div> : <></>}
-        </div>
+        <Card variant="outlined" className={classes.root}>
+          <CardHeader
+            avatar={
+              emergency ?
+                <Avatar aria-label="request" className={classes.avatar}>
+                  <LocationCityIcon />
+                </Avatar> :
+                <Avatar aria-label="request" className={classes.avatarEmg}>!</Avatar>
+            }
+            title={`${title} (x${quantity})`}
+            subheader={org.name}
+          />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary">
+              {description}
+            </Typography>
+            <br/>
+            <Typography variant="overline">
+              {`${org.city}, ${org.state}`}
+            </Typography>
+          </CardContent>
+
+        </Card>
+
+
 
       }
     </>
@@ -56,3 +90,11 @@ const RequestTile = ({ doc, isProfilePage }) => {
 
 
 export default RequestTile;
+
+{/* <div>
+  <LocationCityIcon />
+  <div>{title}</div>
+  <div>{description}</div>
+  <div>{`x ${quantity}`}</div>
+  {emergency ? <div>Emergency</div> : <></>}
+</div> */}
