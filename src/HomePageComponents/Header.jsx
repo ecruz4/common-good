@@ -1,16 +1,22 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { makeStyles } from '@material-ui/core/styles';
+import {Link} from 'react-router-dom';
+
+// Material UI
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+
+// Database
 import db from '../db/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import UserContext from '../contexts/UserContext';
+
+// Login Components
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,11 +60,16 @@ export default function Header(props) {
       });
   }, [user]);
 
+  const navStyle = {
+    color: 'black',
+    textDecoration: 'none',
+  };
+
   return (
     <>
     <UserContext.Provider value={{ user, userInfo }}>
+
       <Toolbar className={classes.toolbar}>
-        {/* <Button size="small">Sign up</Button> */}
         <SignupButton />
         <Typography
           component="h2"
@@ -68,28 +79,44 @@ export default function Header(props) {
           noWrap
           className={classes.toolbarTitle}
         >
-          {title}
+          <Link
+            key="homepage"
+            to="/"
+            style={navStyle}
+          >
+            {title}
+          </Link>
+
         </Typography>
-        {/* <Button variant="outlined" size="small">
-          Log in
-        </Button> */}
         <LoginButton />
         <LogoutButton />
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-        {sections.map((section) => (
+
           <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            className={classes.toolbarLink}
+            key="profile"
+            to="/profile"
+            style={navStyle}
           >
-            {section.title}
+            Profile
           </Link>
-        ))}
+          <Link
+            key="donations"
+            to="/donations"
+            style={navStyle}
+          >
+            Donations
+          </Link>
+          <Link
+            key="charities"
+            to="/charities"
+            style={navStyle}
+          >
+            Charities
+          </Link>
+
       </Toolbar>
+
       </UserContext.Provider>
     </>
   );

@@ -1,50 +1,18 @@
 import React, {Fragment} from 'react';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Footer from './Footer';
 
 
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       light: '#ffff57',
-//       main: '#ffed03',
-//       dark: '#c7bb00',
-//       contrastText: '#000000',
-//     },
-//     secondary: {
-//       light: '#6ec6ff',
-//       main: '#2196f3',
-//       dark: '#0069c0',
-//       contrastText: '#000000',
-//     },
-//   },
-// });
-
-// const useStyles = makeStyles((theme) => ({
-//   mainGrid: {
-//     marginTop: theme.spacing(3),
-//   },
-// }));
-
-const sections = [
-  { title: 'Profile', url: '#' },
-  { title: 'Charities', url: '#' },
-  { title: 'Donations', url: '#' },
-];
-
 const mainFeaturedPost = {
   title: 'Support Causes You Care About',
   description:
-    "Common Good is an alliance of more than 50 of Austin's best charities. Our 501(c)(3) high-impact nonprofit members are reviewed annually and must meet specific eligibility criteria before they’re approved for membership. Select Charities above to learn more about our nonprofit members' work and learn how you can support them..",
+    "Common Good is an alliance of more than 50 of Austin's best charities. Our 501(c)(3) high-impact nonprofit members are reviewed annually and must meet specific eligibility criteria before they’re approved for membership. Select Charities above to learn more about our nonprofit members' work and learn how you can support them.",
   image: 'https://communityimpact.com/wp-content/uploads/2016/12/Fotolia_112023896_Subscription_XXL.jpg',
   imgText: 'main image description',
-  linkText: 'Continue reading…',
 };
 
 const featuredPosts = [
@@ -73,7 +41,7 @@ function Homepage() {
 
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Common Good" sections={sections} />
+
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
