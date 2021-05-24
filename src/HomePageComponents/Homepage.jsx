@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-// import {makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -8,6 +7,7 @@ import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Footer from './Footer';
+
 
 // const theme = createMuiTheme({
 //   palette: {
@@ -26,11 +26,11 @@ import Footer from './Footer';
 //   },
 // });
 
-const useStyles = makeStyles((theme) => ({
-  mainGrid: {
-    marginTop: theme.spacing(3),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   mainGrid: {
+//     marginTop: theme.spacing(3),
+//   },
+// }));
 
 const sections = [
   { title: 'Profile', url: '#' },
@@ -39,10 +39,10 @@ const sections = [
 ];
 
 const mainFeaturedPost = {
-  title: 'Title of a longer featured blog post',
+  title: 'Support Causes You Care About',
   description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random',
+    "Common Good is an alliance of more than 50 of Austin's best charities. Our 501(c)(3) high-impact nonprofit members are reviewed annually and must meet specific eligibility criteria before they’re approved for membership. Select Charities above to learn more about our nonprofit members' work and learn how you can support them..",
+  image: 'https://communityimpact.com/wp-content/uploads/2016/12/Fotolia_112023896_Subscription_XXL.jpg',
   imgText: 'main image description',
   linkText: 'Continue reading…',
 };
@@ -53,7 +53,7 @@ const featuredPosts = [
     date: 'Nov 12',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
+    image: 'https://austin.com/wp-content/uploads/2020/01/67151026_10157135166007860_6253455525229363200_n.jpg.jpg',
     imageText: 'Image Text',
   },
   {
@@ -61,13 +61,13 @@ const featuredPosts = [
     date: 'Nov 11',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
+    image: 'http://3.bp.blogspot.com/-4iX9K6hf5mI/Umvbme2DRfI/AAAAAAAAAMU/aVVp14UD9H8/s1600/Happy-Kids_2.jpg',
     imageText: 'Image Text',
   },
 ];
 
 function Homepage() {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <>
 
