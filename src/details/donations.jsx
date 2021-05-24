@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
-import SendIcon from '@material-ui/icons/Send'
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,18 +22,16 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: '20px',
-    paddingLeft: 10,
-    paddingRight: 10
+    width: '175px',
+    margin: 'auto'
   }
 }));
-
 
 export default function Donations() {
   const classes = useStyles();
   const dummyProfPic = "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";
   const dummyDonorName = 'Bobby';
   const dummyDonorDetails = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-
 
   return (
     <>
