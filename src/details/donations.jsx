@@ -1,5 +1,6 @@
 import React from 'react';
-import { Avatar, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Avatar, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
   textFieldWidth: {
     width: 800
+  },
+  button: {
+    marginTop: '20px',
+    paddingLeft: 10,
+    paddingRight: 10
   }
 }));
 
@@ -26,7 +32,7 @@ export default function Donations() {
   const classes = useStyles();
   const dummyProfPic = "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";
   const dummyDonorName = 'Bobby';
-  const dummyDonorDetails = '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+  const dummyDonorDetails = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
 
   return (
@@ -51,7 +57,7 @@ export default function Donations() {
       </Grid>
 
         {/* <Desks/> Return to me! */}
-      <Grid container direction="column" className={classes.center}>
+      <Grid container direction="column">
         <Grid item className={classes.center}>
           <Typography variant="h6">Title</Typography>
         </Grid>
@@ -72,6 +78,14 @@ export default function Donations() {
             rows={4}
             className={classes.textFieldWidth}/>
         </Grid>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          endIcon={<SendIcon />}
+        >
+          SEND MESSAGE
+        </Button>
       </Grid>
     </>
   )
