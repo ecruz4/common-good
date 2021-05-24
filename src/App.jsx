@@ -7,6 +7,7 @@ import UserContext from './contexts/UserContext';
 import LoginButton from './components/modals/LoginButton';
 import LogoutButton from './components/modals/LogoutButton';
 import SignupButton from './components/modals/SignupButton';
+import OrgSignupButton from './components/modals/OrgSignupButton';
 
 // To use context:
 // In the file you want to access the value in,
@@ -42,9 +43,7 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user, userInfo }}>
-        <SignupButton />
-        <LoginButton />
-        <LogoutButton />
+        <OrgSignupButton />
       </UserContext.Provider>
     </div>
   );
