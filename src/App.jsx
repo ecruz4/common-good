@@ -11,6 +11,8 @@ import LogoutButton from './components/modals/LogoutButton';
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
 import AllCharities from './components/AllCharities';
+import SearchOrgs from './components/SearchOrgs';
+
 import Profile from './components/profile-page/Profile';
 // To use context:
 // In the file you want to access the value in,
@@ -46,8 +48,8 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user, userInfo }}>
-        <SignupButton />
-        <LogoutButton />
+        {/* <SignupButton />
+        <LogoutButton /> */}
 
         {/* <br/>
         <div>-----REQUEST TILES------</div>
@@ -61,6 +63,8 @@ function App() {
         <div>-----CHARITY ORGS TILES------</div>
         <br/>
         <AllCharities /> */}
+
+        <SearchOrgs/>
 
       </UserContext.Provider>
     </div>
