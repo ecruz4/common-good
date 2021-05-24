@@ -8,6 +8,7 @@ import UserContext from './contexts/UserContext';
 import LoginButton from './components/modals/LoginButton';
 import LogoutButton from './components/modals/LogoutButton';
 import SignupButton from './components/modals/SignupButton';
+import OrgSignupButton from './components/modals/OrgSignupButton';
 
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
@@ -50,6 +51,7 @@ function App() {
         <SignupButton />
         <LoginButton />
         <LogoutButton />
+        <OrgSignupButton />
 
         {/* <AllRequests />
         <div>--------------------</div>
