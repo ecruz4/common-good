@@ -3,13 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
-import LoginButton from './components/modals/LoginButton';
-import LogoutButton from './components/modals/LogoutButton';
 import SignupButton from './components/modals/SignupButton';
-import OrgSignupButton from './components/modals/OrgSignupButton';
+import LogoutButton from './components/modals/LogoutButton';
 
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
@@ -50,15 +47,13 @@ function App() {
     <div className="App">
       <UserContext.Provider value={{ user, userInfo }}>
         <SignupButton />
-        <LoginButton />
         <LogoutButton />
-        <OrgSignupButton />
 
-        {/* <AllRequests />
+        <AllRequests />
         <div>--------------------</div>
         <AllOffers />
         <div>--------------------</div>
-        <AllCharities /> */}
+        <AllCharities />
       </UserContext.Provider>
     </div>
   );
