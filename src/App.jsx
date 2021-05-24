@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 import LoginButton from './components/modals/LoginButton';
@@ -10,6 +11,10 @@ import SignupButton from './components/modals/SignupButton';
 import OrgSignupButton from './components/modals/OrgSignupButton';
 import Donations from './details/donations';
 import Map from './details/map';
+
+import AllRequests from './components/AllRequests';
+import AllOffers from './components/AllOffers';
+import AllCharities from './components/AllCharities';
 
 // To use context:
 // In the file you want to access the value in,
@@ -45,9 +50,18 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user, userInfo }}>
+        <SignupButton />
+        <LoginButton />
+        <LogoutButton />
         <OrgSignupButton />
         <Donations />
         <Map />
+
+        {/* <AllRequests />
+        <div>--------------------</div>
+        <AllOffers />
+        <div>--------------------</div>
+        <AllCharities /> */}
       </UserContext.Provider>
     </div>
   );
