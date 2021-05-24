@@ -6,7 +6,6 @@ import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 import SignupButton from './components/modals/SignupButton';
 import LogoutButton from './components/modals/LogoutButton';
-import OfferModal from './components/modals/OfferButton';
 
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
@@ -48,7 +47,6 @@ function App() {
       <UserContext.Provider value={{ user, userInfo }}>
         <SignupButton />
         <LogoutButton />
-        <OfferModal />
 
         <AllRequests />
         <div>--------------------</div>
