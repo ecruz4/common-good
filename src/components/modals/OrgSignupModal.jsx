@@ -185,7 +185,7 @@ function OrgSignupModal({ handleClose }) {
       </FormControl>
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Make Request
+          Sign Up
         </Button>
         <Button onClick={handleClose} color="primary">
           Cancel
