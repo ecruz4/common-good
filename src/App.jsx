@@ -8,6 +8,7 @@ import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 import SignupButton from './components/modals/SignupButton';
 import LogoutButton from './components/modals/LogoutButton';
+import LoginButton from './components/modals/LoginButton';
 
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
@@ -49,6 +50,7 @@ function App() {
       <UserContext.Provider value={{ user, userInfo }}>
         <SignupButton />
         <LogoutButton />
+        <LoginButton />
         <Profile />
         {/* <br/>
         <div>-----REQUEST TILES------</div>

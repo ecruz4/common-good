@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../contexts/UserContext';
 import ProfileAbout from './ProfileAbout';
 import ProfileAvatar from './ProfileAvatar';
@@ -30,6 +30,24 @@ function Profile() {
     uid: "Qd4ys09fs0ZlnamitOKlMsNnIpW2",
     photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
   }
+  const { currUser } = useContext(UserContext);
+  console.log(currUser);
+
+  // const [docs, setDocs] = useState([]);
+  // const { userInfo } = useContext(UserContext);
+
+  // useEffect(() => {
+  //   const allDocs = [];
+  //   db.firestore.collection("offers").where("donor_id", "==", 'mVYqsR5DJDbMoI51VlmZBrceX6Y2')
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         allDocs.push(doc.data());
+  //       });
+  //       setDocs(allDocs);
+  //     })
+  //     .catch((err) => console.log(err.message))
+  // }, []);
 
   return (
     <Grid container direction="column" justify="center" alignItems="stretch" style={{backgroundColor: "#7DA1FD"}}>
