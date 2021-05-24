@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import Homepage from './HomePageComponents/Homepage'
+import Homepage from './HomePageComponents/Homepage';
 
 
 
@@ -28,7 +28,8 @@ function App() {
     <Homepage />
 
     </>
-  );
+  )
 }
+
 
 export default App;
