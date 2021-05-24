@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -13,7 +14,7 @@ import OrgSignupButton from './components/modals/OrgSignupButton';
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
 import AllCharities from './components/AllCharities';
-
+import Profile from './components/profile-page/Profile';
 // To use context:
 // In the file you want to access the value in,
 // import React, { useContext } from 'react';
