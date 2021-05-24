@@ -33,7 +33,6 @@ function SignupModal({ handleClose }) {
           name,
           email,
           zip,
-          password,
           phone: '',
           photo_url: '',
           bio: '',

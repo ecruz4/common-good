@@ -4,10 +4,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
-import LoginButton from './components/modals/LoginButton';
-import LogoutButton from './components/modals/LogoutButton';
+import RequestButton from './components/modals/RequestButton';
 import SignupButton from './components/modals/SignupButton';
-import OrgSignupButton from './components/modals/OrgSignupButton';
+import LogoutButton from './components/modals/LogoutButton';
 
 // To use context:
 // In the file you want to access the value in,
@@ -43,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user, userInfo }}>
-        <OrgSignupButton />
+        <RequestButton />
       </UserContext.Provider>
     </div>
   );
