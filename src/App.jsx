@@ -22,10 +22,10 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user }}>
-        <h1>Hello World!</h1>
+        {/* <h1>Hello World!</h1>
         <DonorModal />
         <LoginButton />
-        <LogoutButton />
+        <LogoutButton /> */}
         <Profile />
       </UserContext.Provider>
     </div>

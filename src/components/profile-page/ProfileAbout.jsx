@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 
-function ProfileAbout() {
+function ProfileAbout({data}) {
   return (
     <div>
-      <h1>Profile About</h1>
+      <p>Profile About</p>
+      <span>{data.bio}</span>
     </div>
   )
 }
