@@ -14,7 +14,7 @@ const AllOffers = () => {
     // console.log(user.uid);
     // 'v9S7AcPHKaYdVWF5aPAG6SMiMvP2'
     const allDocs = [];
-    firestore.firestore.collection("offers").where("donor_id", "==", userInfo.uid || 'mVYqsR5DJDbMoI51VlmZBrceX6Y2')
+    firestore.firestore.collection("offers").where("donor_id", "==", 'mVYqsR5DJDbMoI51VlmZBrceX6Y2')
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {

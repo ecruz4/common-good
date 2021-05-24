@@ -49,11 +49,19 @@ function App() {
         <SignupButton />
         <LogoutButton />
 
+        {/* <br/>
+        <div>-----REQUEST TILES------</div>
+        <br/>
         <AllRequests />
-        <div>--------------------</div>
+        <br/>
+        <div>-----DONATION TILES------</div>
+        <br/>
         <AllOffers />
-        <div>--------------------</div>
-        <AllCharities />
+        <br/>
+        <div>-----CHARITY ORGS TILES------</div>
+        <br/>
+        <AllCharities /> */}
+
       </UserContext.Provider>
     </div>
   );
