@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import {makeStyles, Card, CardHeader, CardContent, Avatar, Typography} from '@material-ui/core';
+import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 import firestore from '../../db/firebase';
 
 
@@ -61,7 +62,7 @@ const RequestTile = ({ doc, isProfilePage }) => {
                 <Avatar aria-label="request" className={classes.avatar}>
                   <LocationCityIcon />
                 </Avatar> :
-                <Avatar aria-label="request" className={classes.avatarEmg}>!</Avatar>
+                <Avatar aria-label="request" className={classes.avatarEmg}><NotificationImportantIcon/></Avatar>
             }
             title={`${title} (x${quantity})`}
             subheader={org.name}
