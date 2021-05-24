@@ -53,7 +53,7 @@ function App() {
         <LoginButton />
         <LogoutButton />
         <OrgSignupButton />
-
+        <Profile />
         {/* <AllRequests />
         <div>--------------------</div>
         <AllOffers />
