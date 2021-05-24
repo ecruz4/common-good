@@ -24,7 +24,7 @@ function App() {
   // user stores authentication data, like email and uid
   const [user] = useAuthState(db.auth);
   // userInfo will store a lot more, like email, and uid, but also bio, pic, etc...
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     if (user === null) {

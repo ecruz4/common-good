@@ -5,6 +5,7 @@ import { yellow, lightBlue } from '@material-ui/core/colors';
 
 import db from '../../db/firebase';
 import UserContext from '../../contexts/UserContext';
+import timeAgo from '../../utils/timeAgo';
 
 const useStyles = makeStyles(() => ({
   message: {
@@ -26,7 +27,7 @@ function ChatMessage({ message }) {
       <Box className={classes.message}>
         <div className={`message ${messageClass}`}>
           <Typography variant="overline">
-            {userInfo.name} {createdAt.toString()}
+            {userInfo.name} • {timeAgo.format(createdAt.toDate(), 'mini')}
           </Typography>
           <Typography variant="body1">{text}</Typography>
         </div>
