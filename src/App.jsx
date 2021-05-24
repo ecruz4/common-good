@@ -7,6 +7,7 @@ import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 import SignupButton from './components/modals/SignupButton';
 import LogoutButton from './components/modals/LogoutButton';
+import ChatScreen from './components/chat/ChatScreen';
 
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
@@ -48,12 +49,7 @@ function App() {
       <UserContext.Provider value={{ user, userInfo }}>
         <SignupButton />
         <LogoutButton />
-
-        <AllRequests />
-        <div>--------------------</div>
-        <AllOffers />
-        <div>--------------------</div>
-        <AllCharities />
+        <ChatScreen />
       </UserContext.Provider>
     </div>
   );
