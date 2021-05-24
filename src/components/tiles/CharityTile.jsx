@@ -1,7 +1,6 @@
 import React from 'react';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-
-import {makeStyles, Card, CardHeader, CardContent, Avatar, Typography} from '@material-ui/core';
+import {makeStyles, Card, CardHeader, CardContent, Avatar, Typography, Grid} from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: '#33bfff',
   },
+  content: {
+    padding: 16,
+    '&:last-child': {
+      paddingBottom: 16,
+    }
+  }
 }));
 
 const CharityTile = ({ doc }) => {
@@ -18,7 +23,7 @@ const CharityTile = ({ doc }) => {
   const {name, bio, focus, city, state} = doc;
 
   return (
-    <>
+    <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card variant="outlined" className={classes.root}>
         <CardHeader
           avatar={
@@ -29,7 +34,7 @@ const CharityTile = ({ doc }) => {
           title={name}
           subheader={focus}
         />
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography variant="body2" color="textSecondary" component="p">
             {bio}
           </Typography>
@@ -39,7 +44,7 @@ const CharityTile = ({ doc }) => {
           </Typography>
         </CardContent>
       </Card>
-    </>
+    </Grid>
   );
 
 }
