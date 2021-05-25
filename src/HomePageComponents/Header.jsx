@@ -78,7 +78,12 @@ export default function Header(props) {
           ) : (
             <Link
               key="profile"
-              to={`/profile/${userInfo.uid}`}
+              to={{
+                pathname: `/profile/${userInfo.uid}`,
+                state: {
+                  userId: userInfo.uid
+                }
+              }}
               style={navStyle}
             >
               Profile
@@ -92,9 +97,24 @@ export default function Header(props) {
         <Link key="charities" to="/charities" style={navStyle}>
           Charities
         </Link>
-        <Link key="chat" to="/chat" style={navStyle}>
-          Chat
-        </Link>
+        <div>
+          {userInfo === null ? (
+            'Chat'
+          ) : (
+            <Link
+              key="chat"
+              to={{
+                pathname: `/chat/${userInfo.uid}`,
+                state: {
+                  userId: userInfo.uid
+                }
+              }}
+              style={navStyle}
+            >
+              Chat
+            </Link>
+          )}
+        </div>
       </Toolbar>
     </>
   );
