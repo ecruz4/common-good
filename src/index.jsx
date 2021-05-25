@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-import {yellow, lightBlue} from '@material-ui/core/colors';
+
 
 
 const theme = createMuiTheme({
@@ -20,12 +21,17 @@ const theme = createMuiTheme({
       dark: '#0069c0',
       contrastText: '#000000',
     },
+    background: {
+      default: '#6ec6ff'
+    },
   },
+
 });
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+    <CssBaseline />
       <App />
     </ThemeProvider>
   </React.StrictMode>,

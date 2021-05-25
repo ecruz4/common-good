@@ -28,7 +28,7 @@ function SignupButton() {
         onClick={handleClickOpen}
         onClose={handleClose}
       >
-        Create an Account
+        Sign Up
       </Button>
     </>
   );
