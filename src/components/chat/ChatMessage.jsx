@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     margin: '10px',
   },
   sent: {
-    background: 'red',
+    // background: 'red',
   },
   received: {
     background: 'blue',
