@@ -9,10 +9,10 @@ import { Grid } from '@material-ui/core';
 const ProfileBody = ({data}) => {
   return (
       <Grid container direction="row" alignItems="stretch">
-        <Grid item xs={6} md={4} lg={3}>
+        <Grid item xs={6} md={3} lg={2}>
           <ProfileAbout data={data} />
         </Grid>
-        <Grid item xs={6} md={8} lg={9}>
+        <Grid item xs={6} md={9} lg={10}>
           <ProfileFeed data={data} />
         </Grid>
       </Grid>

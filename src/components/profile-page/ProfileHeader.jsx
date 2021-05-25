@@ -7,6 +7,17 @@ import ProfileAvatar from './ProfileAvatar';
 import ProfileInfo from './ProfileInfo';
 import { Grid, Typography } from '@material-ui/core';
 import background from '../../assets/profileBackground.jpg';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    htmlFontSize: '70px',
+    fontFamily: [
+      'Pattaya',
+      'sans-serif',
+    ].join(',')
+  }
+})
 
 function ProfileHeader({data}) {
   return (
@@ -18,7 +29,9 @@ function ProfileHeader({data}) {
       </Grid>
       <Grid container item alignItems="center" style={{backgroundColor: "#7DA1FD", height: "118px"}}>
         <Grid item xs={3} />
-        <Typography>{data.name}</Typography>
+        <ThemeProvider theme={theme} > 
+          <Typography>{data.name}</Typography>
+        </ThemeProvider>
         <ProfileInfo data={data} />
       </Grid>
     </Grid>
