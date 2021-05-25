@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FF0000',
   },
   content: {
-    minHeight: 60
+    minHeight: 75
   },
   cardactions: {
     paddingLeft: 16,
@@ -59,7 +59,7 @@ const RequestTile = ({ doc }) => {
               <Avatar aria-label="request" className={classes.avatarEmg}><NotificationImportantIcon/></Avatar>
           }
           action={
-            <IconButton aria-label="settings">
+            <IconButton aria-label="chat">
               <ForumIcon/>
             </IconButton>
           }
