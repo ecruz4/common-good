@@ -8,19 +8,36 @@ import RequestTile from './tiles/RequestTile';
 const AllRequests = () => {
 
   const [docs, setDocs] = useState([]);
+  const retrievedDocs = [];
 
+  // citiesRef.where("country", "==", "USA").orderBy("population", "asc")
+
+
+  const findAllReqsByUrgency = () => {
+    firestore.firestore.collection("requests").where("org_id", "==", "mVYqsR5DJDbMoI51VlmZBrceX6Y2").orderBy("emergency", "asc")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        retrievedDocs.push(doc.data());
+      });
+      setDocs(retrievedDocs);
+    })
+    .catch((err) => console.log(err.message))
+  }
 
   useEffect(() => {
-    const allDocs = [];
-    firestore.firestore.collection("requests").where("org_id", "==", 'mVYqsR5DJDbMoI51VlmZBrceX6Y2')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          allDocs.push(doc.data());
-        });
-        setDocs(allDocs);
-      })
-      .catch((err) => console.log(err.message))
+
+    findAllReqsByUrgency();
+
+    // firestore.firestore.collection("requests").where("org_id", "==", 'mVYqsR5DJDbMoI51VlmZBrceX6Y2')
+    //   .get()
+    //   .then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //       retrievedDocs.push(doc.data());
+    //     });
+    //     setDocs(retrievedDocs);
+    //   })
+    //   .catch((err) => console.log(err.message))
   }, []);
 
   return (

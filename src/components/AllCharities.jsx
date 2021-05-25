@@ -52,7 +52,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
   }
 
   const findCharitiesByState = (term) => {
-    findCharityByCriteria("state", "==", term)
+    findCharityByCriteria("state", "==", term.toUpperCase())
   }
 
   const findCharitiesByTheme = (term) => {
@@ -67,7 +67,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
   };
 
   useEffect(() => {
-    if (searchTerm === '') {
+    if (!searchTerm || searchTerm === '') {
       findAllCharities();
     } else {
       searchSelection[criteria](searchTerm);

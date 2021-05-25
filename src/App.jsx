@@ -51,7 +51,7 @@ function App() {
         {/* <SignupButton />
         <LogoutButton /> */}
 
-        {/* <br/>
+        <br/>
         <div>-----REQUEST TILES------</div>
         <br/>
         <AllRequests />
@@ -62,7 +62,7 @@ function App() {
         <br/>
         <div>-----CHARITY ORGS TILES------</div>
         <br/>
-        <AllCharities /> */}
+        <AllCharities />
 
         <SearchOrgs/>
 
