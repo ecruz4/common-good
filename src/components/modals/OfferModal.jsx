@@ -4,6 +4,7 @@ import React, { useState, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { uuid } from 'uuidv4';
 
 import db from '../../db/firebase';
 import UserContext from '../../contexts/UserContext';
@@ -32,6 +33,7 @@ function OfferModal({ handleClose }) {
     const requestData = {
       donor_id: user.uid,
       date: new Date(),
+      id: uuid(),
       title,
       description,
       quantity,
