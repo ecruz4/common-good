@@ -45,9 +45,11 @@ function App() {
     <UserContext.Provider value={{ user, userInfo }}>
       <Router>
         <Header title="CommonGood" />
-        {/* <SearchOrgs/> */}
+        {/* <br/>
         <AllRequests/>
         <AllOffers/>
+        <AllCharities/>
+        <br/> */}
           <Switch>
               <Route path="/" exact component={Homepage}/>
               <Route path="/donations" exact component={AllOffers}/>

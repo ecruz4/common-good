@@ -54,6 +54,7 @@ const OfferTile = ({ doc }) => {
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card variant="outlined" className={classes.root}>
         <CardActionArea disableTouchRipple>
+
           <CardHeader
             avatar={
               <Avatar aria-label="offer" className={classes.avatar}>
@@ -68,6 +69,7 @@ const OfferTile = ({ doc }) => {
             title={`${title} (x${quantity})`}
             subheader={donor.name}
           />
+
           <CardMedia
             className={classes.media}
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHWg74rYh0ee1LQPLhyQxGFTxg4YBGMSUJQ&usqp=CAU"
@@ -84,6 +86,7 @@ const OfferTile = ({ doc }) => {
               {`${donor.city}, ${donor.state}`}
             </Typography>
           </CardActions>
+
         </CardActionArea>
       </Card>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
-import {makeStyles, Card, CardHeader, CardContent, Avatar, Typography, Grid, Grow} from '@material-ui/core';
+import {makeStyles, Card, CardHeader, CardContent, Avatar, IconButton, CardActionArea, Typography, Grid, Grow} from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,24 +26,27 @@ const CharityTile = ({ doc }) => {
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Grow in {...({timeout: 500}) }>
         <Card variant="outlined" className={classes.root}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="charity profile" className={classes.avatar}>
-                <LocationCityIcon />
-              </Avatar>
-            }
-            title={name}
-            subheader={focus}
-          />
-          <CardContent className={classes.content}>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {bio}
-            </Typography>
-            <br/>
-            <Typography variant="overline">
-              {`${city}, ${state}`}
-            </Typography>
-          </CardContent>
+          <CardActionArea disableTouchRipple>
+            <CardHeader
+              avatar={
+                <Avatar aria-label="charity profile" className={classes.avatar}>
+                  <LocationCityIcon />
+                </Avatar>
+              }
+              title={name}
+              subheader={focus}
+            />
+
+            <CardContent className={classes.content}>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {bio}
+              </Typography>
+              <br/>
+              <Typography variant="overline">
+                {`${city}, ${state}`}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
         </Card>
       </Grow>
     </Grid>
