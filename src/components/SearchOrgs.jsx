@@ -71,7 +71,8 @@ const SearchOrgs = () => {
         >
           <MenuItem value='name'>Name</MenuItem>
           <MenuItem value='city'>City</MenuItem>
-          <MenuItem value='theme'>Theme</MenuItem>
+          <MenuItem value='state'>State</MenuItem>
+          <MenuItem value='theme'>Charity Theme</MenuItem>
         </Select>
       </FormControl>
 

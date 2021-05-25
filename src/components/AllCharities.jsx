@@ -7,7 +7,18 @@ import CharityTile from './tiles/CharityTile';
 const AllCharities = ({ searchTerm, criteria }) => {
   const [docs, setDocs] = useState([]);
   const allDocs = [];
-  console.log('docs', docs);
+
+  const capitalize = (str) => {
+    let output = '';
+    if (str !== '') {
+      str.split(' ').forEach((w) => {
+        if (w !== '') {
+          output += w[0].toUpperCase() + w.slice(1) + ' ';
+        }
+      });
+      return output.slice(0, -1);
+    }
+  }
 
   const findAllCharities = () => {
     firestore.firestore.collection("organizations").get()
@@ -20,8 +31,8 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .catch((err) => console.log(err.message))
   }
 
-  const findCharitiesByName = (term) => {
-    firestore.firestore.collection("organizations").where("search_name", "array-contains", term)
+  const searchCharityByCriteria = (field, operator, term) => {
+    firestore.firestore.collection("organizations").where(field, operator, term)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -32,13 +43,38 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .catch((err) => console.log(err.message))
   }
 
+  const findCharitiesByName = (term) => {
+    searchCharityByCriteria("search_name", "array-contains", term);
+  }
+
+  const findCharitiesByCity = (term) => {
+    searchCharityByCriteria("city", "==", term);
+  }
+
+  const findCharitiesByState = (term) => {
+    searchCharityByCriteria("state", "==", term)
+  }
+
+  const findCharitiesByTheme = (term) => {
+    searchCharityByCriteria("focus", "==", term)
+  }
+
   useEffect(() => {
+
     if (searchTerm === '') {
       findAllCharities();
     } else if (criteria === 'name') {
+      console.log('Searching by name');
       findCharitiesByName(searchTerm);
     } else if (criteria === 'city') {
-      console.log('search city!')
+      console.log('Searching by city');
+      findCharitiesByCity(capitalize(searchTerm));
+    } else if (criteria === 'state') {
+      console.log('Searching by state');
+      findCharitiesByState(searchTerm);
+    } else if (criteria === 'theme') {
+      console.log('Searching by theme');
+      findCharitiesByTheme(capitalize(searchTerm));
     }
   }, [searchTerm]);
 
