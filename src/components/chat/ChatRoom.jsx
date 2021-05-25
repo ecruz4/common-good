@@ -13,9 +13,16 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import db from '../../db/firebase';
 import ChatMessage from './ChatMessage';
+import ChatSidebar from './ChatSidebar';
 
 const useStyles = makeStyles(() => ({
+  appContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   chatContainer: {
+    borderLeftWidth: '2px',
+    background: '#121212',
     justify: 'center',
     padding: '7px',
     // background: '#a9a9a9',
@@ -27,6 +34,7 @@ const useStyles = makeStyles(() => ({
   messagesContainer: {
     display: 'flex',
     flexDirection: 'column',
+    minHeight: '500px',
     maxHeight: '500px',
     overflow: 'auto',
   },
@@ -43,6 +51,10 @@ function ChatRoom() {
   const [messages] = useCollectionData(query, { idField: 'id' });
 
   const [formValue, setFormValue] = useState('');
+  const [otherUser, setOtherUser] = useState('');
+
+  const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
+  const otherName = 'John Doe';
 
   const dummy = useRef();
 
@@ -55,6 +67,8 @@ function ChatRoom() {
       text: formValue,
       createdAt: new Date(),
       uid,
+      recieverId: otherUid,
+      recieverName: otherName,
       photoURL,
     });
 
@@ -65,27 +79,32 @@ function ChatRoom() {
 
   return (
     <Card>
-      <Container className={classes.chatContainer}>
-        <div className={classes.messagesContainer}>
-          {messages &&
-            messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
-          <div ref={dummy} />
-        </div>
-        <Container className={classes.formContainer}>
-          <form onSubmit={sendMessage}>
-            <TextField
-              value={formValue}
-              onChange={(event) => setFormValue(event.target.value)}
-            />
-            <Button
-              className={classes.submitButton}
-              type="submit"
-              variant="contained"
-              color="primary"
-            >
-              Submit
-            </Button>
-          </form>
+      <Container className={classes.appContainer}>
+        <ChatSidebar setOtherUser={setOtherUser} />
+        <Container className={classes.chatContainer}>
+          <div className={classes.messagesContainer}>
+            {messages &&
+              messages.map((msg) => (
+                <ChatMessage key={msg.id} message={msg} otherUser={otherUser} />
+              ))}
+            <div ref={dummy} />
+          </div>
+          <Container className={classes.formContainer}>
+            <form onSubmit={sendMessage}>
+              <TextField
+                value={formValue}
+                onChange={(event) => setFormValue(event.target.value)}
+              />
+              <Button
+                className={classes.submitButton}
+                type="submit"
+                variant="contained"
+                color="primary"
+              >
+                Submit
+              </Button>
+            </form>
+          </Container>
         </Container>
       </Container>
     </Card>

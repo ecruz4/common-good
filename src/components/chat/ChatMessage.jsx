@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ChatMessage({ message }) {
+function ChatMessage({ message, otherUser }) {
   const { userInfo } = useContext(UserContext);
   const { text, uid, createdAt } = message;
   const user = db.auth.currentUser;
