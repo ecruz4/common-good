@@ -5,25 +5,36 @@
 import React from 'react';
 import ProfileAvatar from './ProfileAvatar';
 import ProfileInfo from './ProfileInfo';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import background from '../../assets/profileBackground.jpg';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    htmlFontSize: '70px',
+    fontFamily: [
+      'Pattaya',
+      'sans-serif',
+    ].join(',')
+  }
+})
 
 function ProfileHeader({data}) {
   return (
-    <div>
-      <Grid container direction="column" justify="flex-start" alignItems="stretch">
-        <Grid absolute item direction="row" style={{backgroundImage: `url(${background})`, height: "222px", }} >
-          <Grid relative style={{position: "relative", top: "100px", left: "40px"}}>
-            <ProfileAvatar data={data}/>
-          </Grid>
-        </Grid>
-        <Grid container item alignItems="center" style={{backgroundColor: "#7DA1FD", height: "118px"}}>
-          <Grid item xs={3} />
-          <h1>{data.name}</h1>
-          <ProfileInfo data={data} />
+    <Grid container direction="column" justify="flex-start" alignItems="stretch">
+      <Grid item container direction="row" style={{backgroundImage: `url(${background})`, height: "222px"}} >
+        <Grid style={{position: "relative", top: "60px", left: "90px"}}>
+          <ProfileAvatar data={data}/>
         </Grid>
       </Grid>
-    </div>
+      <Grid container item alignItems="center" style={{backgroundColor: "#7DA1FD", height: "118px"}}>
+        <Grid item xs={3} />
+        <ThemeProvider theme={theme} > 
+          <Typography>{data.name}</Typography>
+        </ThemeProvider>
+        <ProfileInfo data={data} />
+      </Grid>
+    </Grid>
   )
 }
 

@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { Fragment, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -31,11 +32,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  const { sections, title } = props;
+  const { title } = props;
+  const { userInfo } = useContext(UserContext);
 
   const navStyle = {
     color: 'black',
     textDecoration: 'none',
+  };
+
+  const logoStyle = {
+    color: 'black',
+    textDecoration: 'none',
+    // fontFamily: "'Abril Fatface', cursive"
+    fontFamily: "'Pattaya', sans-serif",
   };
 
   return (
@@ -50,7 +59,7 @@ export default function Header(props) {
           noWrap
           className={classes.toolbarTitle}
         >
-          <Link key="homepage" to="/" style={navStyle}>
+          <Link key="homepage" to="/" style={logoStyle}>
             {title}
           </Link>
         </Typography>
@@ -62,9 +71,20 @@ export default function Header(props) {
         variant="dense"
         className={classes.toolbarSecondary}
       >
-        <Link key="profile" to="/profile" style={navStyle}>
-          Profile
-        </Link>
+        <div>
+          {userInfo === null ? (
+            'Profile'
+          ) : (
+            <Link
+              key="profile"
+              to={`/profile/${userInfo.uid}`}
+              style={navStyle}
+            >
+              Profile
+            </Link>
+          )}
+        </div>
+
         <Link key="donations" to="/donations" style={navStyle}>
           Donations
         </Link>

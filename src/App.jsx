@@ -1,8 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { Fragment, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
+// Database
+import { useAuthState } from 'react-firebase-hooks/auth';
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 
@@ -12,25 +12,7 @@ import AllCharities from './components/AllCharities';
 import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
-
 import ChatScreen from './components/chat/ChatScreen';
-
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       light: '#ffff57',
-//       main: '#ffed03',
-//       dark: '#c7bb00',
-//       contrastText: '#000000',
-//     },
-//     secondary: {
-//       light: '#6ec6ff',
-//       main: '#2196f3',
-//       dark: '#0069c0',
-//       contrastText: '#000000',
-//     },
-//   },
-// });
 
 function App() {
   const [user] = useAuthState(db.auth);
@@ -59,12 +41,12 @@ function App() {
     <>
       <UserContext.Provider value={{ user, userInfo }}>
         <Router>
-          <Header title="Common Good" />
+          <Header title="CommonGood" />
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route path="/donations" exact component={AllOffers} />
             <Route path="/charities" exact component={AllCharities} />
-            <Route path="/profile" exact component={Profile} />
+            <Route path="/profile/:uid" exact component={Profile} />
             <Route path="/chat" exact component={ChatScreen} />
           </Switch>
         </Router>
