@@ -98,6 +98,7 @@ function SignupModal({ handleClose }) {
         }}
         value={password}
         onChange={(event) => setPassword(event.target.value)}
+        helperText="Password must be at least 6 characters"
       />
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>

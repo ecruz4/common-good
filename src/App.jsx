@@ -1,5 +1,5 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import db from './db/firebase';
@@ -12,10 +12,6 @@ import AllCharities from './components/AllCharities';
 import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
-
-
-
-
 
 // const theme = createMuiTheme({
 //   palette: {
@@ -34,25 +30,20 @@ import Homepage from './HomePageComponents/Homepage';
 //   },
 // });
 
-
 function App() {
-
   return (
     <>
-    <Router>
-    <Header title="Common Good" />
-    <Switch>
-          <Route path="/" exact component={Homepage}/>
-          <Route path="/donations" exact component={AllOffers}/>
-          <Route path="/charities" exact component={AllCharities}/>
-          <Route path="/profile" exact component={Profile}/>
-      </Switch>
+      <Router>
+        <Header title="Common Good" />
+        <Switch>
+          <Route path="/" exact component={Homepage} />
+          <Route path="/donations" exact component={AllOffers} />
+          <Route path="/charities" exact component={AllCharities} />
+          <Route path="/profile" exact component={Profile} />
+        </Switch>
       </Router>
-
     </>
-  )
+  );
 }
-
-
 
 export default App;
