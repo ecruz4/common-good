@@ -2,6 +2,9 @@ import React from 'react';
 import { Avatar, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 
+// PROPS PASSED FROM ROUTER
+import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -28,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Donations() {
+  const location = useLocation();
+  const {productId, userId, title, description, quantity, date} = location.state;
+
   const classes = useStyles();
   const dummyProfPic = "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";
   const dummyDonorName = 'Bobby';

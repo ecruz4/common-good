@@ -21,14 +21,18 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
-function ProfileAvatar({data}) {
+function ProfileAvatar({data, edit}) {
 
   return (
     <div style={{border: "8px solid #FFB341", borderRadius: "100%"}}>
       {/* Will need to add a conditional here. If UID of session matches UID of page, add the edit icon and make it click-able */}
+      {edit === true ? 
       <StyledBadge color="primary" badgeContent={<EditIcon style={{color: "#7DA1FD", fontSize: '45px'}} />} anchorOrigin={{vertical: "bottom", horizontal: "right"}}>
         <Avatar alt={data.name} src={profileImage} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
-      </StyledBadge>
+      </StyledBadge> : 
+        <Avatar alt={data.name} src={profileImage} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
+      }
+      
     </div>
   )
 }
