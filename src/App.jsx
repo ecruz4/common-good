@@ -38,6 +38,7 @@ function App() {
 
   useEffect(() => {
     if (user === null) {
+      setUserInfo(null);
       return;
     }
     db.firestore

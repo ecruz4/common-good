@@ -13,10 +13,13 @@ const useStyles = makeStyles(() => ({
     margin: '10px',
   },
   sent: {
-    // background: 'red',
+    background: 'red',
   },
   received: {
     background: 'blue',
+  },
+  invisible: {
+    visibility: 'hidden',
   },
 }));
 
@@ -26,7 +29,21 @@ function ChatMessage({ message }) {
   const user = db.auth.currentUser;
   const classes = useStyles();
 
-  const messageClass = uid === user.uid ? 'sent' : 'received';
+  const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
+  const otherName = 'John Doe';
+
+  let messageClass = '';
+
+  if (uid === user.uid) {
+    messageClass = 'sent';
+  } else if (uid === otherUid) {
+    messageClass = 'received';
+  } else {
+    return null;
+  }
+
+  console.log(uid);
+  console.log(messageClass);
 
   return (
     userInfo && (
