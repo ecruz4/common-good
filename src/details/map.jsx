@@ -20,7 +20,7 @@ export default function Map() {
   const zoom = 11;
 
   return (
-    <div style={{ height: '50vh', width: '50%', display: 'flex', margin: 'auto', marginTop: '20px' }}>
+    <div style={{ height: '400', width: '50%', display: 'flex', margin: 'auto', marginTop: '20px' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: apiKey }}
           defaultCenter={center}

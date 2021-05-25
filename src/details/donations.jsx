@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Avatar, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import UserContext from '../contexts/UserContext';
+const nodemailer = require('nodemailer');
+const sendmail = require('sendmail')();
 
 
 // To use context:
@@ -38,12 +40,56 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Donations() {
   const { user } = useContext(UserContext);
+  const [message, setMessage] = useState(null);
+  const [title, setTitle] = useState(null);
   console.log('user: ', user);
   const classes = useStyles();
   const dummyProfPic = "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";
   const dummyDonorName = 'Bobby';
   const dummyDonorDetails = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 
+  async function handleClick(e) {
+    e.preventDefault();
+
+    // sendmail({
+    //   from: 'dylanreid7@gmail.com',
+    //   to: 'dylanreid7@gmail.com',
+    //   subject: 'subj',
+    //   html: 'hello dude',
+    // }, (err, reply) => {
+    //   console.log(err && err.stack);
+    //   console.dir(reply);
+    // });
+
+    sendmail({
+      from: 'no-reply@yourdomain.com',
+      to: 'test@qq.com, test@sohu.com, test@163.com, dylanreid7@gmail.com ',
+      subject: 'test sendmail',
+      html: 'Mail of test sendmail ',
+    }, function(err, reply) {
+      console.log(err && err.stack);
+      console.dir(reply);
+  });
+
+    // let transporter = nodemailer.createTransport({
+    //   port: 587,
+    //   secure: false
+    // })
+
+    // var message = {
+    //   from: user.email,
+    //   to: 'dylanreid7@gmail.com',
+    //   subject: 'whattup',
+    //   text: 'hello dylan',
+    // }
+
+    // let info = await transporter.sendMail(message);
+
+    // console.log('Message sent: ', info.messageId);
+
+    // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  }
+  // handleClick(e).catch(console.error)
 
   return (
     <>
@@ -93,6 +139,7 @@ export default function Donations() {
           color="primary"
           className={classes.button}
           endIcon={<SendIcon />}
+          onClick={handleClick}
         >
           SEND MESSAGE
         </Button>
