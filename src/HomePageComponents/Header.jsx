@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
+import UserContext from '../contexts/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
