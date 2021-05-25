@@ -2,7 +2,7 @@ import React from 'react';
 import zipcodes from 'zipcodes';
 import GoogleMapReact from 'google-map-react';
 import RoomTwoToneIcon from '@material-ui/icons/RoomTwoTone';
-import config from '../config';
+import config from '../../config';
 
 const MapMarkerIcon = () => (
     <RoomTwoToneIcon />

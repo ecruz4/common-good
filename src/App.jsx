@@ -13,6 +13,10 @@ import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
 
+// Importing Dylan stuff
+import Donations from './components/details/donations';
+import Map from './components/details/map';
+
 // const theme = createMuiTheme({
 //   palette: {
 //     primary: {
@@ -42,7 +46,10 @@ function App() {
           <Route path="/profile" exact component={Profile} />
         </Switch>
       </Router>
+      <Donations />
+      <Map />
     </>
+
   );
 }
 

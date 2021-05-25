@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Avatar, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
-import UserContext from '../contexts/UserContext';
+import UserContext from '../../contexts/UserContext';
 const nodemailer = require('nodemailer');
 const sendmail = require('sendmail')();
 
