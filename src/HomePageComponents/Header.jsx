@@ -1,23 +1,16 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Material UI
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-// Database
-import db from '../db/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import UserContext from '../contexts/UserContext';
-
 // Login Components
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
-
-
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -39,26 +32,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const classes = useStyles();
   const { sections, title } = props;
-  const [user] = useAuthState(db.auth);
-  const [userInfo, setUserInfo] = useState(null);
-
-    useEffect(() => {
-    if (user === null) {
-      return;
-    }
-    db.firestore
-      .collection('users')
-      .where('uid', '==', user.uid)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setUserInfo(doc.data());
-        });
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
-  }, [user]);
 
   const navStyle = {
     color: 'black',
@@ -67,8 +40,6 @@ export default function Header(props) {
 
   return (
     <>
-    <UserContext.Provider value={{ user, userInfo }}>
-
       <Toolbar className={classes.toolbar}>
         <SignupButton />
         <Typography
@@ -79,45 +50,31 @@ export default function Header(props) {
           noWrap
           className={classes.toolbarTitle}
         >
-          <Link
-            key="homepage"
-            to="/"
-            style={navStyle}
-          >
+          <Link key="homepage" to="/" style={navStyle}>
             {title}
           </Link>
-
         </Typography>
         <LoginButton />
         <LogoutButton />
       </Toolbar>
-      <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-
-          <Link
-            key="profile"
-            to="/profile"
-            style={navStyle}
-          >
-            Profile
-          </Link>
-          <Link
-            key="donations"
-            to="/donations"
-            style={navStyle}
-          >
-            Donations
-          </Link>
-          <Link
-            key="charities"
-            to="/charities"
-            style={navStyle}
-          >
-            Charities
-          </Link>
-
+      <Toolbar
+        component="nav"
+        variant="dense"
+        className={classes.toolbarSecondary}
+      >
+        <Link key="profile" to="/profile" style={navStyle}>
+          Profile
+        </Link>
+        <Link key="donations" to="/donations" style={navStyle}>
+          Donations
+        </Link>
+        <Link key="charities" to="/charities" style={navStyle}>
+          Charities
+        </Link>
+        <Link key="chat" to="/chat" style={navStyle}>
+          Chat
+        </Link>
       </Toolbar>
-
-      </UserContext.Provider>
     </>
   );
 }
@@ -126,7 +83,6 @@ Header.propTypes = {
   sections: PropTypes.array,
   title: PropTypes.string,
 };
-
 
 /* eslint-disable import/no-extraneous-dependencies */
 // import React, { useEffect, useState } from 'react';

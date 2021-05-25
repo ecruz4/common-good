@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
+import { Container } from '@material-ui/core';
 
 import ChatRoom from './ChatRoom';
 import SignupButton from '../modals/SignupButton';
 import UserContext from '../../contexts/UserContext';
-import { Container } from '@material-ui/core';
 
 function ChatScreen() {
   const { user } = useContext(UserContext);
