@@ -9,7 +9,7 @@ function ChatScreen() {
   const { user } = useContext(UserContext);
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xs">
       <div>{user ? <ChatRoom /> : <SignupButton />}</div>
     </Container>
   );
