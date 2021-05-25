@@ -19,7 +19,9 @@ import ProfileBody from './ProfileBody';
 // const { user } = useContext(UserContext);
 // You can now use user like any other variable!
 
-function Profile() {
+function Profile({ docs }) {
+  // Will receive docs prop from previous component. Docs will contain all necessary information needed to render profile:
+
   const user = {
     bio: "I'm doing this for the tax benefits.",
     city: "Cedar Park",
@@ -27,31 +29,18 @@ function Profile() {
     name: "Eric Cruz",
     phone: "(123) 456-7890",
     state: "TX",
+    zipcode: "78613",
     uid: "Qd4ys09fs0ZlnamitOKlMsNnIpW2",
     photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
   }
   const { currUser } = useContext(UserContext);
   console.log(currUser);
 
-  // const [docs, setDocs] = useState([]);
-  // const { userInfo } = useContext(UserContext);
-
-  // useEffect(() => {
-  //   const allDocs = [];
-  //   db.firestore.collection("offers").where("donor_id", "==", 'mVYqsR5DJDbMoI51VlmZBrceX6Y2')
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         allDocs.push(doc.data());
-  //       });
-  //       setDocs(allDocs);
-  //     })
-  //     .catch((err) => console.log(err.message))
-  // }, []);
-
   return (
     <Grid container direction="column" justify="center" alignItems="stretch" style={{backgroundColor: "#7DA1FD"}}>
-      <ProfileHeader data={user} />
+      <ProfileHeader data={user} 
+        // edit={ user.uid === currUser.uid ? true : false }
+      />
       <ProfileBody data={user} />
     </Grid>
   )

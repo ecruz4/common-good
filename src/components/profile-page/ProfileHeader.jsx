@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: {
-    htmlFontSize: '70px',
+    htmlFontSize: 4,
     fontFamily: [
       'Pattaya',
       'sans-serif',
@@ -27,7 +27,7 @@ function ProfileHeader({data}) {
           <ProfileAvatar data={data}/>
         </Grid>
       </Grid>
-      <Grid container item alignItems="center" style={{backgroundColor: "#7DA1FD", height: "118px"}}>
+      <Grid container direction="row" item alignItems="center" style={{backgroundColor: "#7DA1FD", height: "118px"}}>
         <Grid item xs={3} />
         <ThemeProvider theme={theme} > 
           <Typography>{data.name}</Typography>
