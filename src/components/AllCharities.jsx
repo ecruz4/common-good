@@ -4,7 +4,7 @@ import firestore from '../db/firebase';
 import CharityTile from './tiles/CharityTile';
 
 
-const AllCharities = ({ searchTerm }) => {
+const AllCharities = ({ searchTerm, criteria }) => {
   const [docs, setDocs] = useState([]);
   const allDocs = [];
   console.log('docs', docs);
@@ -35,8 +35,10 @@ const AllCharities = ({ searchTerm }) => {
   useEffect(() => {
     if (searchTerm === '') {
       findAllCharities();
-    } else {
+    } else if (criteria === 'name') {
       findCharitiesByName(searchTerm);
+    } else if (criteria === 'city') {
+      console.log('search city!')
     }
   }, [searchTerm]);
 
