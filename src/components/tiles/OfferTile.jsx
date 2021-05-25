@@ -74,9 +74,19 @@ const OfferTile = ({ doc }) => {
               </Link>
             }
             action={
+              <Link
+              key="chat"
+              to={{
+                pathname: `/chat/${donor_id}`,
+                state: {
+                  userId: donor_id
+                }
+              }}
+            >
               <IconButton aria-label="chat">
                 <ForumIcon/>
               </IconButton>
+              </Link>
             }
             title={
               <Link
