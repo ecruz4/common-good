@@ -10,6 +10,8 @@ import UserContext from './contexts/UserContext';
 import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
 import AllCharities from './components/AllCharities';
+import SearchOrgs from './components/SearchOrgs';
+
 import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
@@ -41,16 +43,21 @@ function App() {
   return (
     <>
     <UserContext.Provider value={{ user, userInfo }}>
-    <Router>
-    <Header title="CommonGood" />
-    <Switch>
-          <Route path="/" exact component={Homepage}/>
-          <Route path="/donations" exact component={AllOffers}/>
-          <Route path="/charities" exact component={AllCharities}/>
-          <Route path="/profile/:uid" exact component={Profile}/>
-      </Switch>
+      <Router>
+        <Header title="CommonGood" />
+        {/* <br/>
+        <AllRequests/>
+        <AllOffers/>
+        <AllCharities/>
+        <br/> */}
+          <Switch>
+              <Route path="/" exact component={Homepage}/>
+              <Route path="/donations" exact component={AllOffers}/>
+              <Route path="/charities" exact component={AllCharities}/>
+              <Route path="/profile/:uid" exact component={Profile}/>
+          </Switch>
       </Router>
-      </UserContext.Provider>
+    </UserContext.Provider>
     </>
   );
 }
