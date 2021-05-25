@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { Button, Typography, TextField } from '@material-ui/core';
 import React, { useState, useRef } from 'react';
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -36,17 +37,20 @@ function ChatRoom() {
   return (
     <>
       <div>
-        <h1>ChatRoom</h1>
+        <Typography variant="h3" gutterBottom>
+          {' '}
+          ChatRoom
+        </Typography>
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
         <div ref={dummy} />
       </div>
       <form onSubmit={sendMessage}>
-        <input
+        <TextField
           value={formValue}
           onChange={(event) => setFormValue(event.target.value)}
         />
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       </form>
     </>
   );

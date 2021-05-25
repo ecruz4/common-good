@@ -1,24 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, {Fragment, useState, useContext} from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Material UI
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-// Database
-import db from '../db/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import UserContext from '../contexts/UserContext';
-
 // Login Components
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
-
-
+import UserContext from '../contexts/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -51,10 +45,8 @@ export default function Header(props) {
     color: 'black',
     textDecoration: 'none',
     // fontFamily: "'Abril Fatface', cursive"
-    fontFamily: "'Pattaya', sans-serif"
+    fontFamily: "'Pattaya', sans-serif",
   };
-
-
 
   return (
     <>
@@ -68,46 +60,41 @@ export default function Header(props) {
           noWrap
           className={classes.toolbarTitle}
         >
-          <Link
-            key="homepage"
-            to="/"
-            style={logoStyle}
-          >
+          <Link key="homepage" to="/" style={logoStyle}>
             {title}
           </Link>
-
         </Typography>
         <LoginButton />
         <LogoutButton />
       </Toolbar>
-      <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
+      <Toolbar
+        component="nav"
+        variant="dense"
+        className={classes.toolbarSecondary}
+      >
         <div>
-        {
-          userInfo === null ? "Profile" : <Link
-            key="profile"
-            to={`/profile/${userInfo.uid}`}
-            style={navStyle}
-          >
-            Profile
-          </Link>
-          }
-          </div>
+          {userInfo === null ? (
+            'Profile'
+          ) : (
+            <Link
+              key="profile"
+              to={`/profile/${userInfo.uid}`}
+              style={navStyle}
+            >
+              Profile
+            </Link>
+          )}
+        </div>
 
-          <Link
-            key="donations"
-            to="/donations"
-            style={navStyle}
-          >
-            Donations
-          </Link>
-          <Link
-            key="charities"
-            to="/charities"
-            style={navStyle}
-          >
-            Charities
-          </Link>
-
+        <Link key="donations" to="/donations" style={navStyle}>
+          Donations
+        </Link>
+        <Link key="charities" to="/charities" style={navStyle}>
+          Charities
+        </Link>
+        <Link key="chat" to="/chat" style={navStyle}>
+          Chat
+        </Link>
       </Toolbar>
     </>
   );
@@ -117,7 +104,6 @@ Header.propTypes = {
   sections: PropTypes.array,
   title: PropTypes.string,
 };
-
 
 /* eslint-disable import/no-extraneous-dependencies */
 // import React, { useEffect, useState } from 'react';
