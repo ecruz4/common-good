@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 /* eslint-disable import/order */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
@@ -19,27 +20,28 @@ import ProfileBody from './ProfileBody';
 // const { user } = useContext(UserContext);
 // You can now use user like any other variable!
 
-function Profile({ docs }) {
-  // Will receive docs prop from previous component. Docs will contain all necessary information needed to render profile:
+
+function Profile() {
+  // Will receive "docs" prop from previous component. Docs will contain all necessary information needed to render profile:
 
   const user = {
     bio: "I'm doing this for the tax benefits.",
     city: "Cedar Park",
-    email: "eacruz423@gmail.com",
+    email: "eacruz@live.com",
     name: "Eric Cruz",
     phone: "(123) 456-7890",
     state: "TX",
     zipcode: "78613",
-    uid: "Qd4ys09fs0ZlnamitOKlMsNnIpW2",
+    uid: "zZ6aQSz8AsThanjOPxQa2EIhbnB2",
     photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
   }
-  const { currUser } = useContext(UserContext);
-  console.log(currUser);
+
+  const { userInfo } = useContext(UserContext);
 
   return (
     <Grid container direction="column" justify="center" alignItems="stretch" style={{backgroundColor: "#7DA1FD"}}>
       <ProfileHeader data={user} 
-        // edit={ user.uid === currUser.uid ? true : false }
+        edit={ user.uid === userInfo.uid ? true : false }
       />
       <ProfileBody data={user} />
     </Grid>

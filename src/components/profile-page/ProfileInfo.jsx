@@ -4,7 +4,6 @@ import zipcodes from 'zipcodes';
 
 function ProfileInfo({data}) {
   const location = zipcodes.lookup(data.zipcode)
-  console.log(location);
   return (
     <div>
       <span>{data.email}</span>

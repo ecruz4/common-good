@@ -19,16 +19,16 @@ const theme = createMuiTheme({
   }
 })
 
-function ProfileHeader({data}) {
+function ProfileHeader({data, edit}) {
   return (
     <Grid container direction="column" justify="flex-start" alignItems="stretch">
       <Grid item container direction="row" style={{backgroundImage: `url(${background})`, height: "222px"}} >
-        <Grid style={{position: "relative", top: "60px", left: "90px"}}>
-          <ProfileAvatar data={data}/>
+        <Grid style={{position: "relative", top: "60px", left: "50px"}}>
+          <ProfileAvatar data={data} edit={edit} />
         </Grid>
       </Grid>
       <Grid container direction="row" item alignItems="center" style={{backgroundColor: "#7DA1FD", height: "118px"}}>
-        <Grid item xs={3} />
+        <Grid item xs={2} />
         <ThemeProvider theme={theme} > 
           <Typography>{data.name}</Typography>
         </ThemeProvider>
