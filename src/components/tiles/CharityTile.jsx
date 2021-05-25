@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import {makeStyles, Card, CardHeader, CardContent, Avatar, IconButton, CardActionArea, Typography, Grid, Grow} from '@material-ui/core';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CharityTile = ({ doc }) => {
   const classes = useStyles();
-  const {name, bio, focus, city, state} = doc;
+  const {uid, name, bio, focus, city, state} = doc;
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -29,9 +32,25 @@ const CharityTile = ({ doc }) => {
           <CardActionArea disableTouchRipple>
             <CardHeader
               avatar={
-                <Avatar aria-label="charity profile" className={classes.avatar}>
+                <Link
+              key="charity"
+              to={{
+                pathname: `/charities/${uid}`,
+                state: {
+                  userId: uid,
+                  name: name,
+                  bio: bio,
+                  focus: focus,
+                  city: city,
+                  state: state
+                }
+              }}
+            >
+              <Avatar aria-label="charity profile" className={classes.avatar}>
                   <LocationCityIcon />
                 </Avatar>
+            </Link>
+
               }
               title={name}
               subheader={focus}

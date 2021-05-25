@@ -12,6 +12,9 @@ import db from '../../db/firebase';
 import { Grid } from '@material-ui/core';
 import ProfileBody from './ProfileBody';
 
+// PROPS PASSED FROM ROUTER
+import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
+
 // To use context:
 // In the file you want to access the value in,
 // import React, { useContext } from 'react';
@@ -20,14 +23,16 @@ import ProfileBody from './ProfileBody';
 // You can now use user like any other variable!
 
 function Profile() {
+  const location = useLocation();
+  const {userId, name, bio, focus, city, state} = location.state;
   const user = {
-    bio: "I'm doing this for the tax benefits.",
-    city: "Cedar Park",
+    bio: bio,
+    city: city,
     email: "eacruz423@gmail.com",
-    name: "Eric Cruz",
+    name: name,
     phone: "(123) 456-7890",
-    state: "TX",
-    uid: "Qd4ys09fs0ZlnamitOKlMsNnIpW2",
+    state: state,
+    uid: userId,
     photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
   }
   const { currUser } = useContext(UserContext);
