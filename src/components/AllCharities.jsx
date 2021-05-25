@@ -31,7 +31,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .catch((err) => console.log(err.message))
   }
 
-  const searchCharityByCriteria = (field, operator, term) => {
+  const findCharityByCriteria = (field, operator, term) => {
     firestore.firestore.collection("organizations").where(field, operator, term)
       .get()
       .then((querySnapshot) => {
@@ -44,40 +44,35 @@ const AllCharities = ({ searchTerm, criteria }) => {
   }
 
   const findCharitiesByName = (term) => {
-    searchCharityByCriteria("search_name", "array-contains", term);
+    findCharityByCriteria("search_name", "array-contains", term);
   }
 
   const findCharitiesByCity = (term) => {
-    searchCharityByCriteria("city", "==", term);
+    findCharityByCriteria("city", "==", capitalize(term));
   }
 
   const findCharitiesByState = (term) => {
-    searchCharityByCriteria("state", "==", term)
+    findCharityByCriteria("state", "==", term)
   }
 
   const findCharitiesByTheme = (term) => {
-    searchCharityByCriteria("focus", "==", term)
+    findCharityByCriteria("focus", "==", capitalize(term))
   }
 
-  useEffect(() => {
+  const searchSelection = {
+    name: findCharitiesByName,
+    city: findCharitiesByCity,
+    state: findCharitiesByState,
+    theme: findCharitiesByTheme
+  };
 
+  useEffect(() => {
     if (searchTerm === '') {
       findAllCharities();
-    } else if (criteria === 'name') {
-      console.log('Searching by name');
-      findCharitiesByName(searchTerm);
-    } else if (criteria === 'city') {
-      console.log('Searching by city');
-      findCharitiesByCity(capitalize(searchTerm));
-    } else if (criteria === 'state') {
-      console.log('Searching by state');
-      findCharitiesByState(searchTerm);
-    } else if (criteria === 'theme') {
-      console.log('Searching by theme');
-      findCharitiesByTheme(capitalize(searchTerm));
+    } else {
+      searchSelection[criteria](searchTerm);
     }
   }, [searchTerm]);
-
 
   return (
     <Grid container spacing={3}>

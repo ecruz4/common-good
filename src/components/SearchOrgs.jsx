@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, FormControl, InputLabel, Select, MenuItem, Button, makeStyles} from '@material-ui/core';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import React, { useState } from 'react';
+import { TextField, FormControl, InputLabel, Select, MenuItem, makeStyles} from '@material-ui/core';
 import AllCharities from './AllCharities';
-import firestore from '../db/firebase';
 
 
 const useStyles = makeStyles((theme) => ({
   field: {
-    marginTop: 30,
+    marginTop: 20,
     marginBottom: 10,
     display: 'block'
   },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-  },
-  button: {
-    display: 'block',
-    marginTop: theme.spacing(2),
-  }
+    marginLeft: 0,
+    marginBottom: 20
 
+  },
 }));
 
 const SearchOrgs = () => {
