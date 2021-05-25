@@ -10,11 +10,11 @@ import UserContext from './contexts/UserContext';
 import AllOffers from './components/AllOffers';
 import AllCharities from './components/AllCharities';
 import SearchOrgs from './components/SearchOrgs';
-
 import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
 import ChatScreen from './components/chat/ChatScreen';
+import donationDetail from './details/donations'
 
 function App() {
   const [user] = useAuthState(db.auth);
@@ -44,15 +44,12 @@ function App() {
       <UserContext.Provider value={{ user, userInfo }}>
         <Router>
           <Header title="CommonGood" />
-          {/* <br/>
-        <AllRequests/>
-        <AllOffers/>
-        <AllCharities/>
-        <br/> */}
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route path="/donations" exact component={AllOffers} />
-            <Route path="/charities" exact component={AllCharities} />
+            <Route path="/donations/:id" exact component={donationDetail} />
+            <Route path="/charities" exact component={SearchOrgs} />
+            <Route path="/charities/:uid" exact component={Profile} />
             <Route path="/profile/:uid" exact component={Profile} />
             <Route path="/chat" exact component={ChatScreen} />
           </Switch>
