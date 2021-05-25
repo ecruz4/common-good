@@ -51,9 +51,7 @@ function App() {
       </Router>
       </UserContext.Provider>
     </>
-  )
+  );
 }
-
-
 
 export default App;

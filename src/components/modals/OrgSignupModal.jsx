@@ -44,6 +44,10 @@ function OrgSignupModal({ handleClose }) {
         const orgData = {
           uid: cred.user.uid,
           name: orgName,
+          search_name: orgName
+            .toLowerCase()
+            .split(' ')
+            .concat([orgName.toLowerCase()]),
           email,
           address,
           city,
