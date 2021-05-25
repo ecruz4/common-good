@@ -37,6 +37,9 @@ function App() {
     <>
       <Router>
         <Header title="Common Good" />
+        {/* <SearchOrgs/> */}
+        <AllRequests/>
+        <AllOffers/>
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/donations" exact component={AllOffers} />

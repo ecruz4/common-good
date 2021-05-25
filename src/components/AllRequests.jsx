@@ -5,13 +5,12 @@ import firestore from '../db/firebase';
 import RequestTile from './tiles/RequestTile';
 
 
-const AllRequests = () => {
+const AllRequests = ({ criteria }) => {
 
   const [docs, setDocs] = useState([]);
   const retrievedDocs = [];
 
-  // citiesRef.where("country", "==", "USA").orderBy("population", "asc")
-
+  // if
 
   const findAllReqsByUrgency = () => {
     firestore.firestore.collection("requests").where("org_id", "==", "mVYqsR5DJDbMoI51VlmZBrceX6Y2").orderBy("emergency", "asc")
