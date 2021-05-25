@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 /* eslint-disable import/order */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
@@ -22,6 +23,7 @@ import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 // const { user } = useContext(UserContext);
 // You can now use user like any other variable!
 
+
 function Profile() {
   const location = useLocation();
   const {userId, name, bio, focus, city, state} = location.state;
@@ -35,28 +37,14 @@ function Profile() {
     uid: userId,
     photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
   }
-  const { currUser } = useContext(UserContext);
-  console.log(currUser);
 
-  // const [docs, setDocs] = useState([]);
-  // const { userInfo } = useContext(UserContext);
-
-  // useEffect(() => {
-  //   const allDocs = [];
-  //   db.firestore.collection("offers").where("donor_id", "==", 'mVYqsR5DJDbMoI51VlmZBrceX6Y2')
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         allDocs.push(doc.data());
-  //       });
-  //       setDocs(allDocs);
-  //     })
-  //     .catch((err) => console.log(err.message))
-  // }, []);
+  const { userInfo } = useContext(UserContext);
 
   return (
     <Grid container direction="column" justify="center" alignItems="stretch" style={{backgroundColor: "#7DA1FD"}}>
-      <ProfileHeader data={user} />
+      <ProfileHeader data={user}
+        edit={ user.uid === userInfo.uid ? true : false }
+      />
       <ProfileBody data={user} />
     </Grid>
   )
