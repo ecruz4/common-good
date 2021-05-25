@@ -36,27 +36,36 @@ function ChatMessage({ message }) {
 
   if (uid === user.uid) {
     messageClass = 'sent';
-  } else if (uid === otherUid) {
+    return (
+      userInfo && (
+        <Card className={classes.message}>
+          <CardContent className={classes[messageClass]}>
+            <Typography variant="overline">
+              {userInfo.name} • {timeAgo.format(createdAt.toDate(), 'mini')}
+            </Typography>
+            <Typography variant="body1">{text}</Typography>
+          </CardContent>
+        </Card>
+      )
+    );
+  }
+  if (uid === otherUid) {
     messageClass = 'received';
-  } else {
-    return null;
+    return (
+      userInfo && (
+        <Card className={classes.message}>
+          <CardContent className={classes[messageClass]}>
+            <Typography variant="overline">
+              {otherName} • {timeAgo.format(createdAt.toDate(), 'mini')}
+            </Typography>
+            <Typography variant="body1">{text}</Typography>
+          </CardContent>
+        </Card>
+      )
+    );
   }
 
-  console.log(uid);
-  console.log(messageClass);
-
-  return (
-    userInfo && (
-      <Card className={classes.message}>
-        <CardContent className={classes[messageClass]}>
-          <Typography variant="overline">
-            {userInfo.name} • {timeAgo.format(createdAt.toDate(), 'mini')}
-          </Typography>
-          <Typography variant="body1">{text}</Typography>
-        </CardContent>
-      </Card>
-    )
-  );
+  return null;
 }
 
 export default ChatMessage;
