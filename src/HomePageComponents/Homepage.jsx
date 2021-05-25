@@ -39,9 +39,8 @@ function Homepage() {
   return (
     <>
 
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <Container maxWidth="lg">
-
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>

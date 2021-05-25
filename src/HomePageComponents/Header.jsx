@@ -1,4 +1,5 @@
-import React, {Fragment, useEffect, useState} from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, {Fragment, useState, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
@@ -38,37 +39,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  const { sections, title } = props;
-  const [user] = useAuthState(db.auth);
-  const [userInfo, setUserInfo] = useState(null);
-
-    useEffect(() => {
-    if (user === null) {
-      return;
-    }
-    db.firestore
-      .collection('users')
-      .where('uid', '==', user.uid)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setUserInfo(doc.data());
-        });
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
-  }, [user]);
+  const { title } = props;
+  const { userInfo } = useContext(UserContext);
 
   const navStyle = {
     color: 'black',
     textDecoration: 'none',
   };
 
+  const logoStyle = {
+    color: 'black',
+    textDecoration: 'none',
+    // fontFamily: "'Abril Fatface', cursive"
+    fontFamily: "'Pattaya', sans-serif"
+  };
+
+
+
   return (
     <>
-    <UserContext.Provider value={{ user, userInfo }}>
-
       <Toolbar className={classes.toolbar}>
         <SignupButton />
         <Typography
@@ -82,7 +71,7 @@ export default function Header(props) {
           <Link
             key="homepage"
             to="/"
-            style={navStyle}
+            style={logoStyle}
           >
             {title}
           </Link>
@@ -92,14 +81,18 @@ export default function Header(props) {
         <LogoutButton />
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-
-          <Link
+        <div>
+        {
+          userInfo === null ? "Profile" : <Link
             key="profile"
-            to="/profile"
+            to={`/profile/${userInfo.uid}`}
             style={navStyle}
           >
             Profile
           </Link>
+          }
+          </div>
+
           <Link
             key="donations"
             to="/donations"
@@ -116,8 +109,6 @@ export default function Header(props) {
           </Link>
 
       </Toolbar>
-
-      </UserContext.Provider>
     </>
   );
 }

@@ -47,6 +47,26 @@ export default function FeaturedPost(props) {
           </Hidden>
         </Card>
       </CardActionArea>
+      <CardActionArea component="a" href="#">
+        <Card className={classes.card}>
+          <div className={classes.cardDetails}>
+            <CardContent>
+              <Typography component="h2" variant="h5">
+                {post.title}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {post.date}
+              </Typography>
+              <Typography variant="subtitle1" paragraph>
+                {post.description}
+              </Typography>
+            </CardContent>
+          </div>
+          <Hidden xsDown>
+            <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
+          </Hidden>
+        </Card>
+      </CardActionArea>
     </Grid>
   );
 }
