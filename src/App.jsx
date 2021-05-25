@@ -47,11 +47,11 @@ function App() {
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route path="/donations" exact component={AllOffers} />
-            <Route path="/donations/:id" exact component={donationDetail} />
+            <Route path="/donations/:pid" exact component={donationDetail} />
             <Route path="/charities" exact component={SearchOrgs} />
             <Route path="/charities/:uid" exact component={Profile} />
             <Route path="/profile/:uid" exact component={Profile} />
-            <Route path="/chat" exact component={ChatScreen} />
+            <Route path="/chat/:uid" exact component={ChatScreen} />
           </Switch>
         </Router>
       </UserContext.Provider>

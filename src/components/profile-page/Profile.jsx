@@ -25,16 +25,19 @@ import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 
 
 function Profile() {
+  // Will receive "docs" prop from previous component. Docs will contain all necessary information needed to render profile:
   const location = useLocation();
-  const {userId, name, bio, focus, city, state} = location.state;
+  const { userId } = location.state;
+
   const user = {
-    bio: bio,
-    city: city,
-    email: "eacruz423@gmail.com",
-    name: name,
+    bio: "I'm doing this for the tax benefits.",
+    city: "Cedar Park",
+    email: "eacruz@live.com",
+    name: "Eric Cruz",
     phone: "(123) 456-7890",
-    state: state,
-    uid: userId,
+    state: "TX",
+    zipcode: "78613",
+    uid: "zZ6aQSz8AsThanjOPxQa2EIhbnB2",
     photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
   }
 
