@@ -9,14 +9,22 @@ import timeAgo from '../../utils/timeAgo';
 
 const useStyles = makeStyles(() => ({
   message: {
-    // backgroundColor: '#b3c2ce',
     margin: '10px',
+    minWidth: 'auto',
+    minHeight: '70px',
+    alignSelf: 'flex-start',
+  },
+  messageRight: {
+    margin: '10px',
+    minHeight: '70px',
+    alignSelf: 'flex-end',
   },
   sent: {
-    background: 'red',
+    background: '#2196f3',
+    justify: 'flex-end',
   },
   received: {
-    background: 'blue',
+    background: '#ffff57',
   },
   invisible: {
     visibility: 'hidden',
@@ -38,9 +46,9 @@ function ChatMessage({ message }) {
     messageClass = 'sent';
     return (
       userInfo && (
-        <Card className={classes.message}>
+        <Card className={classes.messageRight}>
           <CardContent className={classes[messageClass]}>
-            <Typography variant="overline">
+            <Typography variant="caption" color="textSecondary">
               {userInfo.name} • {timeAgo.format(createdAt.toDate(), 'mini')}
             </Typography>
             <Typography variant="body1">{text}</Typography>
@@ -55,7 +63,7 @@ function ChatMessage({ message }) {
       userInfo && (
         <Card className={classes.message}>
           <CardContent className={classes[messageClass]}>
-            <Typography variant="overline">
+            <Typography variant="caption" color="textSecondary">
               {otherName} • {timeAgo.format(createdAt.toDate(), 'mini')}
             </Typography>
             <Typography variant="body1">{text}</Typography>
