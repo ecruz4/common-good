@@ -2,7 +2,7 @@ import React from 'react'
 
 function ProfileFeed() {
   return (
-    <div>
+    <div style={{backgroundColor: '#FFB341', height: '60vh', borderRadius: "15px 0px 0px 0px"}}>
       <p>Profile Feed</p>
     </div>
   )
