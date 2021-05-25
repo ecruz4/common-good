@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable import/order */
 /* eslint-disable no-unused-vars */
@@ -33,15 +34,27 @@ function Profile() {
     state: "TX",
     zipcode: "78613",
     uid: "zZ6aQSz8AsThanjOPxQa2EIhbnB2",
-    photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
+    // photo_url: "https://www.junkhappens.com/wp-content/uploads/2018/09/junk-removal-Brooklyn-Park-MN.jpg"
+    photo_url: "https://images.unsplash.com/photo-1556208738-7a57e7b96aed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1491&q=80"
   }
 
+  // Will need current userInfo to determine if profile is edit-able or not:
   const { userInfo } = useContext(UserContext);
 
+  const handleEdit = function() {
+    if (userInfo !== null) {
+      if (userInfo.uid === user.uid) {
+        return true
+      }
+    }
+  return false
+  }
+  // Pass the 'docs' prop to both components below:
   return (
-    <Grid container direction="column" justify="center" alignItems="stretch" style={{backgroundColor: "#7DA1FD"}}>
+    <Grid container direction="column" justify="center" alignItems="stretch">
       <ProfileHeader data={user} 
-        edit={ user.uid === userInfo.uid ? true : false }
+      // Add an edit prop that gets sent to the header. If the currUser uid and the uid of the profile being viewed match, set this prop to true:
+        edit={handleEdit()}
       />
       <ProfileBody data={user} />
     </Grid>
