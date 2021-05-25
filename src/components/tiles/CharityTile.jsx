@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 350,
   },
   avatar: {
-    backgroundColor: '#33bfff',
+    backgroundColor: '#ffed03',
   },
   content: {
     padding: 16,

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     height: 180,
   },
   avatar: {
-    backgroundColor: '#33bfff',
+    backgroundColor: '#ffed03',
   },
   content: {
     minHeight: 75

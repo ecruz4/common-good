@@ -11,6 +11,7 @@ import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
 import AllCharities from './components/AllCharities';
 import SearchOrgs from './components/SearchOrgs';
+import SearchDonations from './components/SearchDonations';
 
 import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
@@ -45,17 +46,19 @@ function App() {
     <UserContext.Provider value={{ user, userInfo }}>
       <Router>
         <Header title="CommonGood" />
-        {/* <br/>
-        <AllRequests/>
-        <AllOffers/>
-        <AllCharities/>
-        <br/> */}
-          <Switch>
+        <br/>
+        {/* <AllRequests/> */}
+        {/* <AllOffers/> */}
+        {/* <AllCharities/> */}
+        <SearchDonations/>
+        {/* <SearchOrgs/> */}
+        <br/>
+          {/* <Swcitch>
               <Route path="/" exact component={Homepage}/>
               <Route path="/donations" exact component={AllOffers}/>
               <Route path="/charities" exact component={AllCharities}/>
               <Route path="/profile/:uid" exact component={Profile}/>
-          </Switch>
+          </Swith> */}
       </Router>
     </UserContext.Provider>
     </>
