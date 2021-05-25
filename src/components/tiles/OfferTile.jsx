@@ -5,6 +5,8 @@ import {makeStyles, Card, CardMedia, CardHeader, CardActions, CardContent, Avata
 import ForumIcon from '@material-ui/icons/Forum';
 
 import firestore from '../../db/firebase';
+import { convertMsToDays } from '../../utils/moment';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,16 +27,20 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 75
   },
   cardactions: {
-    paddingLeft: 16,
-    paddingTop: 0
-  }
+    padding: 16,
+    justifyContent: 'space-between'
+  },
+  expiry: {
+    color: '#2196f3'
+  },
+
 }));
 
 
 const OfferTile = ({ doc }) => {
 
   const classes = useStyles();
-  const { donor_id, title, description, quantity, date } = doc;
+  const { donor_id, title, description, quantity, date, expiry } = doc;
 
   const [donor, setDonor] = useState({});
 
@@ -84,6 +90,9 @@ const OfferTile = ({ doc }) => {
           <CardActions className={classes.cardactions}>
             <Typography variant="overline">
               {`${donor.city}, ${donor.state}`}
+            </Typography>
+            <Typography className={classes.expiry} variant="overline">
+              {`${convertMsToDays(expiry)} days left`}
             </Typography>
           </CardActions>
 

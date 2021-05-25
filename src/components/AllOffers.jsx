@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import firestore from '../db/firebase';
-import UserContext from '../contexts/UserContext';
 import OfferTile from './tiles/OfferTile';
 import capitalize from '../utils/capitalize';
+import { expiryThreshold } from '../utils/moment';
 
 
 const AllOffers = ({ uid, searchTerm }) => {
 
   const [docs, setDocs] = useState([]);
-  const { userInfo } = useContext(UserContext);
   const retrievedDocs = [];
 
   const findAll = () => {
@@ -17,7 +16,16 @@ const AllOffers = ({ uid, searchTerm }) => {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          retrievedDocs.push(doc.data());
+          console.log(doc.data())
+          const createTimeInMs = doc.data().date.toMillis();
+          // filter for listings no older than 60 days
+          if (createTimeInMs > expiryThreshold) {
+            const docWithExpiryDate = {
+              ...doc.data(),
+              expiry: createTimeInMs - expiryThreshold
+            }
+            retrievedDocs.push(docWithExpiryDate);
+          }
         });
         setDocs(retrievedDocs);
       })
