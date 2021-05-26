@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { Button, TextField, Container, Card } from '@material-ui/core';
@@ -14,19 +15,20 @@ const useStyles = makeStyles(() => ({
   appContainer: {
     display: 'flex',
     flexDirection: 'row',
+    background: '#FAF9F6',
   },
   chatContainer: {
     borderLeftWidth: '2px',
     justify: 'center',
     padding: '7px',
-    // background: '#a9a9a9',
   },
   formContainer: {
+    display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-evenly',
     margin: '10px',
   },
   messagesContainer: {
-    // background: '#121212',
     display: 'flex',
     flexDirection: 'column',
     minHeight: '500px',
@@ -37,18 +39,22 @@ const useStyles = makeStyles(() => ({
   submitButton: {
     margin: '0 0 0 10px',
   },
+  textField: {
+    maxWidth: '400px',
+    minWidth: '400px',
+  },
 }));
 
-function ChatRoom() {
+function ChatRoom({ otherUser, setOtherUser }) {
+  const [formValue, setFormValue] = useState('');
+  const [relevantMessages, setRelevantMessages] = useState([]);
+
+  const { user, userInfo } = useContext(UserContext);
+
   const classes = useStyles();
+
   const messagesRef = db.firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
-
-  const [relevantMessages, setRelevantMessages] = useState([]);
-  const { user, userInfo } = useContext(UserContext);
-  const [formValue, setFormValue] = useState('');
-  const [otherUser, setOtherUser] = useState('');
-
   const [messages] = useCollectionData(query, { idField: 'id' });
 
   useEffect(() => {
@@ -60,12 +66,6 @@ function ChatRoom() {
       );
     }
   }, [messages, user.uid]);
-
-  // const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
-  // const otherName = 'Delete this';
-
-  // const otherUid = 'gd3gmvQ6zJVRML37UI9HAcRgd662';
-  // const otherName = 'John Doe';
 
   const dummy = useRef();
 
@@ -97,13 +97,14 @@ function ChatRoom() {
     <Card>
       <Container className={classes.appContainer}>
         <ChatSidebar
+          otherUser={otherUser}
           setOtherUser={setOtherUser}
           relevantMessages={relevantMessages}
         />
         <Container className={classes.chatContainer}>
           <div className={classes.messagesContainer}>
-            {messages &&
-              messages.map((msg) => (
+            {relevantMessages &&
+              relevantMessages.map((msg) => (
                 <ChatMessage key={msg.id} message={msg} otherUser={otherUser} />
               ))}
             <div ref={dummy} />
@@ -111,8 +112,10 @@ function ChatRoom() {
           <Container className={classes.formContainer}>
             <form onSubmit={sendMessage}>
               <TextField
+                className={classes.textField}
                 value={formValue}
                 onChange={(event) => setFormValue(event.target.value)}
+                variant="outlined"
               />
               <Button
                 className={classes.submitButton}

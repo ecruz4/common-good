@@ -33,8 +33,10 @@ const useStyles = makeStyles(() => ({
 
 function ChatMessage({ message, otherUser }) {
   const { userInfo } = useContext(UserContext);
-  const { text, uid, createdAt } = message;
+
+  const { text, uid, createdAt, recieverId } = message;
   const user = db.auth.currentUser;
+
   const classes = useStyles();
 
   let messageClass = '';
@@ -43,7 +45,7 @@ function ChatMessage({ message, otherUser }) {
     return null;
   }
 
-  if (uid === user.uid) {
+  if (uid === user.uid && recieverId === otherUser.id) {
     messageClass = 'sent';
     return (
       userInfo && (
