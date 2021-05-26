@@ -14,7 +14,7 @@ import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
 import ChatScreen from './components/chat/ChatScreen';
-import donationDetail from './details/donations';
+import donationDetail from './details/donations'
 
 function App() {
   const [user] = useAuthState(db.auth);
@@ -49,6 +49,7 @@ function App() {
             <Route path="/donations" exact component={SearchDonations} />
             <Route path="/donations/:pid" exact component={donationDetail} />
             <Route path="/charities" exact component={SearchOrgs} />
+            <Route path="/charities/:uid" exact component={Profile} />
             <Route path="/profile/:uid" exact component={Profile} />
             <Route path="/chat/:uid" exact component={ChatScreen} />
           </Switch>

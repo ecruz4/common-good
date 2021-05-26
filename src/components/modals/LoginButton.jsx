@@ -1,9 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import fire from '../../db/firebase';
 
 import LoginModal from './LoginModal';
 
 function LoginButton() {
+  const [user] = useAuthState(fire.auth);
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
