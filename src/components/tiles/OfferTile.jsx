@@ -106,24 +106,7 @@ const OfferTile = ({ doc }) => {
                   )}
                 </Link>
               }
-              title={
-                <Link
-                  key="donationDetail"
-                  to={{
-                    pathname: `/donations/${id}`,
-                    state: {
-                      productId: id,
-                      userId: donor_id,
-                      title: title,
-                      description: description,
-                      quantity: quantity,
-                      date: date,
-                    },
-                  }}
-                >
-                  {`${title} (x${quantity})`}
-                </Link>
-              }
+              title={`${title} (x${quantity})`}
               subheader={donor.name}
             />
             <Link
@@ -146,12 +129,28 @@ const OfferTile = ({ doc }) => {
                 title="charitable donation"
               />
             </Link>
-
-            <CardContent className={classes.content}>
-              <Typography variant="body2" color="textSecondary">
-                {description}
-              </Typography>
-            </CardContent>
+            <Link
+              style={{ textDecoration: 'none' }}
+              key="donationDetail"
+              to={{
+                pathname: `/donations/${id}`,
+                state: {
+                  context: 'users',
+                  productId: id,
+                  userId: donor_id,
+                  title,
+                  description,
+                  quantity,
+                  date,
+                },
+              }}
+            >
+              <CardContent className={classes.content}>
+                <Typography variant="body2" color="textSecondary">
+                  {description}
+                </Typography>
+              </CardContent>
+            </Link>
 
             <CardActions className={classes.cardactions}>
               <Typography variant="overline">

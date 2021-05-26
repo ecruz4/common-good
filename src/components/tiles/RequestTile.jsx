@@ -121,11 +121,28 @@ const RequestTile = ({ doc }) => {
               subheader={org.name}
             />
 
-            <CardContent className={classes.content}>
-              <Typography variant="body2" color="textSecondary">
-                {description}
-              </Typography>
-            </CardContent>
+            <Link
+              style={{ textDecoration: 'none' }}
+              key="donationDetail"
+              to={{
+                pathname: `/donations/${id}`,
+                state: {
+                  context: 'organizations',
+                  productId: id,
+                  userId: org_id,
+                  title,
+                  description,
+                  quantity,
+                  date,
+                },
+              }}
+            >
+              <CardContent className={classes.content}>
+                <Typography variant="body2" color="textSecondary">
+                  {description}
+                </Typography>
+              </CardContent>
+            </Link>
 
             <CardActions className={classes.cardactions}>
               <Typography variant="overline">
