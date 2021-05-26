@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ForumIcon from '@material-ui/icons/Forum';
@@ -18,6 +18,7 @@ import {
 } from '@material-ui/core';
 import firestore from '../../db/firebase';
 import { convertMsToDays } from '../../utils/moment';
+import UserContext from '../../contexts/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const OfferTile = ({ doc }) => {
   const classes = useStyles();
+  const { userInfo } = useContext(UserContext);
   const { donor_id, title, description, quantity, date, expiry, id } = doc;
 
   const [donor, setDonor] = useState({});
@@ -66,53 +68,47 @@ const OfferTile = ({ doc }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
-      <Grow in {...{timeout: 500}}>
-      <Card variant="outlined" className={classes.root}>
-        <CardActionArea disableTouchRipple>
-
-          <CardHeader
-            avatar={
-              <Link
-              key="profile"
-              to={{
-                pathname: `/profile/${donor_id}`,
-                state: {
-                  userId: donor.uid,
-                  type: "user"
-                }
-              }}
-            >
-              <Avatar aria-label="offer" className={classes.avatar}>
-                <AccountCircleIcon />
-              </Avatar>
-              </Link>
-            }
-            action={
-              <IconButton aria-label="chat">
-                <ForumIcon/>
-              </IconButton>
-            }
-            title={
-              <Link
-              key="donationDetail"
-              to={{
-                pathname: `/donations/${id}`,
-                state: {
-                  productId: id,
-                  userId: donor_id,
-                  title: title,
-                  description: description,
-                  quantity: quantity,
-                  date: date
-                }
-              }}
-            >
-
-              {`${title} (x${quantity})`}
-              </Link>
-            }
-            subheader={donor.name}
-          />
+      <Grow in {...{ timeout: 500 }}>
+        <Card variant="outlined" className={classes.root}>
+          <CardActionArea disableTouchRipple>
+            <CardHeader
+              avatar={
+                <Link
+                  key="profile"
+                  to={{
+                    pathname: `/profile/${donor_id}`,
+                    state: {
+                      userId: donor_id,
+                    },
+                  }}
+                >
+                  <Avatar aria-label="offer" className={classes.avatar}>
+                    <AccountCircleIcon />
+                  </Avatar>
+                </Link>
+              }
+              action={
+                <Link
+                  key="chat"
+                  to={{
+                    pathname: `/chat/${donor_id}`,
+                    state: {
+                      userId: donor_id,
+                    },
+                  }}
+                >
+                  {userInfo && userInfo.uid ? (
+                    <IconButton aria-label="chat">
+                      <ForumIcon />
+                    </IconButton>
+                  ) : (
+                    <></>
+                  )}
+                </Link>
+              }
+              title={`${title} (x${quantity})`}
+              subheader={donor.name}
+            />
             <Link
               key="donationDetail"
               to={{
@@ -129,16 +125,32 @@ const OfferTile = ({ doc }) => {
             >
               <CardMedia
                 className={classes.media}
-                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHWg74rYh0ee1LQPLhyQxGFTxg4YBGMSUJQ&usqp=CAU"
-                title="Paella dish"
+                image={`https://source.unsplash.com/600x400/?${title}`}
+                title="charitable donation"
               />
             </Link>
-
-            <CardContent className={classes.content}>
-              <Typography variant="body2" color="textSecondary">
-                {description}
-              </Typography>
-            </CardContent>
+            <Link
+              style={{ textDecoration: 'none' }}
+              key="donationDetail"
+              to={{
+                pathname: `/donations/${id}`,
+                state: {
+                  context: 'users',
+                  productId: id,
+                  userId: donor_id,
+                  title,
+                  description,
+                  quantity,
+                  date,
+                },
+              }}
+            >
+              <CardContent className={classes.content}>
+                <Typography variant="body2" color="textSecondary">
+                  {description}
+                </Typography>
+              </CardContent>
+            </Link>
 
             <CardActions className={classes.cardactions}>
               <Typography variant="overline">
