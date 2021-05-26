@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useContext } from 'react';
+=======
+import React, { useState, useEffect } from 'react';
+>>>>>>> main
 import { Link } from 'react-router-dom';
 
 import {
@@ -42,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const RequestTile = ({ doc }) => {
   const classes = useStyles();
   const { userInfo } = useContext(UserContext);
-  const { org_id, title, description, quantity, emergency, date } = doc;
+  const { id, org_id, title, description, quantity, emergency, date } = doc;
 
   const [org, setOrg] = useState({});
 
@@ -67,13 +71,35 @@ const RequestTile = ({ doc }) => {
             <CardHeader
               avatar={
                 emergency ? (
+                  <Link
+                  key="charity"
+                  to={{
+                    pathname: `/charities/${org_id}`,
+                    state: {
+                      userId: org_id,
+                      type: "charity"
+                    },
+                  }}
+                >
                   <Avatar aria-label="request" className={classes.avatar}>
                     <LocationCityIcon />
                   </Avatar>
+                  </Link>
                 ) : (
+                  <Link
+                  key="charity"
+                  to={{
+                    pathname: `/charities/${org_id}`,
+                    state: {
+                      userId: org_id,
+                      type: "charity"
+                    },
+                  }}
+                >
                   <Avatar aria-label="request" className={classes.avatarEmg}>
                     <NotificationImportantIcon />
                   </Avatar>
+                  </Link>
                 )
               }
               action={
@@ -86,6 +112,7 @@ const RequestTile = ({ doc }) => {
                     },
                   }}
                 >
+<<<<<<< HEAD
                   {userInfo && userInfo.uid ? (
                     <IconButton aria-label="chat">
                       <ForumIcon />
@@ -93,9 +120,32 @@ const RequestTile = ({ doc }) => {
                   ) : (
                     <></>
                   )}
+=======
+                <IconButton aria-label="chat">
+                  <ForumIcon />
+                </IconButton>
                 </Link>
               }
-              title={`${title} (x${quantity})`}
+              title={
+                <Link
+                  key="donationDetail"
+                  to={{
+                    pathname: `/donations/${id}`,
+                    state: {
+                      productId: id,
+                      userId: org_id,
+                      title: title,
+                      emergency: emergency,
+                      description: description,
+                      quantity: quantity,
+                      date: date,
+                    },
+                  }}
+                >
+                {`${title} (x${quantity})`}
+>>>>>>> main
+                </Link>
+              }
               subheader={org.name}
             />
 

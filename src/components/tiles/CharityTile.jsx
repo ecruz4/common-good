@@ -42,26 +42,20 @@ const CharityTile = ({ doc }) => {
             <CardHeader
               avatar={
                 <Link
-                  key="charity"
-                  to={{
-                    pathname: `/charities/${uid}`,
-                    state: {
-                      userId: uid,
-                      name: name,
-                      bio: bio,
-                      focus: focus,
-                      city: city,
-                      state: state,
-                    },
-                  }}
-                >
-                  <Avatar
-                    aria-label="charity profile"
-                    className={classes.avatar}
-                  >
-                    <LocationCityIcon />
-                  </Avatar>
-                </Link>
+              key="charity"
+              to={{
+                pathname: `/charities/${uid}`,
+                state: {
+                  userId: uid,
+                  type: "charity"
+                }
+              }}
+            >
+              <Avatar aria-label="charity profile" className={classes.avatar}>
+                  <LocationCityIcon />
+                </Avatar>
+            </Link>
+
               }
               title={name}
               subheader={focus}
