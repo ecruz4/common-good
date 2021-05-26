@@ -44,27 +44,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const useStyles = makeStyles(() => ({
-  chatContainer: {
-    justify: 'center',
-    padding: '7px',
-    // background: '#a9a9a9',
-  },
-  formContainer: {
-    justifyContent: 'space-evenly',
-    margin: '10px',
-  },
-  messagesContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxHeight: '500px',
-    overflow: 'auto',
-  },
-  submitButton: {
-    margin: '0 0 0 10px',
-  },
-}));
-
 function ChatRoom() {
   const classes = useStyles();
   const messagesRef = db.firestore.collection('messages');
