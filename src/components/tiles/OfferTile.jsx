@@ -66,60 +66,53 @@ const OfferTile = ({ doc }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
-      <Grow in {...{ timeout: 500 }}>
-        <Card variant="outlined" className={classes.root}>
-          <CardActionArea disableTouchRipple>
-            <CardHeader
-              avatar={
-                <Link
-                  key="profile"
-                  to={{
-                    pathname: `/profile/${donor_id}`,
-                    state: {
-                      userId: donor_id,
-                    },
-                  }}
-                >
-                  <Avatar aria-label="offer" className={classes.avatar}>
-                    <AccountCircleIcon />
-                  </Avatar>
-                </Link>
-              }
-              action={
-                <Link
-                  key="chat"
-                  to={{
-                    pathname: `/chat/${donor_id}`,
-                    state: {
-                      userId: donor_id,
-                    },
-                  }}
-                >
-                  <IconButton aria-label="chat">
-                    <ForumIcon />
-                  </IconButton>
-                </Link>
-              }
-              title={
-                <Link
-                  key="donationDetail"
-                  to={{
-                    pathname: `/donations/${id}`,
-                    state: {
-                      productId: id,
-                      userId: donor_id,
-                      title: title,
-                      description: description,
-                      quantity: quantity,
-                      date: date,
-                    },
-                  }}
-                >
-                  {`${title} (x${quantity})`}
-                </Link>
-              }
-              subheader={donor.name}
-            />
+      <Grow in {...{timeout: 500}}>
+      <Card variant="outlined" className={classes.root}>
+        <CardActionArea disableTouchRipple>
+
+          <CardHeader
+            avatar={
+              <Link
+              key="profile"
+              to={{
+                pathname: `/profile/${donor_id}`,
+                state: {
+                  userId: donor.uid,
+                  type: "user"
+                }
+              }}
+            >
+              <Avatar aria-label="offer" className={classes.avatar}>
+                <AccountCircleIcon />
+              </Avatar>
+              </Link>
+            }
+            action={
+              <IconButton aria-label="chat">
+                <ForumIcon/>
+              </IconButton>
+            }
+            title={
+              <Link
+              key="donationDetail"
+              to={{
+                pathname: `/donations/${id}`,
+                state: {
+                  productId: id,
+                  userId: donor_id,
+                  title: title,
+                  description: description,
+                  quantity: quantity,
+                  date: date
+                }
+              }}
+            >
+
+              {`${title} (x${quantity})`}
+              </Link>
+            }
+            subheader={donor.name}
+          />
             <Link
               key="donationDetail"
               to={{

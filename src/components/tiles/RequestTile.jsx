@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   makeStyles,
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RequestTile = ({ doc }) => {
   const classes = useStyles();
-  const { org_id, title, description, quantity, emergency, date } = doc;
+  const { id, org_id, title, description, quantity, emergency, date } = doc;
 
   const [org, setOrg] = useState({});
 
@@ -65,21 +66,71 @@ const RequestTile = ({ doc }) => {
             <CardHeader
               avatar={
                 emergency ? (
+                  <Link
+                  key="charity"
+                  to={{
+                    pathname: `/charities/${org_id}`,
+                    state: {
+                      userId: org_id,
+                      type: "charity"
+                    },
+                  }}
+                >
                   <Avatar aria-label="request" className={classes.avatar}>
                     <LocationCityIcon />
                   </Avatar>
+                  </Link>
                 ) : (
+                  <Link
+                  key="charity"
+                  to={{
+                    pathname: `/charities/${org_id}`,
+                    state: {
+                      userId: org_id,
+                      type: "charity"
+                    },
+                  }}
+                >
                   <Avatar aria-label="request" className={classes.avatarEmg}>
                     <NotificationImportantIcon />
                   </Avatar>
+                  </Link>
                 )
               }
               action={
+                <Link
+                  key="chat"
+                  to={{
+                    pathname: `/chat/${org_id}`,
+                    state: {
+                      userId: org_id,
+                    },
+                  }}
+                >
                 <IconButton aria-label="chat">
                   <ForumIcon />
                 </IconButton>
+                </Link>
               }
-              title={`${title} (x${quantity})`}
+              title={
+                <Link
+                  key="donationDetail"
+                  to={{
+                    pathname: `/donations/${id}`,
+                    state: {
+                      productId: id,
+                      userId: org_id,
+                      title: title,
+                      emergency: emergency,
+                      description: description,
+                      quantity: quantity,
+                      date: date,
+                    },
+                  }}
+                >
+                {`${title} (x${quantity})`}
+                </Link>
+              }
               subheader={org.name}
             />
 
