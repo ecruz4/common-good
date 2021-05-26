@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ForumIcon from '@material-ui/icons/Forum';
@@ -18,6 +18,7 @@ import {
 } from '@material-ui/core';
 import firestore from '../../db/firebase';
 import { convertMsToDays } from '../../utils/moment';
+import UserContext from '../../contexts/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const OfferTile = ({ doc }) => {
   const classes = useStyles();
+  const { userInfo } = useContext(UserContext);
   const { donor_id, title, description, quantity, date, expiry, id } = doc;
 
   const [donor, setDonor] = useState({});
@@ -95,9 +97,13 @@ const OfferTile = ({ doc }) => {
                     },
                   }}
                 >
-                  <IconButton aria-label="chat">
-                    <ForumIcon />
-                  </IconButton>
+                  {userInfo && userInfo.uid ? (
+                    <IconButton aria-label="chat">
+                      <ForumIcon />
+                    </IconButton>
+                  ) : (
+                    <></>
+                  )}
                 </Link>
               }
               title={

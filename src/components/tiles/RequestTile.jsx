@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   makeStyles,
@@ -16,7 +17,7 @@ import {
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 import ForumIcon from '@material-ui/icons/Forum';
-
+import UserContext from '../../contexts/UserContext';
 import firestore from '../../db/firebase';
 
 const useStyles = makeStyles((theme) => ({
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RequestTile = ({ doc }) => {
   const classes = useStyles();
+  const { userInfo } = useContext(UserContext);
   const { org_id, title, description, quantity, emergency, date } = doc;
 
   const [org, setOrg] = useState({});
@@ -75,9 +77,23 @@ const RequestTile = ({ doc }) => {
                 )
               }
               action={
-                <IconButton aria-label="chat">
-                  <ForumIcon />
-                </IconButton>
+                <Link
+                  key="chat"
+                  to={{
+                    pathname: `/chat/${org_id}`,
+                    state: {
+                      userId: org_id,
+                    },
+                  }}
+                >
+                  {userInfo && userInfo.uid ? (
+                    <IconButton aria-label="chat">
+                      <ForumIcon />
+                    </IconButton>
+                  ) : (
+                    <></>
+                  )}
+                </Link>
               }
               title={`${title} (x${quantity})`}
               subheader={org.name}
