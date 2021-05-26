@@ -82,7 +82,8 @@ export default function Header(props) {
                 pathname: `/profile/${userInfo.uid}`,
                 state: {
                   userId: userInfo.uid,
-                },
+                  type: "user"
+                }
               }}
               style={navStyle}
             >
