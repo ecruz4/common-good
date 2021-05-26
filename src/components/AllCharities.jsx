@@ -2,23 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Grid } from '@material-ui/core';
 import firestore from '../db/firebase';
 import CharityTile from './tiles/CharityTile';
-
+import capitalize from '../utils/capitalize';
 
 const AllCharities = ({ searchTerm, criteria }) => {
   const [docs, setDocs] = useState([]);
   const allDocs = [];
-
-  const capitalize = (str) => {
-    let output = '';
-    if (str !== '') {
-      str.split(' ').forEach((w) => {
-        if (w !== '') {
-          output += w[0].toUpperCase() + w.slice(1) + ' ';
-        }
-      });
-      return output.slice(0, -1);
-    }
-  }
 
   const findAllCharities = () => {
     firestore.firestore.collection("organizations").get()

@@ -31,14 +31,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ChatMessage({ message }) {
+function ChatMessage({ message, otherUser }) {
   const { userInfo } = useContext(UserContext);
   const { text, uid, createdAt } = message;
   const user = db.auth.currentUser;
   const classes = useStyles();
 
-  const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
-  const otherName = 'John Doe';
+  // const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
+  // const otherName = 'John Doe';
 
   let messageClass = '';
 
@@ -57,14 +57,14 @@ function ChatMessage({ message }) {
       )
     );
   }
-  if (uid === otherUid) {
+  if (uid === otherUser.id) {
     messageClass = 'received';
     return (
       userInfo && (
         <Card className={classes.message}>
           <CardContent className={classes[messageClass]}>
             <Typography variant="caption" color="textSecondary">
-              {otherName} • {timeAgo.format(createdAt.toDate(), 'mini')}
+              {otherUser.name} • {timeAgo.format(createdAt.toDate(), 'mini')}
             </Typography>
             <Typography variant="body1">{text}</Typography>
           </CardContent>
