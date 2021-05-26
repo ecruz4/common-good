@@ -31,11 +31,9 @@ import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 function Profile() {
   // Will receive "docs" prop from previous component. Docs will contain all necessary information needed to render profile:
   const location = useLocation();
-
   // Will need current userInfo to determine if profile is edit-able or not:
-  const { userInfo } = useContext(UserContext);
-
-  const [user, setUser] = useState({});
+  const { userInfo, setUserInfo } = useContext(UserContext);
+  const [user, setUser] = useState(userInfo);
 
   useEffect(() => {
     if (!location.state && userInfo !== null) {
@@ -88,7 +86,7 @@ function Profile() {
         .catch((err) => console.log(err.message));
       }
     }
-  }, [])
+  }, [location, userInfo]);
 
   const getEdit = function() {
     if (location.state && userInfo !== null) {

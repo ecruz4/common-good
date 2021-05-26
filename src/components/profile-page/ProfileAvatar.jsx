@@ -46,9 +46,9 @@ function ProfileAvatar(data, edit) {
       {data.edit === true ? 
       <StyledBadge color="primary" badgeContent={<EditIcon style={{color: "#6ec6ff", fontSize: '45px'}} onClick={handleClickOpen}
       onClose={handleClose} />} anchorOrigin={{vertical: "bottom", horizontal: "right"}}>
-        <Avatar alt={data.name} src={profileImage} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
+        <Avatar alt={data.data.name} src={data.data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
       </StyledBadge> : 
-        <Avatar alt={data.name} src={profileImage} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
+        <Avatar alt={data.data.name} src={data.data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
       }
       
     </div>

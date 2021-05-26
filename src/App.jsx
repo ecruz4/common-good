@@ -41,7 +41,7 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{ user, userInfo }}>
+      <UserContext.Provider value={{ user, userInfo, setUserInfo }}>
         <Router>
           <Header title="CommonGood" />
           <Switch>

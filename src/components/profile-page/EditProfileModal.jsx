@@ -1,8 +1,10 @@
+/* eslint-disable import/order */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import UserContext from '../../contexts/UserContext';
 import TextField from '@material-ui/core/TextField';
 import { Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,41 +21,46 @@ const useStyles = makeStyles({
 });
 
 function EditProfileModal({ handleClose }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [zip, setZip] = useState('');
+  const { userInfo, setUserInfo } = useContext(UserContext);
+
+  const [name, setName] = useState(userInfo.name);
+  const [phone, setPhone] = useState(userInfo.phone);
+  const [zip, setZip] = useState(userInfo.zipcode);
+  const [bio, setBio] = useState(userInfo.bio);
+  const [photo, setPhoto] = useState(userInfo.photo_url);
 
 
   const classes = useStyles();
 
   const handleSubmit = () => {
     console.log('Need to edit user in Users collection')
-    // db.auth
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then((cred) => {
-    //     const userData = {
-    //       uid: cred.user.uid,
-    //       name,
-    //       email,
-    //       zip,
-    //       phone: '',
-    //       photo_url: '',
-    //       bio: '',
-    //     };
-
-    //     db.firestore
-    //       .collection('users')
-    //       .doc()
-    //       .set(userData)
-    //       .then(() => {
-    //         handleClose();
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(errorCode, errorMessage);
-    //   });
+    db.firestore.collection("users").where("uid", "==", userInfo.uid)
+      .get()
+      .then((query) => {
+        let docId = query.docs[0].id;
+        db.firestore.collection("users").doc(docId)
+          .update({
+            name: name,
+            phone: phone,
+            zipcode: zip,
+            bio: bio,
+            photo_url: photo
+          })
+          .then(() => {
+            console.log('Document successfully updated!')
+            setUserInfo({
+              name: name,
+              phone: phone,
+              zipcode: zip,
+              bio: bio,
+              photo_url: photo,
+              email: userInfo.email,
+              uid: userInfo.uid
+            })
+          })
+          .catch((err) => console.log(err.message));
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -71,14 +78,14 @@ function EditProfileModal({ handleClose }) {
       />
       <TextField
         id="standard-full-width"
-        label="Email"
+        label="Phone"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
           shrink: true,
         }}
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
+        value={phone}
+        onChange={(event) => setPhone(event.target.value)}
       />
       <TextField
         id="standard-full-width"
@@ -91,6 +98,28 @@ function EditProfileModal({ handleClose }) {
         value={zip}
         onChange={(event) => setZip(event.target.value)}
       />
+      <TextField
+        id="standard-full-width"
+        label="Bio"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={bio}
+        onChange={(event) => setBio(event.target.value)}
+      />
+      <TextField
+        id="standard-full-width"
+        label="Photo"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={photo}
+        onChange={(event) => setPhoto(event.target.value)}
+      />      
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
           Update
