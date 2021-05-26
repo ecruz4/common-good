@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
     justify: 'flex-end',
   },
   received: {
-    background: '#ffff57',
+    background: '#ffed03',
   },
   invisible: {
     visibility: 'hidden',
