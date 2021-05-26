@@ -8,7 +8,8 @@ import { Avatar, Button, Card, CardActions, CardActionArea, CardContent, CardMed
 import ForumIcon from '@material-ui/icons/Forum';
 import Map from './map';
 import firestore from '../db/firebase';
-// import timeago from 'timeago';
+import timeAgo from '../utils/timeAgo';
+
 
 // PROPS PASSED FROM ROUTER
 import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
@@ -100,6 +101,10 @@ const useStyles = makeStyles((theme) => ({
   verticalSpacing: {
     marginTop: 20,
     marginBottom: 20
+  },
+  date: {
+    display: 'flex',
+    alignItems: 'flex-end'
   }
 }));
 
@@ -125,6 +130,9 @@ export default function Donations() {
     })
     .catch((err) => console.log(err.message))
   }, []);
+
+  const formattedDate = timeAgo.format(new Date(date.seconds * 1000));
+
 
   // console.log('donor: ', donor);
   // let bio, city, email, name, phone, photo_url, state, uid, zipcode;
@@ -161,9 +169,15 @@ export default function Donations() {
             <Typography variant="body2" color="textSecondary">
               {description}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
-              date
-            </Typography>
+            <Grid container direction="row" className={classes.date}>
+              <Typography variant="body2" color="textSecondary" className={classes.date}>
+                {formattedDate} |
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {`Quantity: ${quantity}`}
+              </Typography>
+            </Grid>
+
           </Grid>
           {/* </Grid> */}
         </Grid>
