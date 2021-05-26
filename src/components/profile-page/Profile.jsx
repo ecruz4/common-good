@@ -13,6 +13,9 @@ import db from '../../db/firebase';
 import { Grid } from '@material-ui/core';
 import ProfileBody from './ProfileBody';
 
+// PROPS PASSED FROM ROUTER
+import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
+
 // To use context:
 // In the file you want to access the value in,
 // import React, { useContext } from 'react';
@@ -23,6 +26,8 @@ import ProfileBody from './ProfileBody';
 
 function Profile() {
   // Will receive "docs" prop from previous component. Docs will contain all necessary information needed to render profile:
+  const location = useLocation();
+  const { userId } = location.state;
 
   const user = {
     bio: "I'm doing this for the tax benefits.",
@@ -40,7 +45,7 @@ function Profile() {
 
   return (
     <Grid container direction="column" justify="center" alignItems="stretch" style={{backgroundColor: "#7DA1FD"}}>
-      <ProfileHeader data={user} 
+      <ProfileHeader data={user}
         edit={ user.uid === userInfo.uid ? true : false }
       />
       <ProfileBody data={user} />
