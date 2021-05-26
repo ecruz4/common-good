@@ -1,11 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Button, Slide, makeStyles } from '@material-ui/core';
 import firestore from '../db/firebase';
 import OfferTile from './tiles/OfferTile';
 import capitalize from '../utils/capitalize';
 import { expiryThreshold } from '../utils/moment';
 
+const useStyles = makeStyles((theme) => ({
+  moreButton: {
+    marginTop: 20,
+  },
+}));
+
 const AllOffers = ({ uid, searchTerm }) => {
+  const classes = useStyles();
   const [docs, setDocs] = useState([]);
   const retrievedDocs = [];
   const [lastVisibleDoc, setLastVisibleDoc] = useState({});
@@ -31,7 +38,7 @@ const AllOffers = ({ uid, searchTerm }) => {
           }
         });
         setDocs(retrievedDocs);
-        setNoMoreDocs(false);
+        setTimeout(() => setNoMoreDocs(false), 500);
       })
       .catch((err) => console.log(err.message));
   };
@@ -122,13 +129,21 @@ const AllOffers = ({ uid, searchTerm }) => {
           <OfferTile doc={doc} key={doc.title} />
         ))}
       </Grid>
+
       {noMoreDocs || searchTerm ? (
         <></>
       ) : (
-        <div onClick={() => findMore()}>More</div>
+        <Slide direction="up" in>
+          <Button
+            className={classes.moreButton}
+            variant="contained"
+            color="primary"
+            onClick={() => findMore()}
+          >
+            more
+          </Button>
+        </Slide>
       )}
-      <br />
-      <br />
     </>
   );
 };

@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Button, Slide, makeStyles } from '@material-ui/core';
 import firestore from '../db/firebase';
 import RequestTile from './tiles/RequestTile';
 import capitalize from '../utils/capitalize';
 
+const useStyles = makeStyles((theme) => ({
+  moreButton: {
+    marginTop: 20,
+  },
+}));
+
 const AllRequests = ({ uid, searchTerm }) => {
+  const classes = useStyles();
   const [docs, setDocs] = useState([]);
   const retrievedDocs = [];
   const [lastVisibleDoc, setLastVisibleDoc] = useState({});
@@ -22,7 +29,7 @@ const AllRequests = ({ uid, searchTerm }) => {
           retrievedDocs.push(doc.data());
         });
         setDocs(retrievedDocs);
-        setNoMoreDocs(false);
+        setTimeout(() => setNoMoreDocs(false), 500);
       })
       .catch((err) => console.log(err.message));
   };
@@ -95,13 +102,21 @@ const AllRequests = ({ uid, searchTerm }) => {
           <RequestTile doc={doc} key={doc.title} />
         ))}
       </Grid>
+
       {noMoreDocs || searchTerm ? (
         <></>
       ) : (
-        <div onClick={() => findMoreByUrgency()}>More</div>
+        <Slide direction="up" in>
+          <Button
+            className={classes.moreButton}
+            variant="contained"
+            color="primary"
+            onClick={() => findMoreByUrgency()}
+          >
+            more
+          </Button>
+        </Slide>
       )}
-      <br />
-      <br />
     </>
   );
 };

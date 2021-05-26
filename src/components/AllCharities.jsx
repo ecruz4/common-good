@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Button, Slide, makeStyles } from '@material-ui/core';
 import firestore from '../db/firebase';
 import CharityTile from './tiles/CharityTile';
 import capitalize from '../utils/capitalize';
 
+const useStyles = makeStyles((theme) => ({
+  moreButton: {
+    marginTop: 20,
+  },
+}));
+
 const AllCharities = ({ searchTerm, criteria }) => {
+  const classes = useStyles();
   const retrievedDocs = [];
   const [docs, setDocs] = useState([]);
   const [lastVisibleDoc, setLastVisibleDoc] = useState({});
@@ -22,7 +29,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
           retrievedDocs.push(doc.data());
         });
         setDocs(retrievedDocs);
-        setNoMoreDocs(false);
+        setTimeout(() => setNoMoreDocs(false), 500);
       })
       .catch((err) => console.log(err.message));
   };
@@ -100,17 +107,24 @@ const AllCharities = ({ searchTerm, criteria }) => {
     <>
       <Grid container spacing={3}>
         {docs.map((doc) => (
-          <CharityTile doc={doc} key={doc.name} />
+          <CharityTile className="charity-tile" doc={doc} key={doc.name} />
         ))}
       </Grid>
-      <br />
+
       {noMoreDocs || searchTerm ? (
         <></>
       ) : (
-        <div onClick={() => findMoreCharities()}>More</div>
+        <Slide direction="up" in>
+          <Button
+            className={classes.moreButton}
+            variant="contained"
+            color="primary"
+            onClick={() => findMoreCharities()}
+          >
+            more
+          </Button>
+        </Slide>
       )}
-      <br />
-      <br />
     </>
   );
 };
