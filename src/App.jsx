@@ -7,14 +7,11 @@ import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 
 // Routed Components
-import AllOffers from './components/AllOffers';
-import AllCharities from './components/AllCharities';
 import SearchOrgs from './components/SearchOrgs';
+import SearchDonations from './components/SearchDonations';
 import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
-import ChatScreen from './components/chat/ChatScreen';
-import donationDetail from './details/donations'
 
 function App() {
   const [user] = useAuthState(db.auth);
@@ -46,12 +43,11 @@ function App() {
           <Header title="CommonGood" />
           <Switch>
             <Route path="/" exact component={Homepage} />
-            <Route path="/donations" exact component={AllOffers} />
-            <Route path="/donations/:pid" exact component={donationDetail} />
+            <Route path="/donations" exact component={SearchDonations} />
+            {/* <Route path="/donations/:pid" exact component={donationDetail} /> */}
             <Route path="/charities" exact component={SearchOrgs} />
-            <Route path="/charities/:uid" exact component={Profile} />
             <Route path="/profile/:uid" exact component={Profile} />
-            <Route path="/chat/:uid" exact component={ChatScreen} />
+            {/* <Route path="/chat/:uid" exact component={ChatScreen} /> */}
           </Switch>
         </Router>
       </UserContext.Provider>
