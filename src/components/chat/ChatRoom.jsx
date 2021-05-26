@@ -22,7 +22,6 @@ const useStyles = makeStyles(() => ({
   },
   chatContainer: {
     borderLeftWidth: '2px',
-    background: '#121212',
     justify: 'center',
     padding: '7px',
     // background: '#a9a9a9',
@@ -32,11 +31,13 @@ const useStyles = makeStyles(() => ({
     margin: '10px',
   },
   messagesContainer: {
+    // background: '#121212',
     display: 'flex',
     flexDirection: 'column',
     minHeight: '500px',
     maxHeight: '500px',
     overflow: 'auto',
+    borderRadius: '5px',
   },
   submitButton: {
     margin: '0 0 0 10px',
