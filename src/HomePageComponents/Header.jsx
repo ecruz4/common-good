@@ -81,8 +81,8 @@ export default function Header(props) {
               to={{
                 pathname: `/profile/${userInfo.uid}`,
                 state: {
-                  userId: userInfo.uid
-                }
+                  userId: userInfo.uid,
+                },
               }}
               style={navStyle}
             >
@@ -92,7 +92,7 @@ export default function Header(props) {
         </div>
 
         <Link key="donations" to="/donations" style={navStyle}>
-          Donations
+          Requests & Donations
         </Link>
         <Link key="charities" to="/charities" style={navStyle}>
           Charities
@@ -106,8 +106,8 @@ export default function Header(props) {
               to={{
                 pathname: `/chat/${userInfo.uid}`,
                 state: {
-                  userId: userInfo.uid
-                }
+                  userId: userInfo.uid,
+                },
               }}
               style={navStyle}
             >

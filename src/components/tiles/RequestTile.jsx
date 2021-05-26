@@ -117,6 +117,7 @@ const RequestTile = ({ doc }) => {
                   )}
                 </Link>
               }
+              title={title}
               subheader={org.name}
             />
 
