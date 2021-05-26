@@ -67,11 +67,12 @@ const RequestTile = ({ doc }) => {
               avatar={
                 emergency ? (
                   <Link
-                  key="profile"
+                  key="charity"
                   to={{
-                    pathname: `/profile/${org_id}`,
+                    pathname: `/charities/${org_id}`,
                     state: {
                       userId: org_id,
+                      type: "charity"
                     },
                   }}
                 >
@@ -81,11 +82,12 @@ const RequestTile = ({ doc }) => {
                   </Link>
                 ) : (
                   <Link
-                  key="profile"
+                  key="charity"
                   to={{
-                    pathname: `/profile/${org_id}`,
+                    pathname: `/charities/${org_id}`,
                     state: {
                       userId: org_id,
+                      type: "charity"
                     },
                   }}
                 >
