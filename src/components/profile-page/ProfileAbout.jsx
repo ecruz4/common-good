@@ -3,7 +3,7 @@ import React from 'react'
 
 function ProfileAbout({data}) {
   return (
-    <div style={{backgroundColor: "#7DA1FD", height: "60vh"}}>
+    <div style={{backgroundColor: "primary", height: "60vh"}}>
       <p>Profile About</p>
       <span>{data.bio}</span>
     </div>

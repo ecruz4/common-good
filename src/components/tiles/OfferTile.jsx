@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import {makeStyles, Card, CardMedia, CardHeader, CardActions, CardContent, Avatar, IconButton, CardActionArea, Typography, Grid} from '@material-ui/core';
 import ForumIcon from '@material-ui/icons/Forum';
-
+import {
+  makeStyles,
+  Card,
+  CardMedia,
+  CardHeader,
+  CardActions,
+  CardContent,
+  Avatar,
+  IconButton,
+  CardActionArea,
+  Typography,
+  Grid,
+  Grow,
+} from '@material-ui/core';
 import firestore from '../../db/firebase';
-
+import { convertMsToDays } from '../../utils/moment.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,47 +25,48 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     border: '1px solid red',
-    margin: 20
+    margin: 20,
   },
   media: {
     height: 180,
   },
   avatar: {
-    backgroundColor: '#33bfff',
+    backgroundColor: '#ffed03',
   },
   content: {
-    minHeight: 75
+    minHeight: 75,
   },
   cardactions: {
-    paddingLeft: 16,
-    paddingTop: 0
-  }
+    padding: 16,
+    justifyContent: 'space-between',
+  },
+  expiry: {
+    color: '#2196f3',
+  },
 }));
 
-
 const OfferTile = ({ doc }) => {
-
   const classes = useStyles();
-  const { id, donor_id, title, description, quantity, date } = doc;
+  const { donor_id, title, description, quantity, date, expiry, id } = doc;
 
   const [donor, setDonor] = useState({});
 
   useEffect(() => {
-    firestore.firestore.collection("users").where("uid", "==", donor_id)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        setDonor(doc.data());
-      });
-    })
-    .catch((err) => console.log(err.message))
+    firestore.firestore
+      .collection('users')
+      .where('uid', '==', donor_id)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setDonor(doc.data());
+        });
+      })
+      .catch((err) => console.log(err.message));
   }, []);
 
-  console.log('donor: ', donor);
-
   return (
-
     <Grid item xs={12} sm={6} md={4} lg={3}>
+      <Grow in {...{timeout: 500}}>
       <Card variant="outlined" className={classes.root}>
         <CardActionArea disableTouchRipple>
 
@@ -65,7 +77,8 @@ const OfferTile = ({ doc }) => {
               to={{
                 pathname: `/profile/${donor_id}`,
                 state: {
-                  userId: donor_id
+                  userId: donor.uid,
+                  type: "user"
                 }
               }}
             >
@@ -75,19 +88,9 @@ const OfferTile = ({ doc }) => {
               </Link>
             }
             action={
-              <Link
-              key="chat"
-              to={{
-                pathname: `/chat/${donor_id}`,
-                state: {
-                  userId: donor_id
-                }
-              }}
-            >
               <IconButton aria-label="chat">
                 <ForumIcon/>
               </IconButton>
-              </Link>
             }
             title={
               <Link
@@ -120,36 +123,36 @@ const OfferTile = ({ doc }) => {
                   title: title,
                   description: description,
                   quantity: quantity,
-                  date: date
-                }
+                  date: date,
+                },
               }}
             >
               <CardMedia
-            className={classes.media}
-            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHWg74rYh0ee1LQPLhyQxGFTxg4YBGMSUJQ&usqp=CAU"
-            title="Paella dish"
-          />
-              </Link>
+                className={classes.media}
+                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHWg74rYh0ee1LQPLhyQxGFTxg4YBGMSUJQ&usqp=CAU"
+                title="Paella dish"
+              />
+            </Link>
 
-          <CardContent className={classes.content}>
-            <Typography variant="body2" color="textSecondary">
-              {description}
-            </Typography>
-          </CardContent>
+            <CardContent className={classes.content}>
+              <Typography variant="body2" color="textSecondary">
+                {description}
+              </Typography>
+            </CardContent>
 
-          <CardActions className={classes.cardactions}>
-            <Typography variant="overline">
-              {`${donor.city}, ${donor.state}`}
-            </Typography>
-          </CardActions>
-
-        </CardActionArea>
-      </Card>
-
+            <CardActions className={classes.cardactions}>
+              <Typography variant="overline">
+                {`${donor.city}, ${donor.state}`}
+              </Typography>
+              <Typography className={classes.expiry} variant="overline">
+                {`${convertMsToDays(expiry)} days left`}
+              </Typography>
+            </CardActions>
+          </CardActionArea>
+        </Card>
+      </Grow>
     </Grid>
   );
-
-}
-
+};
 
 export default OfferTile;

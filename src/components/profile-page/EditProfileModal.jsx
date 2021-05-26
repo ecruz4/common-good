@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
@@ -16,41 +18,42 @@ const useStyles = makeStyles({
   },
 });
 
-function SignupModal({ handleClose }) {
+function EditProfileModal({ handleClose }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
-  const [password, setPassword] = useState('');
+
 
   const classes = useStyles();
 
   const handleSubmit = () => {
-    db.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((cred) => {
-        const userData = {
-          uid: cred.user.uid,
-          name,
-          email,
-          zip,
-          phone: '',
-          photo_url: 'https://images.unsplash.com/photo-1556208738-7a57e7b96aed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1491&q=80',
-          bio: '',
-        };
+    console.log('Need to edit user in Users collection')
+    // db.auth
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((cred) => {
+    //     const userData = {
+    //       uid: cred.user.uid,
+    //       name,
+    //       email,
+    //       zip,
+    //       phone: '',
+    //       photo_url: '',
+    //       bio: '',
+    //     };
 
-        db.firestore
-          .collection('users')
-          .doc()
-          .set(userData)
-          .then(() => {
-            handleClose();
-          });
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    //     db.firestore
+    //       .collection('users')
+    //       .doc()
+    //       .set(userData)
+    //       .then(() => {
+    //         handleClose();
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorCode, errorMessage);
+    //   });
   };
 
   return (
@@ -88,21 +91,9 @@ function SignupModal({ handleClose }) {
         value={zip}
         onChange={(event) => setZip(event.target.value)}
       />
-      <TextField
-        id="standard-full-width"
-        label="Password"
-        style={{ margin: 8 }}
-        margin="normal"
-        InputLabelProps={{
-          shrink: true,
-        }}
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        helperText="Password must be at least 6 characters"
-      />
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Sign Up
+          Update
         </Button>
         <Button onClick={handleClose} color="primary">
           Cancel
@@ -112,4 +103,4 @@ function SignupModal({ handleClose }) {
   );
 }
 
-export default SignupModal;
+export default EditProfileModal;
