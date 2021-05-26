@@ -14,6 +14,13 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
   },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+
+  },
 });
 
 function SignupModal({ handleClose }) {
@@ -100,11 +107,11 @@ function SignupModal({ handleClose }) {
         onChange={(event) => setPassword(event.target.value)}
         helperText="Password must be at least 6 characters"
       />
-      <Container>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+      <Container className={classes.buttonContainer}>
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
           Sign Up
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose}>
           Cancel
         </Button>
       </Container>

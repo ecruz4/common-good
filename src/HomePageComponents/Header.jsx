@@ -42,10 +42,11 @@ export default function Header(props) {
   };
 
   const logoStyle = {
-    color: 'black',
+    color: 'white',
     textDecoration: 'none',
     // fontFamily: "'Abril Fatface', cursive"
     fontFamily: "'Pattaya', sans-serif",
+    fontSize: "45px",
   };
 
   return (
@@ -73,9 +74,7 @@ export default function Header(props) {
         className={classes.toolbarSecondary}
       >
         <div>
-          {userInfo === null ? (
-            'Profile'
-          ) : (
+          {userInfo && (
             <Link
               key="profile"
               to={{
@@ -98,9 +97,7 @@ export default function Header(props) {
           Charities
         </Link>
         <div>
-          {userInfo === null ? (
-            'Chat'
-          ) : (
+          {userInfo && (
             <Link
               key="chat"
               to={{
