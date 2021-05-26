@@ -37,10 +37,11 @@ function ChatMessage({ message, otherUser }) {
   const user = db.auth.currentUser;
   const classes = useStyles();
 
-  // const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
-  // const otherName = 'John Doe';
-
   let messageClass = '';
+
+  if (!otherUser) {
+    return null;
+  }
 
   if (uid === user.uid) {
     messageClass = 'sent';

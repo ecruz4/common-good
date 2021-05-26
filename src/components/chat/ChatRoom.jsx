@@ -1,19 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  Button,
-  Typography,
-  TextField,
-  Container,
-  Card,
-} from '@material-ui/core';
+import React, { useState, useRef, useContext, useEffect } from 'react';
+import { Button, TextField, Container, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useState, useRef } from 'react';
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import db from '../../db/firebase';
 import ChatMessage from './ChatMessage';
 import ChatSidebar from './ChatSidebar';
+import UserContext from '../../contexts/UserContext';
 
 const useStyles = makeStyles(() => ({
   appContainer: {
@@ -49,17 +44,36 @@ function ChatRoom() {
   const messagesRef = db.firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
 
-  const [messages] = useCollectionData(query, { idField: 'id' });
-
+  const [relevantMessages, setRelevantMessages] = useState([]);
+  const { user, userInfo } = useContext(UserContext);
   const [formValue, setFormValue] = useState('');
   const [otherUser, setOtherUser] = useState('');
 
-  const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
-  const otherName = 'John Doe';
+  const [messages] = useCollectionData(query, { idField: 'id' });
+
+  useEffect(() => {
+    if (messages) {
+      setRelevantMessages(
+        messages.filter(
+          (msg) => msg.uid === user.uid || msg.recieverId === user.uid
+        )
+      );
+    }
+  }, [messages, user.uid]);
+
+  // const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
+  // const otherName = 'Delete this';
+
+  // const otherUid = 'gd3gmvQ6zJVRML37UI9HAcRgd662';
+  // const otherName = 'John Doe';
 
   const dummy = useRef();
 
   const sendMessage = async (event) => {
+    if (!otherUser) {
+      console.error('No other user');
+      return;
+    }
     event.preventDefault();
 
     const { uid, photoURL } = db.auth.currentUser;
@@ -68,8 +82,9 @@ function ChatRoom() {
       text: formValue,
       createdAt: new Date(),
       uid,
-      recieverId: otherUid,
-      recieverName: otherName,
+      user: userInfo.name,
+      recieverId: otherUser.id,
+      recieverName: otherUser.name,
       photoURL,
     });
 
@@ -81,7 +96,10 @@ function ChatRoom() {
   return (
     <Card>
       <Container className={classes.appContainer}>
-        <ChatSidebar setOtherUser={setOtherUser} />
+        <ChatSidebar
+          setOtherUser={setOtherUser}
+          relevantMessages={relevantMessages}
+        />
         <Container className={classes.chatContainer}>
           <div className={classes.messagesContainer}>
             {messages &&
