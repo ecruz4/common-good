@@ -25,7 +25,7 @@ const AllOffers = () => {
       .catch((err) => console.log(err.message))
   }, []);
 
-return (
+  return (
     <Grid container spacing={3}>
       {docs.map((doc) =>
         <OfferTile doc={doc} key={doc.title}/>

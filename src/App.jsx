@@ -1,5 +1,5 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Database
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -7,13 +7,14 @@ import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 
 // Routed Components
-import AllRequests from './components/AllRequests';
 import AllOffers from './components/AllOffers';
 import AllCharities from './components/AllCharities';
+import SearchOrgs from './components/SearchOrgs';
 import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
-
+import ChatScreen from './components/chat/ChatScreen';
+import donationDetail from './details/donations'
 
 function App() {
   const [user] = useAuthState(db.auth);
@@ -40,16 +41,19 @@ function App() {
 
   return (
     <>
-    <UserContext.Provider value={{ user, userInfo }}>
-    <Router>
-    <Header title="CommonGood" />
-    <Switch>
-          <Route path="/" exact component={Homepage}/>
-          <Route path="/donations" exact component={AllOffers}/>
-          <Route path="/charities" exact component={AllCharities}/>
-          <Route path="/profile/:uid" exact component={Profile}/>
-      </Switch>
-      </Router>
+      <UserContext.Provider value={{ user, userInfo }}>
+        <Router>
+          <Header title="CommonGood" />
+          <Switch>
+            <Route path="/" exact component={Homepage} />
+            <Route path="/donations" exact component={AllOffers} />
+            <Route path="/donations/:id" exact component={donationDetail} />
+            <Route path="/charities" exact component={SearchOrgs} />
+            <Route path="/charities/:uid" exact component={Profile} />
+            <Route path="/profile/:uid" exact component={Profile} />
+            <Route path="/chat" exact component={ChatScreen} />
+          </Switch>
+        </Router>
       </UserContext.Provider>
     </>
   );

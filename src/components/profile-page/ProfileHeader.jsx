@@ -29,13 +29,13 @@ function ProfileHeader({data, edit}) {
         </Grid>
       </Grid>
       <Grid container direction="row" item style={{backgroundColor: "primary", height: "118px"}}>
-        <Grid item xs={2} />
-        <Grid item xs={3} container alignItems="center" >
+        <Grid item md={3} lg={2} />
+        <Grid item md={3} lg={3} container alignItems="center" >
           <ThemeProvider theme={theme} > 
-            <Typography style={{paddingLeft: '20px'}}>{data.name}</Typography>
+            <Typography style={{paddingLeft: '80px'}}>{data.name}</Typography>
           </ThemeProvider>
         </Grid>
-        <Grid item xs={7} container alignItems="center">
+        <Grid item md={6} lg={7} container alignItems="center">
           <ProfileInfo data={data} />
         </Grid>
       </Grid>
