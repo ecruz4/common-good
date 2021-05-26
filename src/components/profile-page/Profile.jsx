@@ -44,15 +44,16 @@ function Profile() {
         });
       })
       .catch((err) => console.log(err.message))
+    } else if (location.state.type === "charity") {
+      db.firestore.collection("organizations").where("uid", "==", location.state.userId)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+        });
+      })
+      .catch((err) => console.log(err.message))
     }
-    db.firestore.collection("organizations").where("uid", "==", location.state.userId)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        setUser(doc.data());
-      });
-    })
-    .catch((err) => console.log(err.message))
   }, [location.state, userInfo]);
 
   const getEdit = function() {

@@ -78,7 +78,8 @@ const OfferTile = ({ doc }) => {
                   to={{
                     pathname: `/profile/${donor_id}`,
                     state: {
-                      userId: donor_id,
+                      userId: donor.uid,
+                      type: "user"
                     },
                   }}
                 >
