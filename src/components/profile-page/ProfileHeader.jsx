@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: {
-    htmlFontSize: 4,
+    htmlFontSize: 5,
     fontFamily: [
       'Pattaya',
       'sans-serif',
@@ -19,6 +19,7 @@ const theme = createMuiTheme({
   }
 })
 
+// Pass the edit prop to the Avatar as that will be the component the edit icon appears if valid:
 function ProfileHeader({data, edit}) {
   return (
     <Grid container direction="column" justify="flex-start" alignItems="stretch">
@@ -27,12 +28,16 @@ function ProfileHeader({data, edit}) {
           <ProfileAvatar data={data} edit={edit} />
         </Grid>
       </Grid>
-      <Grid container direction="row" item alignItems="center" style={{backgroundColor: "#7DA1FD", height: "118px"}}>
-        <Grid item xs={2} />
-        <ThemeProvider theme={theme} > 
-          <Typography>{data.name}</Typography>
-        </ThemeProvider>
-        <ProfileInfo data={data} />
+      <Grid container direction="row" item style={{backgroundColor: "primary", height: "118px"}}>
+        <Grid item md={3} lg={2} />
+        <Grid item md={3} lg={3} container alignItems="center" >
+          <ThemeProvider theme={theme} > 
+            <Typography style={{paddingLeft: '80px'}}>{data.name}</Typography>
+          </ThemeProvider>
+        </Grid>
+        <Grid item md={6} lg={7} container alignItems="center">
+          <ProfileInfo data={data} />
+        </Grid>
       </Grid>
     </Grid>
   )
