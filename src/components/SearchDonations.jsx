@@ -53,6 +53,7 @@ const SearchOrgs = () => {
                 color="primary"
                 onChange={handleSwitch}
                 name="search-type"
+                color="primary"
               />
             </Grid>
             <Grid item>Donations</Grid>

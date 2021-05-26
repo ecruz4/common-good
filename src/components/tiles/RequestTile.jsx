@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -17,7 +17,7 @@ import {
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 import ForumIcon from '@material-ui/icons/Forum';
-
+import UserContext from '../../contexts/UserContext';
 import firestore from '../../db/firebase';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RequestTile = ({ doc }) => {
   const classes = useStyles();
+  const { userInfo } = useContext(UserContext);
   const { id, org_id, title, description, quantity, emergency, date } = doc;
 
   const [org, setOrg] = useState({});
@@ -67,33 +68,33 @@ const RequestTile = ({ doc }) => {
               avatar={
                 emergency ? (
                   <Link
-                  key="charity"
-                  to={{
-                    pathname: `/charities/${org_id}`,
-                    state: {
-                      userId: org_id,
-                      type: "charity"
-                    },
-                  }}
-                >
-                  <Avatar aria-label="request" className={classes.avatar}>
-                    <LocationCityIcon />
-                  </Avatar>
+                    key="charity"
+                    to={{
+                      pathname: `/charities/${org_id}`,
+                      state: {
+                        userId: org_id,
+                        type: 'charity',
+                      },
+                    }}
+                  >
+                    <Avatar aria-label="request" className={classes.avatar}>
+                      <LocationCityIcon />
+                    </Avatar>
                   </Link>
                 ) : (
                   <Link
-                  key="charity"
-                  to={{
-                    pathname: `/charities/${org_id}`,
-                    state: {
-                      userId: org_id,
-                      type: "charity"
-                    },
-                  }}
-                >
-                  <Avatar aria-label="request" className={classes.avatarEmg}>
-                    <NotificationImportantIcon />
-                  </Avatar>
+                    key="charity"
+                    to={{
+                      pathname: `/charities/${org_id}`,
+                      state: {
+                        userId: org_id,
+                        type: 'charity',
+                      },
+                    }}
+                  >
+                    <Avatar aria-label="request" className={classes.avatarEmg}>
+                      <NotificationImportantIcon />
+                    </Avatar>
                   </Link>
                 )
               }
@@ -107,38 +108,41 @@ const RequestTile = ({ doc }) => {
                     },
                   }}
                 >
-                <IconButton aria-label="chat">
-                  <ForumIcon />
-                </IconButton>
+                  {userInfo && userInfo.uid ? (
+                    <IconButton aria-label="chat">
+                      <ForumIcon />
+                    </IconButton>
+                  ) : (
+                    <></>
+                  )}
                 </Link>
               }
-              title={
-                <Link
-                  key="donationDetail"
-                  to={{
-                    pathname: `/donations/${id}`,
-                    state: {
-                      productId: id,
-                      userId: org_id,
-                      title: title,
-                      emergency: emergency,
-                      description: description,
-                      quantity: quantity,
-                      date: date,
-                    },
-                  }}
-                >
-                {`${title} (x${quantity})`}
-                </Link>
-              }
+              title={title}
               subheader={org.name}
             />
 
-            <CardContent className={classes.content}>
-              <Typography variant="body2" color="textSecondary">
-                {description}
-              </Typography>
-            </CardContent>
+            <Link
+              style={{ textDecoration: 'none' }}
+              key="donationDetail"
+              to={{
+                pathname: `/donations/${id}`,
+                state: {
+                  context: 'organizations',
+                  productId: id,
+                  userId: org_id,
+                  title,
+                  description,
+                  quantity,
+                  date,
+                },
+              }}
+            >
+              <CardContent className={classes.content}>
+                <Typography variant="body2" color="textSecondary">
+                  {description}
+                </Typography>
+              </CardContent>
+            </Link>
 
             <CardActions className={classes.cardactions}>
               <Typography variant="overline">
