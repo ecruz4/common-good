@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
     justify: 'flex-end',
   },
   received: {
-    background: '#ffff57',
+    background: '#ffed03',
   },
   invisible: {
     visibility: 'hidden',
@@ -33,16 +33,19 @@ const useStyles = makeStyles(() => ({
 
 function ChatMessage({ message, otherUser }) {
   const { userInfo } = useContext(UserContext);
-  const { text, uid, createdAt } = message;
-  const user = db.auth.currentUser;
-  const classes = useStyles();
 
-  // const otherUid = 'aVtjgriSnURzQsFSPLJrZfdSyXV2';
-  // const otherName = 'John Doe';
+  const { text, uid, createdAt, recieverId } = message;
+  const user = db.auth.currentUser;
+
+  const classes = useStyles();
 
   let messageClass = '';
 
-  if (uid === user.uid) {
+  if (!otherUser) {
+    return null;
+  }
+
+  if (uid === user.uid && recieverId === otherUser.id) {
     messageClass = 'sent';
     return (
       userInfo && (
