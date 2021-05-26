@@ -8,13 +8,17 @@ import { expiryThreshold } from '../utils/moment';
 const AllOffers = ({ uid, searchTerm }) => {
   const [docs, setDocs] = useState([]);
   const retrievedDocs = [];
+  const [lastVisibleDoc, setLastVisibleDoc] = useState({});
+  const [noMoreDocs, setNoMoreDocs] = useState(true);
 
   const findAll = () => {
     firestore.firestore
       .collection('offers')
       .orderBy('date', 'asc')
+      .limit(2)
       .get()
       .then((querySnapshot) => {
+        setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
         querySnapshot.forEach((doc) => {
           const createTimeInMs = doc.data().date.toMillis();
           // filter for listings no older than 60 days
@@ -27,6 +31,41 @@ const AllOffers = ({ uid, searchTerm }) => {
           }
         });
         setDocs(retrievedDocs);
+        setNoMoreDocs(false);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  const findMore = () => {
+    firestore.firestore
+      .collection('offers')
+      .orderBy('date', 'asc')
+      .startAfter(lastVisibleDoc)
+      .limit(2)
+      .get()
+      .then((querySnapshot) => {
+        const numOfDocsFetched = querySnapshot.docs.length;
+        if (numOfDocsFetched > 0) {
+          setNoMoreDocs(false);
+          setLastVisibleDoc(querySnapshot.docs[numOfDocsFetched - 1]);
+
+          querySnapshot.forEach((doc) => {
+            const createTimeInMs = doc.data().date.toMillis();
+            // filter for listings no older than 60 days
+            if (createTimeInMs > expiryThreshold) {
+              const docWithExpiryDate = {
+                ...doc.data(),
+                expiry: createTimeInMs - expiryThreshold,
+              };
+              retrievedDocs.push(docWithExpiryDate);
+              setDocs([...docs, ...retrievedDocs]);
+              setNoMoreDocs(false);
+            }
+          });
+        } else {
+          console.log('No more offers to fetch.');
+          setNoMoreDocs(true);
+        }
       })
       .catch((err) => console.log(err.message));
   };
@@ -77,11 +116,20 @@ const AllOffers = ({ uid, searchTerm }) => {
   }, [searchTerm]);
 
   return (
-    <Grid container spacing={3}>
-      {docs.map((doc) => (
-        <OfferTile doc={doc} key={doc.title} />
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={3}>
+        {docs.map((doc) => (
+          <OfferTile doc={doc} key={doc.title} />
+        ))}
+      </Grid>
+      {noMoreDocs || searchTerm ? (
+        <></>
+      ) : (
+        <div onClick={() => findMore()}>More</div>
+      )}
+      <br />
+      <br />
+    </>
   );
 };
 

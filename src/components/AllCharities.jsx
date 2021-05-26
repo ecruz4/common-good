@@ -5,10 +5,10 @@ import CharityTile from './tiles/CharityTile';
 import capitalize from '../utils/capitalize';
 
 const AllCharities = ({ searchTerm, criteria }) => {
-  const allDocs = [];
+  const retrievedDocs = [];
   const [docs, setDocs] = useState([]);
   const [lastVisibleDoc, setLastVisibleDoc] = useState({});
-  const [noMoreDocs, setNoMoreDocs] = useState(false);
+  const [noMoreDocs, setNoMoreDocs] = useState(true);
 
   const findInitialCharities = () => {
     firestore.firestore
@@ -19,9 +19,10 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .then((querySnapshot) => {
         setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
         querySnapshot.forEach((doc) => {
-          allDocs.push(doc.data());
+          retrievedDocs.push(doc.data());
         });
-        setDocs(allDocs);
+        setDocs(retrievedDocs);
+        setNoMoreDocs(false);
       })
       .catch((err) => console.log(err.message));
   };
@@ -36,11 +37,12 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .then((querySnapshot) => {
         const numOfDocsFetched = querySnapshot.docs.length;
         if (numOfDocsFetched > 0) {
-          setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+          setNoMoreDocs(false);
+          setLastVisibleDoc(querySnapshot.docs[numOfDocsFetched - 1]);
           querySnapshot.forEach((doc) => {
-            allDocs.push(doc.data());
+            retrievedDocs.push(doc.data());
           });
-          setDocs([...docs, ...allDocs]);
+          setDocs([...docs, ...retrievedDocs]);
         } else {
           console.log('No more docs to fetch.');
           setNoMoreDocs(true);
@@ -56,9 +58,9 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          allDocs.push(doc.data());
+          retrievedDocs.push(doc.data());
         });
-        setDocs(allDocs);
+        setDocs(retrievedDocs);
       })
       .catch((err) => console.log(err.message));
   };
@@ -102,11 +104,13 @@ const AllCharities = ({ searchTerm, criteria }) => {
         ))}
       </Grid>
       <br />
-      {noMoreDocs ? (
-        <div>All Charities Displayed</div>
+      {noMoreDocs || searchTerm ? (
+        <></>
       ) : (
         <div onClick={() => findMoreCharities()}>More</div>
       )}
+      <br />
+      <br />
     </>
   );
 };
