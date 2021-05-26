@@ -60,18 +60,17 @@ function ChatSidebar({ setOtherUser, otherUser, relevantMessages }) {
           }
           return (
             <>
-              <ListItem button selected={selected}>
+              <ListItem
+                button
+                selected={selected}
+                onClick={() => handleClick(contact, contactsIds[index], index)}
+              >
                 <ListItemAvatar>
                   <Avatar>
                     <PersonIcon color="secondary" />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText
-                  primary={contact}
-                  onClick={() =>
-                    handleClick(contact, contactsIds[index], index)
-                  }
-                />
+                <ListItemText primary={contact} />
               </ListItem>
               <Divider />
             </>

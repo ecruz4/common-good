@@ -34,6 +34,7 @@ function ChatScreen() {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
+            console.log('doc', doc);
             setOtherUser({ id: doc.data().uid, name: doc.data().name });
           });
         })
@@ -49,6 +50,7 @@ function ChatScreen() {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
+            console.log('doc', doc);
             setOtherUser({ id: doc.data().uid, name: doc.data().name });
           });
         })
