@@ -50,6 +50,7 @@ const OfferTile = ({ doc }) => {
     .catch((err) => console.log(err.message))
   }, []);
 
+  console.log('donor: ', donor);
 
   return (
 
