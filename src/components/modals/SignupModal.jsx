@@ -43,6 +43,7 @@ function SignupModal({ handleClose }) {
           phone: '',
           photo_url: 'https://images.unsplash.com/photo-1556208738-7a57e7b96aed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1491&q=80',
           bio: '',
+          type: 'user'
         };
 
         db.firestore

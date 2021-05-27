@@ -31,8 +31,6 @@ function Profile() {
   const { userInfo, setUserInfo } = useContext(UserContext);
   const [user, setUser] = useState(userInfo);
 
-
-
   useEffect(() => {
     if (location.state.type === 'user') {
       db.firestore.collection("users").where("uid", "==", location.state.userId)
@@ -61,13 +59,21 @@ function Profile() {
     } 
     return false
   }
+
+  const getType = function() {
+    if (location.state.type === "user") {
+      return true
+    } else {
+      return false
+    }
+  }
   // Pass the 'docs' prop to both components below:
   return (
     <Grid container direction="column" justify="center" alignItems="stretch">
-      {user ? <ProfileHeader data={user} edit={getEdit()} 
+      {user ? <ProfileHeader data={user} edit={getEdit()} location={getType()}
       // Add an edit prop that gets sent to the header. If the currUser uid and the uid of the profile being viewed match, set this prop to true:
       /> : null}
-      {user ? <ProfileBody data={user} edit={getEdit()}  /> : null}
+      {user ? <ProfileBody data={user} edit={getEdit()} location={getType()} /> : null}
       
     </Grid>
   )
