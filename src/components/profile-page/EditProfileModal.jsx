@@ -10,7 +10,6 @@ import UserContext from '../../contexts/UserContext';
 import TextField from '@material-ui/core/TextField';
 import { Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import { makeStyles } from '@material-ui/core/styles';
 // import firebase from 'firebase/app';
 
 import db from '../../db/firebase';
@@ -19,6 +18,13 @@ const useStyles = makeStyles({
   container: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+
   },
 });
 
@@ -122,11 +128,11 @@ function EditProfileModal({ handleClose }) {
         value={photo}
         onChange={(event) => setPhoto(event.target.value)}
       />
-      <Container>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+      <Container className={classes.buttonContainer}>
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
           Update
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose} >
           Cancel
         </Button>
       </Container>

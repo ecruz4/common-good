@@ -12,8 +12,7 @@ function LogoutButton() {
       <div>
         <Button
           onClick={() => fire.auth.signOut()}
-          variant="contained"
-          color="secondary"
+          color='secondary'
         >
           Signout
         </Button>
