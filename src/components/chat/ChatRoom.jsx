@@ -4,8 +4,6 @@ import React, { useState, useRef, useContext, useEffect } from 'react';
 import { Button, TextField, Container, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-
 import db from '../../db/firebase';
 import ChatMessage from './ChatMessage';
 import ChatSidebar from './ChatSidebar';
@@ -49,16 +47,9 @@ function ChatRoom({ otherUser, setOtherUser }) {
   const [formValue, setFormValue] = useState('');
 
   const messagesRef = db.firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
-  const [messages] = useCollectionData(query, { idField: 'id' });
 
-  const {
-    user,
-    userInfo,
-    setNewMessagesCount,
-    relevantMessages,
-    setRelevantMessages,
-  } = useContext(UserContext);
+  const { userInfo, setNewMessagesCount, relevantMessages } =
+    useContext(UserContext);
 
   const classes = useStyles();
 
