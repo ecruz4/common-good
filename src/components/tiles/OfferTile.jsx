@@ -49,7 +49,8 @@ const useStyles = makeStyles((theme) => ({
 const OfferTile = ({ doc }) => {
   const classes = useStyles();
   const { userInfo } = useContext(UserContext);
-  const { donor_id, title, description, quantity, date, expiry, id } = doc;
+  const { donor_id, title, description, quantity, date, expiry, id, imgURL } =
+    doc;
 
   const [donor, setDonor] = useState({});
 
@@ -79,7 +80,7 @@ const OfferTile = ({ doc }) => {
                     pathname: `/profile/${donor_id}`,
                     state: {
                       userId: donor.uid,
-                      type: "user"
+                      type: 'user',
                     },
                   }}
                 >
@@ -121,13 +122,15 @@ const OfferTile = ({ doc }) => {
                   description,
                   quantity,
                   date,
-                  context: 'offer'
-                }
+                  context: 'offer',
+                },
               }}
             >
               <CardMedia
                 className={classes.media}
-                image={`https://source.unsplash.com/600x400/?${title}`}
+                image={
+                  imgURL || `https://source.unsplash.com/400x200/?${title}`
+                }
                 title="charitable donation"
               />
             </Link>
@@ -144,7 +147,7 @@ const OfferTile = ({ doc }) => {
                   description,
                   quantity,
                   date,
-                  context: 'offer'
+                  context: 'offer',
                 },
               }}
             >

@@ -55,7 +55,7 @@ function OfferModal({ handleClose }) {
     <Container className={classes.container}>
       <TextField
         id="standard-full-width"
-        label="Title"
+        label="Donation Item"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
@@ -96,7 +96,12 @@ function OfferModal({ handleClose }) {
           shrink: true,
         }}
         value={imgURL}
-        onChange={(event) => setImgURL(event.target.value)}
+        onChange={(event) =>
+          setImgURL(
+            event.target.value ||
+              `https://source.unsplash.com/400x200/?${title}`
+          )
+        }
       />
 
       <Container>
