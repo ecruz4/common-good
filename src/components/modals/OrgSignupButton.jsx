@@ -17,14 +17,13 @@ function OrgSignupButton() {
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle>Create a Charity Account</DialogTitle>
-        <DialogContent>
+        <DialogTitle style={{ background: '#ffed03', color: '#2196f3'}}>Create a Charity Account</DialogTitle>
+        <DialogContent style={{ background: '#ffed03' }}>
           <OrgSignupModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
       <Button
-        variant="contained"
-        color="primary"
+        color='secondary'
         onClick={handleClickOpen}
         onClose={handleClose}
       >

@@ -32,19 +32,18 @@ function RequestButton() {
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle>Make a Request</DialogTitle>
-        <DialogContent>
+        <DialogTitle style={{ background: '#ffed03', color: '#2196f3'}}>Make a Request</DialogTitle>
+        <DialogContent style={{ background: '#ffed03' }}>
           <RequestModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
       <Grow in {...{ timeout: 500 }}>
         <Button
           className={classes.button}
-          variant="contained"
-          color="primary"
+          color='secondary'
           onClick={handleClickOpen}
           onClose={handleClose}
-          size="small"
+          // size="small"
         >
           Make a Request
         </Button>

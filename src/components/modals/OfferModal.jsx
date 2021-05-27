@@ -100,10 +100,10 @@ function OfferModal({ handleClose }) {
       />
 
       <Container>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
           Make a Donation
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleClose} style={{ margin: 8, background: '#2196f3', color: 'white'}}>
           Cancel
         </Button>
       </Container>
