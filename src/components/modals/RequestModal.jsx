@@ -19,6 +19,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
   },
+  button: {
+    margin: 10,
+    marginTop: 30,
+  },
 });
 
 function RequestModal({ handleClose }) {

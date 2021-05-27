@@ -56,7 +56,7 @@ function OrgSignupModal({ handleClose }) {
           phone,
           photo_url: '',
           bio: '',
-          type: 'org'
+          type: 'org',
         };
 
         db.firestore
@@ -77,7 +77,8 @@ function OrgSignupModal({ handleClose }) {
   return (
     <Container className={classes.container}>
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Organization Name"
         style={{ margin: 8 }}
         margin="normal"
@@ -88,7 +89,20 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setOrgName(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
+        label="Charity Theme"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={url}
+        onChange={(event) => setFocus(event.target.value)}
+      />
+      <TextField
+        color="secondary"
+        className="standard-full-width"
         label="Email"
         style={{ margin: 8 }}
         margin="normal"
@@ -99,7 +113,8 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setEmail(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Password"
         style={{ margin: 8 }}
         margin="normal"
@@ -110,7 +125,8 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setPassword(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Phone Number"
         style={{ margin: 8 }}
         margin="normal"
@@ -121,7 +137,8 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setPhone(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Address"
         style={{ margin: 8 }}
         margin="normal"
@@ -132,8 +149,9 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setAddress(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
-        label="City"
+        color="secondary"
+        className="standard-full-width"
+        label="City (e.g. Austin)"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
@@ -143,8 +161,9 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setCity(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
-        label="State"
+        color="secondary"
+        className="standard-full-width"
+        label="State (e.g. TX)"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
@@ -154,8 +173,9 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setState(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
-        label="Zipcode"
+        color="secondary"
+        className="standard-full-width"
+        label="ZIP"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
@@ -165,7 +185,8 @@ function OrgSignupModal({ handleClose }) {
         onChange={(event) => setZip(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Organization URL"
         style={{ margin: 8 }}
         margin="normal"
@@ -175,7 +196,8 @@ function OrgSignupModal({ handleClose }) {
         value={url}
         onChange={(event) => setUrl(event.target.value)}
       />
-      <FormControl className={classes.formControl}>
+
+      {/* <FormControl className={classes.formControl}>
         <InputLabel id="focus-select-label">Focus</InputLabel>
         <Select
           labelId="focus-select-label"
@@ -187,7 +209,7 @@ function OrgSignupModal({ handleClose }) {
           <MenuItem value="animals">Animals</MenuItem>
           <MenuItem value="other">Other</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
       <Container>
         <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
           Sign Up

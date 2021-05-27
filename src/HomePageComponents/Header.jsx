@@ -1,8 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { Fragment, useState, useContext } from 'react';
+import React, { Fragment, useState, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 
 // Material UI
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,8 +15,10 @@ import { Badge } from '@material-ui/core';
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
+import OrgSignupButton from '../components/modals/OrgSignupButton';
 import UserContext from '../contexts/UserContext';
 
+import SignupEntryPt from './SignupEntryPt';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     flexShrink: 0,
   },
+  signup: {
+    position: 'absolute',
+    zIndex: 2,
+  },
+  appbar: {
+    zIndex: 1,
+  },
 }));
 
 export default function Header(props) {
@@ -63,75 +71,78 @@ export default function Header(props) {
 
   return (
     <>
-    <div className={classes.root}>
-    <AppBar position="fixed" style={{boxShadow: 'none', background: '#6ec6ff'}}>
-      <Toolbar className={classes.toolbar}>
-        <SignupButton />
-        <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="center"
-          noWrap
-          style={{justifyContent: 'center'}}
+      <div className={classes.root}>
+        <AppBar
+          position="fixed"
+          style={{ boxShadow: 'none', background: '#6ec6ff' }}
+          className={classes.appbar}
         >
-          <Link key="homepage" to="/" style={logoStyle}>
-            {title}
-          </Link>
-        </Typography>
-        <LoginButton />
-        <LogoutButton />
-      </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        className={classes.toolbarSecondary}
-      >
-        <div>
-          {userInfo && (
-            <Link
-              key="profile"
-              to={{
-                pathname: `/profile/${userInfo.uid}`,
-                state: {
-                  userId: userInfo.uid,
-                  type: 'user',
-                },
-              }}
-              style={navStyle}
+          <Toolbar className={classes.toolbar}>
+            <SignupEntryPt className={classes.signup} />
+            <Typography
+              component="h2"
+              variant="h5"
+              color="inherit"
+              align="center"
+              noWrap
+              style={{ justifyContent: 'center' }}
             >
-              <Typography>Profile</Typography>
-            </Link>
-          )}
-        </div>
+              <Link key="homepage" to="/" style={logoStyle}>
+                {title}
+              </Link>
+            </Typography>
+            <LoginButton />
+            <LogoutButton />
+          </Toolbar>
+          <Toolbar
+            component="nav"
+            variant="dense"
+            className={classes.toolbarSecondary}
+          >
+            <div>
+              {userInfo && (
+                <Link
+                  key="profile"
+                  to={{
+                    pathname: `/profile/${userInfo.uid}`,
+                    state: {
+                      userId: userInfo.uid,
+                      type: 'user',
+                    },
+                  }}
+                  style={navStyle}
+                >
+                  <Typography>Profile</Typography>
+                </Link>
+              )}
+            </div>
 
-        <Link key="donations" to="/donations" style={navStyle}>
-          <Typography>Requests & Donations</Typography>
-        </Link>
-        <Link key="charities" to="/charities" style={navStyle}>
-          <Typography>Charities</Typography>
-        </Link>
-        <div>
-          {userInfo && (
-            <Link
-              key="chat"
-              to={{
-                pathname: `/chat/${userInfo.uid}`,
-                state: {
-                  userId: userInfo.uid,
-                },
-              }}
-              style={navStyle}
-            >
-              <Badge badgeContent={newMessagesCount} color="primary">
-                <MailIcon />
-              </Badge>
-
+            <Link key="donations" to="/donations" style={navStyle}>
+              <Typography>Requests & Donations</Typography>
             </Link>
-          )}
-        </div>
-      </Toolbar>
-      </AppBar>
+            <Link key="charities" to="/charities" style={navStyle}>
+              <Typography>Charities</Typography>
+            </Link>
+            <div>
+              {userInfo && (
+                <Link
+                  key="chat"
+                  to={{
+                    pathname: `/chat/${userInfo.uid}`,
+                    state: {
+                      userId: userInfo.uid,
+                    },
+                  }}
+                  style={navStyle}
+                >
+                  <Badge badgeContent={newMessagesCount} color="primary">
+                    <MailIcon />
+                  </Badge>
+                </Link>
+              )}
+            </div>
+          </Toolbar>
+        </AppBar>
       </div>
     </>
   );
@@ -141,5 +152,3 @@ Header.propTypes = {
   sections: PropTypes.array,
   title: PropTypes.string,
 };
-
-

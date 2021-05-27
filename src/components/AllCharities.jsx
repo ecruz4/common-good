@@ -21,7 +21,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
     firestore.firestore
       .collection('organizations')
       .orderBy('name', 'asc')
-      .limit(2)
+      .limit(9)
       .get()
       .then((querySnapshot) => {
         setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
@@ -39,7 +39,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .collection('organizations')
       .orderBy('name', 'asc')
       .startAfter(lastVisibleDoc)
-      .limit(2)
+      .limit(9)
       .get()
       .then((querySnapshot) => {
         const numOfDocsFetched = querySnapshot.docs.length;
@@ -117,7 +117,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
         <Slide direction="up" in>
           <Button
             className={classes.moreButton}
-            color='secondary'
+            color="secondary"
             onClick={() => findMoreCharities()}
           >
             more

@@ -108,9 +108,9 @@ const RequestTile = ({ doc }) => {
                     },
                   }}
                 >
-                <IconButton aria-label="chat">
-                  <ForumIcon />
-                </IconButton>
+                  <IconButton aria-label="chat">
+                    <ForumIcon />
+                  </IconButton>
                 </Link>
               }
               title={
@@ -126,11 +126,11 @@ const RequestTile = ({ doc }) => {
                       description,
                       quantity,
                       date,
-                      context: 'organizations'
+                      context: 'organizations',
                     },
                   }}
                 >
-                {`${title} (x${quantity})`}
+                  {`${title} (x${quantity})`}
                   {userInfo && userInfo.uid ? (
                     <IconButton aria-label="chat">
                       <ForumIcon />
