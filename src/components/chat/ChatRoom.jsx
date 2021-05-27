@@ -60,11 +60,15 @@ function ChatRoom({ otherUser, setOtherUser }) {
   const dummy = useRef();
 
   const sendMessage = async (event) => {
+    event.preventDefault();
+
+    if (!formValue) {
+      return;
+    }
     if (!otherUser) {
       console.error('No other user');
       return;
     }
-    event.preventDefault();
 
     const { uid, photoURL } = db.auth.currentUser;
 
