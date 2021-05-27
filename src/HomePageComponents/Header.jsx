@@ -9,12 +9,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import MailIcon from '@material-ui/icons/Mail';
+import { Badge } from '@material-ui/core';
 
 // Login Components
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
 import UserContext from '../contexts/UserContext';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const classes = useStyles();
   const { title } = props;
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, newMessagesCount } = useContext(UserContext);
 
   const navStyle = {
     color: 'black',
@@ -55,7 +58,7 @@ export default function Header(props) {
     textDecoration: 'none',
     // fontFamily: "'Abril Fatface', cursive"
     fontFamily: "'Pattaya', sans-serif",
-    fontSize: "45px",
+    fontSize: '45px',
   };
 
   return (
@@ -92,8 +95,8 @@ export default function Header(props) {
                 pathname: `/profile/${userInfo.uid}`,
                 state: {
                   userId: userInfo.uid,
-                  type: "user"
-                }
+                  type: 'user',
+                },
               }}
               style={navStyle}
             >
@@ -120,7 +123,10 @@ export default function Header(props) {
               }}
               style={navStyle}
             >
-              Chat
+              <Badge badgeContent={newMessagesCount} color="primary">
+                <MailIcon />
+              </Badge>
+
             </Link>
           )}
         </div>

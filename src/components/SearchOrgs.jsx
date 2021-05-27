@@ -11,6 +11,9 @@ import AllCharities from './AllCharities';
 import capitalize from '../utils/capitalize';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    // display: 'flex',
+  },
   field: {
     marginTop: 20,
     marginBottom: 10,
@@ -48,7 +51,7 @@ const SearchOrgs = () => {
   };
 
   return (
-    <>
+    <div className={classes.container}>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
           className={classes.field}
@@ -79,8 +82,12 @@ const SearchOrgs = () => {
         </Select>
       </FormControl>
 
-      <AllCharities searchTerm={searchTerm} criteria={criteria} />
-    </>
+      <AllCharities
+        searchTerm={searchTerm}
+        criteria={criteria}
+        className={classes.tiles}
+      />
+    </div>
   );
 };
 

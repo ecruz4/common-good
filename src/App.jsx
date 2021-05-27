@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Database
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 
@@ -24,6 +25,42 @@ import donationDetail from './components/details/Donations';
 function App() {
   const [user] = useAuthState(db.auth);
   const [userInfo, setUserInfo] = useState(null);
+  const [newMessagesCount, setNewMessagesCount] = useState(0);
+  const [relevantMessages, setRelevantMessages] = useState([]);
+  const [relevantMessagesLength, setRelevantMessagesLength] = useState(0);
+
+  const messagesRef = db.firestore.collection('messages');
+  const query = messagesRef.orderBy('createdAt');
+  const [messages] = useCollectionData(query, { idField: 'id' });
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+    if (messages) {
+      setRelevantMessages(
+        messages.filter(
+          (msg) => msg.uid === user.uid || msg.recieverId === user.uid
+        )
+      );
+    }
+    console.log('Updating messages');
+  }, [messages, user]);
+
+  useEffect(() => {
+    if (!user) {
+      return null;
+    }
+    let messagesToUserCount = 0;
+    relevantMessages.forEach((msg) => {
+      if (msg.uid !== user.uid) {
+        messagesToUserCount += 1;
+      }
+    });
+
+    setNewMessagesCount(messagesToUserCount - relevantMessagesLength);
+    setRelevantMessagesLength(messagesToUserCount);
+  }, [relevantMessages]);
 
   useEffect(() => {
     if (user === null) {
@@ -46,7 +83,17 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{ user, userInfo, setUserInfo }}>
+      <UserContext.Provider
+        value={{
+          user,
+          userInfo,
+          setUserInfo,
+          newMessagesCount,
+          setNewMessagesCount,
+          relevantMessages,
+          setRelevantMessages,
+        }}
+      >
         <Router>
           <Header title="CommonGood" />
           <Switch>
