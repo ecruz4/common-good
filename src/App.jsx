@@ -25,7 +25,7 @@ function App() {
   const [relevantMessagesLength, setRelevantMessagesLength] = useState(0);
 
   const messagesRef = db.firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const query = messagesRef.orderBy('createdAt');
   const [messages] = useCollectionData(query, { idField: 'id' });
 
   useEffect(() => {
@@ -39,6 +39,7 @@ function App() {
         )
       );
     }
+    console.log('Updating messages');
   }, [messages, user]);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function App() {
         messagesToUserCount += 1;
       }
     });
-    console.log({ messagesToUserCount });
+
     setNewMessagesCount(messagesToUserCount - relevantMessagesLength);
     setRelevantMessagesLength(messagesToUserCount);
   }, [relevantMessages]);
@@ -84,6 +85,8 @@ function App() {
           setUserInfo,
           newMessagesCount,
           setNewMessagesCount,
+          relevantMessages,
+          setRelevantMessages,
         }}
       >
         <Router>

@@ -47,32 +47,24 @@ const useStyles = makeStyles(() => ({
 
 function ChatRoom({ otherUser, setOtherUser }) {
   const [formValue, setFormValue] = useState('');
-  const [relevantMessages, setRelevantMessages] = useState([]);
-
-  const { user, userInfo, setNewMessagesCount } = useContext(UserContext);
-
-  const classes = useStyles();
 
   const messagesRef = db.firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
   const [messages] = useCollectionData(query, { idField: 'id' });
 
+  const {
+    user,
+    userInfo,
+    setNewMessagesCount,
+    relevantMessages,
+    setRelevantMessages,
+  } = useContext(UserContext);
+
+  const classes = useStyles();
+
   useEffect(() => {
     setNewMessagesCount(0);
   }, []);
-
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
-    if (messages) {
-      setRelevantMessages(
-        messages.filter(
-          (msg) => msg.uid === user.uid || msg.recieverId === user.uid
-        )
-      );
-    }
-  }, [messages, user]);
 
   const dummy = useRef();
 
