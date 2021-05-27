@@ -108,6 +108,29 @@ const RequestTile = ({ doc }) => {
                     },
                   }}
                 >
+                <IconButton aria-label="chat">
+                  <ForumIcon />
+                </IconButton>
+                </Link>
+              }
+              title={
+                <Link
+                  key="donationDetail"
+                  to={{
+                    pathname: `/donations/${id}`,
+                    state: {
+                      productId: id,
+                      userId: org_id,
+                      title: title,
+                      emergency: emergency,
+                      description: description,
+                      quantity: quantity,
+                      date: date,
+                      context: 'organizations'
+                    },
+                  }}
+                >
+                {`${title} (x${quantity})`}
                   {userInfo && userInfo.uid ? (
                     <IconButton aria-label="chat">
                       <ForumIcon />

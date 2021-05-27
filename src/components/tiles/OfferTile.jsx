@@ -117,11 +117,12 @@ const OfferTile = ({ doc }) => {
                 state: {
                   productId: id,
                   userId: donor_id,
-                  title: title,
-                  description: description,
-                  quantity: quantity,
-                  date: date,
-                },
+                  title,
+                  description,
+                  quantity,
+                  date,
+                  context: 'offer'
+                }
               }}
             >
               <CardMedia
@@ -143,6 +144,7 @@ const OfferTile = ({ doc }) => {
                   description,
                   quantity,
                   date,
+                  context: 'offer'
                 },
               }}
             >
