@@ -107,6 +107,8 @@ export default function Offer({ doc }) {
 
   const { productId, userId, title, imgURL, description, quantity, date } = doc;
 
+  console.log('doc, ', doc);
+
   const [donor, setDonor] = useState({});
 
   useEffect(() => {
@@ -189,7 +191,9 @@ export default function Offer({ doc }) {
             <Typography variant="h3">
               {donor.name}
             </Typography>
-            <Typography variant="body1" className={classes.descSpacing}>Bio:</Typography>
+            <Typography variant="body1" className={classes.descSpacing}>
+              Bio:
+            </Typography>
             <Typography variant="body2" color="textSecondary" className={classes.descSpacing}>
               {donor.bio}
             </Typography>

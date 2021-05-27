@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Badge, Button, Card, CardActions, CardActionArea, CardContent, CardMedia, Grid, IconButton, makeStyles, Paper, TextField, Typography, withStyles } from '@material-ui/core';
+import InfoIcon from '@material-ui/icons/Info';
 import ForumIcon from '@material-ui/icons/Forum';
 import Map from './Map';
 import firestore from '../../db/firebase';
@@ -94,19 +95,28 @@ const useStyles = makeStyles((theme) => ({
   },
   profileSpacing: {
     paddingLeft: 40,
-    paddingTop: 20
+    paddingTop: 10
   },
   descSpacing: {
-    paddingTop: 20
+    paddingTop: 10
+  },
+  emergency: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  redText: {
+    color: 'red',
+    paddingLeft: 4
   }
 }));
 
 export default function Request({ doc }) {
   const classes = useStyles();
 
-  console.log(doc);
+  console.log('doc: ', doc);
 
-  const { productId, userId, title, description, quantity, date } = doc;
+  const { productId, userId, title, emergency, description, quantity, date } = doc;
 
   const [org, setOrg] = useState({});
 
@@ -130,23 +140,47 @@ export default function Request({ doc }) {
       <Card className={classes.card}>
         <Grid container direction="row">
           <Grid item xs={6}>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlHWg74rYh0ee1LQPLhyQxGFTxg4YBGMSUJQ&usqp=CAU" className={classes.image}></img>
+            {emergency ?
+            <img src="https://images.unsplash.com/photo-1559199882-6959a71820bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1431&q=80" className={classes.image}></img>
+            :
+            <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" className={classes.image}></img>
+            }
           </Grid>
           <Grid container item xs={6}>
             <Grid container direction="column">
+              {emergency ?
               <Grid container direction="row" className={classes.height1}>
                 <Grid item xs={6} className={classes.title}>
-                  <Typography variant="h3" color="textSecondary">
+                  <Typography variant="h3">
                     {title}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} className={classes.chatButton}>
+                <Grid item xs={5} className={classes.emergency}>
+                  <InfoIcon color="error" variant="filled"/>
+                  <Typography className={classes.redText}>Urgent Request</Typography>
+                </Grid>
+                <Grid item xs={1} className={classes.chatButton}>
                   <IconButton aria-label="chat">
                     <ForumIcon />
                   </IconButton>
                 </Grid>
               </Grid>
+              :
+              <Grid container direction="row" className={classes.height1}>
+                <Grid item xs={4} className={classes.title}>
+                  <Typography variant="h3">
+                    {title}
+                  </Typography>
+                </Grid>
+                <Grid item xs={8} className={classes.chatButton}>
+                  <IconButton aria-label="chat">
+                    <ForumIcon />
+                  </IconButton>
+                </Grid>
+              </Grid>
+              }
               <Grid item className={classes.height2}>
+                <Typography variant="body1">Description:</Typography>
                 <Typography variant="body2" color="textSecondary">
                   {description}
                 </Typography>
@@ -176,16 +210,17 @@ export default function Request({ doc }) {
         }
         { org.bio ?
         <Grid container direction="row" className={classes.verticalSpacing}>
-          {/* <Grid item xs={4} className={classes.avatarSpacing}> */}
-            <div style={{border: "8px solid #ffff57", borderRadius: "100%", marginLeft: '30px'}}>
-              <StyledBadge color="primary">
-                <Avatar alt={org.name} src={org.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "150px", width: "150px"}} />
-              </StyledBadge>
-            </div>
-          {/* </Grid> */}
+          <div style={{border: "8px solid #ffff57", borderRadius: "100%", marginLeft: '30px'}}>
+            <StyledBadge color="primary">
+              <Avatar alt={org.name} src={org.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "150px", width: "150px"}} />
+            </StyledBadge>
+          </div>
           <Grid item xs={8} className={classes.profileSpacing}>
-            <Typography variant="h3" color="textSecondary">
+            <Typography variant="h3">
               {org.name}
+            </Typography>
+            <Typography variant="body1" className={classes.descSpacing}>
+              Bio:
             </Typography>
             <Typography variant="body2" color="textSecondary" className={classes.descSpacing}>
               {org.bio}
