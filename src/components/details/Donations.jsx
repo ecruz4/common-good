@@ -12,15 +12,14 @@ import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 
 export default function Donations() {
   const location = useLocation();
-  const { productId, userId, title, imgURL, description, quantity, date, context } = location.state;
-
-  console.log('context', context);
+  const { productId, userId, title, imgURL, description, emergency, quantity, date, context } = location.state;
 
   if (context === 'organizations') {
     const requestDoc = {
       productId,
       userId,
       title,
+      emergency,
       description,
       quantity,
       date

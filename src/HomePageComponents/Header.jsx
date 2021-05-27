@@ -3,11 +3,14 @@ import React, { Fragment, useState, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+
 // Material UI
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
 import MailIcon from '@material-ui/icons/Mail';
+import { Badge } from '@material-ui/core';
 
 // Login Components
 import LoginButton from '../components/modals/LoginButton';
@@ -15,12 +18,19 @@ import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
 import OrgSignupButton from '../components/modals/OrgSignupButton';
 import UserContext from '../contexts/UserContext';
-import { Badge } from '@material-ui/core';
+
 
 import SignupEntryPt from './SignupEntryPt';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginBottom: 150,
+  },
   toolbar: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   toolbarTitle: {
@@ -56,6 +66,8 @@ export default function Header(props) {
 
   return (
     <>
+    <div className={classes.root}>
+    <AppBar position="fixed" style={{boxShadow: 'none', background: '#6ec6ff'}}>
       <Toolbar className={classes.toolbar}>
         <SignupEntryPt />
         <Typography
@@ -64,7 +76,7 @@ export default function Header(props) {
           color="inherit"
           align="center"
           noWrap
-          className={classes.toolbarTitle}
+          style={{justifyContent: 'center'}}
         >
           <Link key="homepage" to="/" style={logoStyle}>
             {title}
@@ -91,16 +103,16 @@ export default function Header(props) {
               }}
               style={navStyle}
             >
-              Profile
+              <Typography>Profile</Typography>
             </Link>
           )}
         </div>
 
         <Link key="donations" to="/donations" style={navStyle}>
-          Requests & Donations
+          <Typography>Requests & Donations</Typography>
         </Link>
         <Link key="charities" to="/charities" style={navStyle}>
-          Charities
+          <Typography>Charities</Typography>
         </Link>
         <div>
           {userInfo && (
@@ -117,10 +129,13 @@ export default function Header(props) {
               <Badge badgeContent={newMessagesCount} color="primary">
                 <MailIcon />
               </Badge>
+
             </Link>
           )}
         </div>
       </Toolbar>
+      </AppBar>
+      </div>
     </>
   );
 }
@@ -130,54 +145,4 @@ Header.propTypes = {
   title: PropTypes.string,
 };
 
-/* eslint-disable import/no-extraneous-dependencies */
-// import React, { useEffect, useState } from 'react';
-// import { useAuthState } from 'react-firebase-hooks/auth';
 
-// import db from './db/firebase';
-// import UserContext from './contexts/UserContext';
-// import LoginButton from './components/modals/LoginButton';
-// import LogoutButton from './components/modals/LogoutButton';
-// import SignupButton from './components/modals/SignupButton';
-
-// To use context:
-// In the file you want to access the value in,
-// import React, { useContext } from 'react';
-// import UserContext from '../../contexts/UserContext'; Or whatever the relative path is
-// const { user } = useContext(UserContext);
-// You can now use user like any other variable!
-
-// function App() {
-// user stores authentication data, like email and uid
-//   const [user] = useAuthState(db.auth);
-// userInfo will store a lot more, like email, and uid, but also bio, pic, etc...
-//   const [userInfo, setUserInfo] = useState(null);
-
-//   useEffect(() => {
-//     if (user === null) {
-//       return;
-//     }
-//     db.firestore
-//       .collection('users')
-//       .where('uid', '==', user.uid)
-//       .get()
-//       .then((querySnapshot) => {
-//         querySnapshot.forEach((doc) => {
-//           setUserInfo(doc.data());
-//         });
-//       })
-//       .catch((error) => {
-//         console.log('Error getting documents: ', error);
-//       });
-//   }, [user]);
-
-//   return (
-//     <div className="App">
-//       <UserContext.Provider value={{ user, userInfo }}>
-//         <SignupButton />
-//         <LoginButton />
-//         <LogoutButton />
-//       </UserContext.Provider>
-//     </div>
-//   );
-// }

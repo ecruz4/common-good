@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   menulist: {
     maxWidth: 100,
     position: 'relative',
+    zIndex: -1,
     left: 11,
     top: 5,
   },
@@ -47,7 +48,7 @@ const SignupEntryPt = () => {
           >
             Sign Up
           </Button>
-          <Popper open={open} anchorEl={anchorRef.current} transition>
+          <Popper open={open} anchorEl={anchorRef.current}>
             <Paper className={classes.menulist}>
               <MenuList autoFocusItem={open} id="menu-list-grow">
                 <SignupButton closeMenu={handleToggle}> Donor</SignupButton>

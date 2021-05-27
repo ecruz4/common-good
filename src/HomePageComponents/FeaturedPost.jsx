@@ -12,13 +12,17 @@ import Hidden from '@material-ui/core/Hidden';
 const useStyles = makeStyles({
   card: {
     display: 'flex',
-    marginBottom: 20
+    marginBottom: 20,
+    height: 250,
+
   },
   cardDetails: {
     flex: 1,
+
+
   },
   cardMedia: {
-    width: 160,
+    width: 180,
   },
 });
 
@@ -28,17 +32,13 @@ export default function FeaturedPost(props) {
 
   return (
     <Grid item xs={12} md={6}>
-      {/* <CardActionArea component="a" href="#"> */}
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
-              <Typography component="h2" variant="h5">
-                {post.title}
+              <Typography component="h2" variant="h5" style={{fontFamily: "'Halant', serif", marginBottom: 5}}>
+                <b>{post.title}</b>
               </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
-                {post.date}
-              </Typography>
-              <Typography variant="subtitle1" paragraph>
+              <Typography variant="subtitle1" style={{fontSize: 14}} >
                 {post.description}
               </Typography>
             </CardContent>
@@ -47,27 +47,6 @@ export default function FeaturedPost(props) {
             <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
           </Hidden>
         </Card>
-      {/* </CardActionArea>
-      <CardActionArea component="a" href="#"> */}
-        <Card className={classes.card}>
-          <div className={classes.cardDetails}>
-            <CardContent>
-              <Typography component="h2" variant="h5">
-                {post.title}
-              </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
-                {post.date}
-              </Typography>
-              <Typography variant="subtitle1" paragraph>
-                {post.description}
-              </Typography>
-            </CardContent>
-          </div>
-          <Hidden xsDown>
-            <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
-          </Hidden>
-        </Card>
-      {/* </CardActionArea> */}
     </Grid>
   );
 }

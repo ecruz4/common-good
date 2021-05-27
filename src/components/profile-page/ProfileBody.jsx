@@ -6,12 +6,12 @@ import ProfileAbout from './ProfileAbout';
 import ProfileFeed from './ProfileFeed';
 import { Grid } from '@material-ui/core';
 
-const ProfileBody = ({data}) => {
+const ProfileBody = ({data, edit}) => {
 
   return (
       <Grid container direction="row" alignItems="stretch">
         <Grid item xs={6} md={3} lg={2}>
-          <ProfileAbout data={data} />
+          <ProfileAbout data={data} edit={edit} />
         </Grid>
         <Grid item xs={6} md={9} lg={10}>
           <ProfileFeed data={data} />
