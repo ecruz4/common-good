@@ -17,7 +17,7 @@ import {
   Grow,
 } from '@material-ui/core';
 import firestore from '../../db/firebase';
-import { convertMsToDays } from '../../utils/moment.js';
+import { convertMsToDays } from '../../utils/moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 const OfferTile = ({ doc }) => {
   const classes = useStyles();
+  console.log('offer doc: ', doc);
   const { donor_id, title, description, quantity, date, expiry, id } = doc;
 
   const [donor, setDonor] = useState({});
@@ -103,7 +104,8 @@ const OfferTile = ({ doc }) => {
                   title: title,
                   description: description,
                   quantity: quantity,
-                  date: date
+                  date: date,
+                  context: 'offer'
                 }
               }}
             >
@@ -124,6 +126,7 @@ const OfferTile = ({ doc }) => {
                   description: description,
                   quantity: quantity,
                   date: date,
+                  context: 'offer'
                 },
               }}
             >

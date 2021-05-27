@@ -14,7 +14,7 @@ import Profile from './components/profile-page/Profile';
 import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
 import ChatScreen from './components/chat/ChatScreen';
-import donationDetail from './details/donations'
+import donationDetail from './components/details/Donations';
 
 function App() {
   const [user] = useAuthState(db.auth);

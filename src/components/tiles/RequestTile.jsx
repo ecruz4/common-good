@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RequestTile = ({ doc }) => {
   const classes = useStyles();
+  console.log('request doc: ', doc);
   const { id, org_id, title, description, quantity, emergency, date } = doc;
 
   const [org, setOrg] = useState({});
@@ -125,6 +126,7 @@ const RequestTile = ({ doc }) => {
                       description: description,
                       quantity: quantity,
                       date: date,
+                      context: 'request'
                     },
                   }}
                 >
