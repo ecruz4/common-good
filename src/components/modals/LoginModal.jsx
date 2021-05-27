@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Button, Container, ButtonGroup } from '@material-ui/core';
+import { Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import db from '../../db/firebase';
