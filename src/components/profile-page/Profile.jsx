@@ -27,12 +27,9 @@ import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 function Profile() {
   // Will receive "docs" prop from previous component. Docs will contain all necessary information needed to render profile:
   const location = useLocation();
-  console.log(location.state);
   // Will need current userInfo to determine if profile is edit-able or not:
   const { userInfo, setUserInfo } = useContext(UserContext);
   const [user, setUser] = useState(userInfo);
-
-
 
   useEffect(() => {
     if (location.state.type === 'user') {
@@ -62,13 +59,21 @@ function Profile() {
     } 
     return false
   }
+
+  const getType = function() {
+    if (location.state.type === "user") {
+      return true
+    } else {
+      return false
+    }
+  }
   // Pass the 'docs' prop to both components below:
   return (
     <Grid container direction="column" justify="center" alignItems="stretch">
-      {user ? <ProfileHeader data={user} edit={getEdit()} 
+      {user ? <ProfileHeader data={user} edit={getEdit()} location={getType()}
       // Add an edit prop that gets sent to the header. If the currUser uid and the uid of the profile being viewed match, set this prop to true:
       /> : null}
-      {user ? <ProfileBody data={user} edit={getEdit()}  /> : null}
+      {user ? <ProfileBody data={user} edit={getEdit()} location={getType()} /> : null}
       
     </Grid>
   )

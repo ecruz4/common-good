@@ -100,16 +100,16 @@ export default function Header(props) {
               }}
               style={navStyle}
             >
-              Profile
+              <Typography>Profile</Typography>
             </Link>
           )}
         </div>
 
         <Link key="donations" to="/donations" style={navStyle}>
-          Requests & Donations
+          <Typography>Requests & Donations</Typography>
         </Link>
         <Link key="charities" to="/charities" style={navStyle}>
-          Charities
+          <Typography>Charities</Typography>
         </Link>
         <div>
           {userInfo && (

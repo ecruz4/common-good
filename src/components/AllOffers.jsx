@@ -120,7 +120,7 @@ const AllOffers = ({ uid, searchTerm }) => {
     } else {
       findByName(searchTerm);
     }
-  }, [searchTerm]);
+  }, [uid, searchTerm]);
 
   return (
     <>
