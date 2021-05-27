@@ -7,7 +7,7 @@ import { expiryThreshold } from '../utils/moment';
 
 const useStyles = makeStyles((theme) => ({
   moreButton: {
-    marginTop: 20,
+    marginTop: 30,
   },
 }));
 
