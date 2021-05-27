@@ -22,6 +22,27 @@ const theme = createMuiTheme({
       default: '#6ec6ff',
     },
   },
+  overrides: {
+    // Style sheet name ⚛️
+    MuiButton: {
+      // Name of the rule
+      text: {
+        // Some CSS
+        background: '#ffed03',
+        borderRadius: 3,
+        border: 0,
+        color: 'black',
+        height: 25,
+        // width: 50,
+        padding: '0 10px',
+        boxShadow: '0 3px 5px 2px rgba(51, 51, 51, .2)',
+
+
+
+      },
+    },
+  },
+
 });
 
 ReactDOM.render(
