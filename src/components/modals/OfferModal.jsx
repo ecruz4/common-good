@@ -4,7 +4,7 @@ import React, { useState, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 import db from '../../db/firebase';
 import UserContext from '../../contexts/UserContext';
@@ -30,19 +30,19 @@ function OfferModal({ handleClose }) {
       console.log('Must be logged in to make a donation');
       return;
     }
-    const requestData = {
+    const offerData = {
       donor_id: user.uid,
       date: new Date(),
-      id: uuid(),
+      id: uuidv4(),
       title,
       description,
       quantity,
       imgURL,
     };
     db.firestore
-      .collection('requests')
+      .collection('offers')
       .doc()
-      .set(requestData)
+      .set(offerData)
       .then(() => {
         handleClose();
       })
@@ -101,7 +101,7 @@ function OfferModal({ handleClose }) {
 
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Make a Request
+          Make a Donation
         </Button>
         <Button onClick={handleClose} color="primary">
           Cancel

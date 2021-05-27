@@ -6,7 +6,7 @@ import capitalize from '../utils/capitalize';
 
 const useStyles = makeStyles((theme) => ({
   moreButton: {
-    marginTop: 20,
+    marginTop: 30,
   },
 }));
 

@@ -5,9 +5,7 @@ import RoomTwoToneIcon from '@material-ui/icons/RoomTwoTone';
 import config from '../../config';
 import MapMarker from './MapMarker';
 
-const MapMarkerIcon = () => (
-    <RoomTwoToneIcon />
-);
+const MapMarkerIcon = () => <RoomTwoToneIcon />;
 
 export default function Map({ zip, pic }) {
   if (!zip) {
@@ -20,23 +18,27 @@ export default function Map({ zip, pic }) {
   const { latitude, longitude } = zipInfo;
   const center = {
     lat: latitude,
-    lng: longitude
+    lng: longitude,
   };
   const zoom = 11;
 
   return (
-    <div style={{ width: '80%', height: '300px', display: 'flex', margin: 'auto', marginTop: '20px' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: apiKey }}
-          defaultCenter={center}
-          defaultZoom={zoom}
-        >
-          <MapMarker
-            lat={latitude}
-            lng={longitude}
-            pic={pic}
-          />
-        </GoogleMapReact>
-      </div>
-  )
+    <div
+      style={{
+        width: '80%',
+        height: '300px',
+        display: 'flex',
+        margin: 'auto',
+        marginTop: '20px',
+      }}
+    >
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: apiKey }}
+        defaultCenter={center}
+        defaultZoom={zoom}
+      >
+        <MapMarker lat={latitude} lng={longitude} pic={pic} />
+      </GoogleMapReact>
+    </div>
+  );
 }
