@@ -1,9 +1,20 @@
 import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 import OrgSignupModal from './OrgSignupModal';
 
-function OrgSignupButton() {
+const useStyles = makeStyles((theme) => ({
+  button: {
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    textAlign: 'center',
+  },
+}));
+
+function OrgSignupButton({ closeMenu }) {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -12,23 +23,31 @@ function OrgSignupButton() {
 
   const handleClose = () => {
     setOpen(false);
+    closeMenu();
   };
 
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle>Create a Charity Account</DialogTitle>
-        <DialogContent>
+        <DialogTitle
+          className={classes.title}
+          style={{ background: '#ffed03', color: '#2196f3' }}
+        >
+          Join as an Organization
+        </DialogTitle>
+        <DialogContent style={{ background: '#ffed03' }}>
           <OrgSignupModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
       <Button
+        fullWidth
+        className={classes.button}
+        disableElevation
         variant="contained"
-        color="primary"
         onClick={handleClickOpen}
         onClose={handleClose}
       >
-        Create a Charity Account
+        Charity
       </Button>
     </>
   );

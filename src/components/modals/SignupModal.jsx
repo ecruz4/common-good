@@ -18,14 +18,14 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-
-
   },
 });
 
 function SignupModal({ handleClose }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
   const [zip, setZip] = useState('');
   const [password, setPassword] = useState('');
 
@@ -39,11 +39,14 @@ function SignupModal({ handleClose }) {
           uid: cred.user.uid,
           name,
           email,
+          city,
+          state,
           zip,
           phone: '',
-          photo_url: 'https://images.unsplash.com/photo-1556208738-7a57e7b96aed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1491&q=80',
+          photo_url:
+            'https://images.unsplash.com/photo-1556208738-7a57e7b96aed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1491&q=80',
           bio: '',
-          type: 'user'
+          type: 'user',
         };
 
         db.firestore
@@ -64,7 +67,8 @@ function SignupModal({ handleClose }) {
   return (
     <Container className={classes.container}>
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Name"
         style={{ margin: 8 }}
         margin="normal"
@@ -75,7 +79,8 @@ function SignupModal({ handleClose }) {
         onChange={(event) => setName(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Email"
         style={{ margin: 8 }}
         margin="normal"
@@ -86,8 +91,33 @@ function SignupModal({ handleClose }) {
         onChange={(event) => setEmail(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
-        label="Zip"
+        color="secondary"
+        className="standard-full-width"
+        label="City (e.g. Austin)"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={city}
+        onChange={(event) => setCity(event.target.value)}
+      />
+      <TextField
+        color="secondary"
+        className="standard-full-width"
+        label="State (e.g. TX)"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={state}
+        onChange={(event) => setState(event.target.value)}
+      />
+      <TextField
+        color="secondary"
+        className="standard-full-width"
+        label="ZIP"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
@@ -97,7 +127,8 @@ function SignupModal({ handleClose }) {
         onChange={(event) => setZip(event.target.value)}
       />
       <TextField
-        id="standard-full-width"
+        color="secondary"
+        className="standard-full-width"
         label="Password"
         style={{ margin: 8 }}
         margin="normal"
@@ -109,10 +140,26 @@ function SignupModal({ handleClose }) {
         helperText="Password must be at least 6 characters"
       />
       <Container className={classes.buttonContainer}>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
+        <Button
+          style={{
+            margin: 8,
+            background: '#2196f3',
+            color: 'white',
+            marginTop: 20,
+          }}
+          onClick={handleSubmit}
+        >
           Sign Up
         </Button>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose}>
+        <Button
+          style={{
+            margin: 8,
+            background: '#2196f3',
+            color: 'white',
+            marginTop: 20,
+          }}
+          onClick={handleClose}
+        >
           Cancel
         </Button>
       </Container>

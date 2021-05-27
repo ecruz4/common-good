@@ -19,6 +19,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
   },
+  button: {
+    margin: 10,
+    marginTop: 30,
+  },
 });
 
 function RequestModal({ handleClose }) {
@@ -103,10 +107,22 @@ function RequestModal({ handleClose }) {
         label="Emergency Request"
       />
       <Container>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Make a Request
+        <Button
+          className={classes.button}
+          size="small"
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+        >
+          Submit
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button
+          className={classes.button}
+          size="small"
+          variant="contained"
+          onClick={handleClose}
+          color="primary"
+        >
           Cancel
         </Button>
       </Container>
