@@ -109,8 +109,7 @@ const AllRequests = ({ uid, searchTerm }) => {
         <Slide direction="up" in>
           <Button
             className={classes.moreButton}
-            variant="contained"
-            color="primary"
+            color='secondary'
             onClick={() => findMoreByUrgency()}
           >
             more

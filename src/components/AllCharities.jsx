@@ -117,8 +117,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
         <Slide direction="up" in>
           <Button
             className={classes.moreButton}
-            variant="contained"
-            color="primary"
+            color='secondary'
             onClick={() => findMoreCharities()}
           >
             more
