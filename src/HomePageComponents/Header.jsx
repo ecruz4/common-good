@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import MailIcon from '@material-ui/icons/Mail';
 
 // Login Components
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
 import SignupButton from '../components/modals/SignupButton';
 import UserContext from '../contexts/UserContext';
+import { Badge } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const classes = useStyles();
   const { title } = props;
-  const { userInfo } = useContext(UserContext);
+  const { userInfo, newMessagesCount } = useContext(UserContext);
 
   const navStyle = {
     color: 'black',
@@ -46,7 +48,7 @@ export default function Header(props) {
     textDecoration: 'none',
     // fontFamily: "'Abril Fatface', cursive"
     fontFamily: "'Pattaya', sans-serif",
-    fontSize: "45px",
+    fontSize: '45px',
   };
 
   return (
@@ -81,21 +83,21 @@ export default function Header(props) {
                 pathname: `/profile/${userInfo.uid}`,
                 state: {
                   userId: userInfo.uid,
-                  type: "user"
-                }
+                  type: 'user',
+                },
               }}
               style={navStyle}
             >
-              Profile
+              <Typography>Profile</Typography>
             </Link>
           )}
         </div>
 
         <Link key="donations" to="/donations" style={navStyle}>
-          Requests & Donations
+          <Typography>Requests & Donations</Typography>
         </Link>
         <Link key="charities" to="/charities" style={navStyle}>
-          Charities
+          <Typography>Charities</Typography>
         </Link>
         <div>
           {userInfo && (
@@ -109,7 +111,9 @@ export default function Header(props) {
               }}
               style={navStyle}
             >
-              Chat
+              <Badge badgeContent={newMessagesCount} color="primary">
+                <MailIcon />
+              </Badge>
             </Link>
           )}
         </div>

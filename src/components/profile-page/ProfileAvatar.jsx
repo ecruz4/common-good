@@ -23,7 +23,8 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
-function ProfileAvatar(data, edit) {
+function ProfileAvatar({data, edit}) {
+
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -39,15 +40,15 @@ function ProfileAvatar(data, edit) {
       <Dialog open={open}>
         <DialogTitle style={{ background: '#ffed03', color: '#2196f3'}}>Edit Profile</DialogTitle>
         <DialogContent style={{ background: '#ffed03', color: '#2196f3'}}>
-          {data.data.type === "user" ? <EditProfileModal handleClose={handleClose} /> : <EditOrgModal handleClose={handleClose} />}
+          {data.type === "user" ? <EditProfileModal handleClose={handleClose} /> : <EditOrgModal handleClose={handleClose} />}
         </DialogContent>
       </Dialog>
-      {data.edit === true ?
+      {edit === true ?
       <StyledBadge color="primary" badgeContent={<EditIcon style={{color: "#6ec6ff", fontSize: '45px'}} onClick={handleClickOpen}
       onClose={handleClose} />} anchorOrigin={{vertical: "bottom", horizontal: "right"}}>
-        <Avatar alt={data.data.name} src={data.data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
+        <Avatar alt={data.name} src={data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
       </StyledBadge> :
-        <Avatar alt={data.data.name} src={data.data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
+        <Avatar alt={data.name} src={data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
       }
 
     </div>
