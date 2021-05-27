@@ -24,6 +24,8 @@ const useStyles = makeStyles({
 function SignupModal({ handleClose }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
   const [zip, setZip] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,6 +39,8 @@ function SignupModal({ handleClose }) {
           uid: cred.user.uid,
           name,
           email,
+          city,
+          state,
           zip,
           phone: '',
           photo_url:
@@ -89,7 +93,31 @@ function SignupModal({ handleClose }) {
       <TextField
         color="secondary"
         className="standard-full-width"
-        label="Zip"
+        label="City (e.g. Austin)"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={city}
+        onChange={(event) => setCity(event.target.value)}
+      />
+      <TextField
+        color="secondary"
+        className="standard-full-width"
+        label="State (e.g. TX)"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={state}
+        onChange={(event) => setState(event.target.value)}
+      />
+      <TextField
+        color="secondary"
+        className="standard-full-width"
+        label="ZIP"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{

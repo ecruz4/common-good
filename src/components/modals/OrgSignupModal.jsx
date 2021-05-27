@@ -151,7 +151,7 @@ function OrgSignupModal({ handleClose }) {
       <TextField
         color="secondary"
         className="standard-full-width"
-        label="City"
+        label="City (e.g. Austin)"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
@@ -163,7 +163,7 @@ function OrgSignupModal({ handleClose }) {
       <TextField
         color="secondary"
         className="standard-full-width"
-        label="State"
+        label="State (e.g. TX)"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{
@@ -175,7 +175,7 @@ function OrgSignupModal({ handleClose }) {
       <TextField
         color="secondary"
         className="standard-full-width"
-        label="Zipcode"
+        label="ZIP"
         style={{ margin: 8 }}
         margin="normal"
         InputLabelProps={{

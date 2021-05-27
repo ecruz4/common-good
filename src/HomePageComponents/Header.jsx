@@ -9,15 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
 
-// Sign-up Menu
-import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-
 // Login Components
 import LoginButton from '../components/modals/LoginButton';
 import LogoutButton from '../components/modals/LogoutButton';
@@ -25,6 +16,8 @@ import SignupButton from '../components/modals/SignupButton';
 import OrgSignupButton from '../components/modals/OrgSignupButton';
 import UserContext from '../contexts/UserContext';
 import { Badge } from '@material-ui/core';
+
+import SignupEntryPt from './SignupEntryPt';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -41,24 +34,12 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     flexShrink: 0,
   },
-  MuiTypography: {
-    fontSize: 16,
-  },
-  menulist: {
-    maxWidth: 100,
-    position: 'relative',
-    left: 11,
-    top: 5,
-  },
 }));
 
 export default function Header(props) {
   const classes = useStyles();
   const { title } = props;
   const { userInfo, newMessagesCount } = useContext(UserContext);
-
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
 
   const navStyle = {
     color: 'black',
@@ -73,42 +54,10 @@ export default function Header(props) {
     fontSize: '45px',
   };
 
-  const handleToggle = () => {
-    setOpen((prevState) => !prevState);
-  };
-
   return (
     <>
       <Toolbar className={classes.toolbar}>
-        {userInfo !== null ? (
-          <Typography
-            color="primary"
-            className={classes.MuiTypography}
-          >{`Hello ${userInfo.name}!`}</Typography>
-        ) : (
-          <>
-            <Button
-              ref={anchorRef}
-              aria-controls={open ? 'menu-list-grow' : undefined}
-              aria-haspopup="true"
-              onClick={handleToggle}
-            >
-              Sign Up
-            </Button>
-            <Popper open={open} anchorEl={anchorRef.current} transition>
-              <Paper className={classes.menulist}>
-                <ClickAwayListener onClickAway={handleToggle}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow">
-                    <SignupButton closeMenu={handleToggle}> Donor</SignupButton>
-                    <OrgSignupButton closeMenu={handleToggle}>
-                      Charity
-                    </OrgSignupButton>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Popper>
-          </>
-        )}
+        <SignupEntryPt />
         <Typography
           component="h2"
           variant="h5"
