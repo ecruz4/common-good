@@ -7,6 +7,7 @@ import ProfileFeed from './ProfileFeed';
 import { Grid } from '@material-ui/core';
 
 const ProfileBody = ({data}) => {
+
   return (
       <Grid container direction="row" alignItems="stretch">
         <Grid item xs={6} md={3} lg={2}>

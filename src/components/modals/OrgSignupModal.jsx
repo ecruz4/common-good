@@ -56,6 +56,7 @@ function OrgSignupModal({ handleClose }) {
           phone,
           photo_url: '',
           bio: '',
+          type: 'org'
         };
 
         db.firestore
