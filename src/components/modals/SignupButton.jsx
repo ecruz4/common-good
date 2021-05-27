@@ -9,9 +9,12 @@ const useStyles = makeStyles((theme) => ({
   button: {
     backgroundColor: '#ffffff',
   },
+  title: {
+    textAlign: 'center',
+  },
 }));
 
-function SignupButton() {
+function SignupButton({ closeMenu }) {
   const classes = useStyles();
   const { userInfo } = useContext(UserContext);
   const [open, setOpen] = useState(false);
@@ -22,13 +25,17 @@ function SignupButton() {
 
   const handleClose = () => {
     setOpen(false);
+    closeMenu();
   };
 
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle style={{ background: '#ffed03', color: '#2196f3' }}>
-          Create an Account
+        <DialogTitle
+          className={classes.title}
+          style={{ background: '#ffed03', color: '#2196f3' }}
+        >
+          Join as a Donor
         </DialogTitle>
         <DialogContent style={{ background: '#ffed03' }}>
           <SignupModal handleClose={handleClose} />
@@ -40,7 +47,7 @@ function SignupButton() {
         disableElevation
         variant="contained"
         onClick={handleClickOpen}
-        onClose={handleClose}
+        // onClose={handleClose}
       >
         Donor
       </Button>

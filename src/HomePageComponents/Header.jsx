@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   },
   menulist: {
     maxWidth: 100,
+    position: 'relative',
+    left: 11,
+    top: 5,
   },
 }));
 
@@ -96,8 +99,8 @@ export default function Header(props) {
               <Paper className={classes.menulist}>
                 <ClickAwayListener onClickAway={handleToggle}>
                   <MenuList autoFocusItem={open} id="menu-list-grow">
-                    <SignupButton onClick={handleToggle}>Donor</SignupButton>
-                    <OrgSignupButton onClick={handleToggle}>
+                    <SignupButton closeMenu={handleToggle}> Donor</SignupButton>
+                    <OrgSignupButton closeMenu={handleToggle}>
                       Charity
                     </OrgSignupButton>
                   </MenuList>

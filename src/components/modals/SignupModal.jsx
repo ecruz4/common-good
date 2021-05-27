@@ -63,6 +63,7 @@ function SignupModal({ handleClose }) {
   return (
     <Container className={classes.container}>
       <TextField
+        color="secondary"
         className="standard-full-width"
         label="Name"
         style={{ margin: 8 }}
@@ -74,6 +75,7 @@ function SignupModal({ handleClose }) {
         onChange={(event) => setName(event.target.value)}
       />
       <TextField
+        color="secondary"
         className="standard-full-width"
         label="Email"
         style={{ margin: 8 }}
@@ -85,6 +87,7 @@ function SignupModal({ handleClose }) {
         onChange={(event) => setEmail(event.target.value)}
       />
       <TextField
+        color="secondary"
         className="standard-full-width"
         label="Zip"
         style={{ margin: 8 }}
@@ -96,6 +99,7 @@ function SignupModal({ handleClose }) {
         onChange={(event) => setZip(event.target.value)}
       />
       <TextField
+        color="secondary"
         className="standard-full-width"
         label="Password"
         style={{ margin: 8 }}
@@ -109,13 +113,23 @@ function SignupModal({ handleClose }) {
       />
       <Container className={classes.buttonContainer}>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{
+            margin: 8,
+            background: '#2196f3',
+            color: 'white',
+            marginTop: 20,
+          }}
           onClick={handleSubmit}
         >
           Sign Up
         </Button>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{
+            margin: 8,
+            background: '#2196f3',
+            color: 'white',
+            marginTop: 20,
+          }}
           onClick={handleClose}
         >
           Cancel

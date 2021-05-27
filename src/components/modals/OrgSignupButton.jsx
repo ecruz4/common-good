@@ -8,9 +8,12 @@ const useStyles = makeStyles((theme) => ({
   button: {
     backgroundColor: '#ffffff',
   },
+  title: {
+    textAlign: 'center',
+  },
 }));
 
-function OrgSignupButton() {
+function OrgSignupButton({ closeMenu }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -20,13 +23,19 @@ function OrgSignupButton() {
 
   const handleClose = () => {
     setOpen(false);
+    closeMenu();
   };
 
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle>Create a Charity Account</DialogTitle>
-        <DialogContent>
+        <DialogTitle
+          className={classes.title}
+          style={{ background: '#ffed03', color: '#2196f3' }}
+        >
+          Join as an Organization
+        </DialogTitle>
+        <DialogContent style={{ background: '#ffed03' }}>
           <OrgSignupModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
