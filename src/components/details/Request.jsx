@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Badge, Button, Card, CardActions, CardActionArea, CardContent, CardMedia, Grid, IconButton, makeStyles, Paper, TextField, Typography, withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import InfoIcon from '@material-ui/icons/Info';
 import ForumIcon from '@material-ui/icons/Forum';
 import Map from './Map';
@@ -133,6 +134,8 @@ export default function Request({ doc }) {
       .catch((err) => console.log(err.message));
   }, []);
 
+  console.log('org: ', org);
+
   const formattedDate = timeAgo.format(new Date(date.seconds * 1000));
 
   return (
@@ -160,9 +163,19 @@ export default function Request({ doc }) {
                   <Typography className={classes.redText}>Urgent Request</Typography>
                 </Grid>
                 <Grid item xs={1} className={classes.chatButton}>
-                  <IconButton aria-label="chat">
-                    <ForumIcon />
-                  </IconButton>
+                  <Link
+                    key="chat"
+                    to={{
+                      pathname: `/chat/${org.uid}`,
+                      state: {
+                        userId: org.uid,
+                      },
+                    }}
+                  >
+                    <IconButton aria-label="chat">
+                      <ForumIcon />
+                    </IconButton>
+                  </Link>
                 </Grid>
               </Grid>
               :
@@ -173,9 +186,19 @@ export default function Request({ doc }) {
                   </Typography>
                 </Grid>
                 <Grid item xs={8} className={classes.chatButton}>
-                  <IconButton aria-label="chat">
-                    <ForumIcon />
-                  </IconButton>
+                  <Link
+                    key="chat"
+                    to={{
+                      pathname: `/chat/${org.uid}`,
+                      state: {
+                        userId: org.uid,
+                      },
+                    }}
+                  >
+                    <IconButton aria-label="chat">
+                      <ForumIcon />
+                    </IconButton>
+                  </Link>
                 </Grid>
               </Grid>
               }
@@ -210,15 +233,38 @@ export default function Request({ doc }) {
         }
         { org.bio ?
         <Grid container direction="row" className={classes.verticalSpacing}>
-          <div style={{border: "8px solid #ffff57", borderRadius: "100%", marginLeft: '30px'}}>
-            <StyledBadge color="primary">
-              <Avatar alt={org.name} src={org.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "150px", width: "150px"}} />
-            </StyledBadge>
-          </div>
+          <Link
+            key="charity"
+            to={{
+              pathname: `/charities/${org.uid}`,
+              state: {
+                userId: org.uid,
+                type: 'charity',
+              },
+            }}
+          >
+            <div style={{border: "8px solid #ffff57", borderRadius: "100%", marginLeft: '30px'}}>
+              <StyledBadge color="primary">
+                <Avatar alt={org.name} src={org.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "150px", width: "150px"}} />
+              </StyledBadge>
+            </div>
+          </Link>
           <Grid item xs={8} className={classes.profileSpacing}>
-            <Typography variant="h3">
-              {org.name}
-            </Typography>
+            <Link
+              style={{ textDecoration: 'none', color: 'black' }}
+              key="charity"
+              to={{
+                pathname: `/charities/${org.uid}`,
+                state: {
+                  userId: org.uid,
+                  type: 'charity',
+                },
+              }}
+            >
+              <Typography variant="h3">
+                {org.name}
+              </Typography>
+            </Link>
             <Typography variant="body1" className={classes.descSpacing}>
               Bio:
             </Typography>

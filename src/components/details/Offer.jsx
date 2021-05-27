@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Avatar, Badge, Button, Card, CardActions, CardActionArea, CardContent, CardMedia, Grid, IconButton, makeStyles, Paper, TextField, Typography, withStyles } from '@material-ui/core';
 import ForumIcon from '@material-ui/icons/Forum';
 import Map from './Map';
@@ -104,11 +105,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Offer({ doc }) {
   const classes = useStyles();
-
   const { productId, userId, title, imgURL, description, quantity, date } = doc;
-
-  console.log('doc, ', doc);
-
+  const formattedDate = timeAgo.format(new Date(date.seconds * 1000));
   const [donor, setDonor] = useState({});
 
   useEffect(() => {
@@ -121,10 +119,6 @@ export default function Offer({ doc }) {
     })
     .catch((err) => console.log(err.message))
   }, []);
-
-  console.log('donor: ', donor);
-
-  const formattedDate = timeAgo.format(new Date(date.seconds * 1000));
 
   return (
     <Grid item xs={12} className={classes.root}>
@@ -146,9 +140,20 @@ export default function Offer({ doc }) {
                   </Typography>
                 </Grid>
                 <Grid item xs={6} className={classes.chatButton}>
-                  <IconButton aria-label="chat">
-                    <ForumIcon />
-                  </IconButton>
+                  <Link
+                    key="chat"
+                    to={{
+                      pathname: `/chat/${donor.uid}`,
+                      state: {
+                        userId: donor.uid,
+                      },
+                    }}
+                  >
+                    <IconButton aria-label="chat">
+                      <ForumIcon />
+                    </IconButton>
+
+                  </Link>
                 </Grid>
               </Grid>
               <Grid item className={classes.height2}>
@@ -182,15 +187,38 @@ export default function Offer({ doc }) {
         }
         { donor.bio ?
         <Grid container direction="row" className={classes.verticalSpacing}>
-          <div style={{border: "8px solid #ffff57", borderRadius: "100%", marginLeft: '30px'}}>
-              <StyledBadge color="primary">
-                <Avatar alt={donor.name} src={donor.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "150px", width: "150px"}} />
-              </StyledBadge>
-          </div>
+          <Link
+            key="profile"
+            to={{
+              pathname: `/profile/${donor.uid}`,
+              state: {
+                userId: donor.uid,
+                type: "user"
+              },
+            }}
+          >
+            <div style={{border: "8px solid #ffff57", borderRadius: "100%", marginLeft: '30px'}}>
+                <StyledBadge color="primary">
+                  <Avatar alt={donor.name} src={donor.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "150px", width: "150px"}} />
+                </StyledBadge>
+            </div>
+          </Link>
           <Grid item xs={8} className={classes.profileSpacing}>
-            <Typography variant="h3">
-              {donor.name}
-            </Typography>
+            <Link
+              style={{ textDecoration: 'none', color: 'black' }}
+              key="profile"
+              to={{
+                pathname: `/profile/${donor.uid}`,
+                state: {
+                  userId: donor.uid,
+                  type: "user"
+                },
+              }}
+            >
+              <Typography variant="h3">
+                {donor.name}
+              </Typography>
+            </Link>
             <Typography variant="body1" className={classes.descSpacing}>
               Bio:
             </Typography>
