@@ -1,9 +1,24 @@
-import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Grow,
+} from '@material-ui/core';
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 import OfferModal from './OfferModal';
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    marginTop: 10,
+    marginBottom: 30,
+  },
+}));
+
 function OfferButton() {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -22,15 +37,18 @@ function OfferButton() {
           <OfferModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleClickOpen}
-        onClose={handleClose}
-        size="small"
-      >
-        Make a Donation
-      </Button>
+      <Grow in {...{ timeout: 500 }}>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          onClick={handleClickOpen}
+          onClose={handleClose}
+          size="small"
+        >
+          Make a Donation
+        </Button>
+      </Grow>
     </>
   );
 }
