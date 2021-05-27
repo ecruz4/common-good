@@ -3,18 +3,23 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import PinterestIcon from '@material-ui/icons/Pinterest';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+    <Typography style={{margin: 4}} variant="body2" color="textSecondary">
+      <FacebookIcon />
     </Typography>
+    <Typography style={{margin: 4}} variant="body2" color="textSecondary">
+    <InstagramIcon />
+  </Typography>
+  <Typography style={{margin: 4}} variant="body2" color="textSecondary">
+  <PinterestIcon />
+</Typography>
+</div>
   );
 }
 
@@ -36,10 +41,11 @@ export default function Footer(props) {
         {/* <Typography variant="h6" align="center" gutterBottom>
           {title}
         </Typography> */}
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        <Typography variant="subtitle2" align="center" color="textSecondary" component="p" gutterBottom>
           {description}
         </Typography>
         <Copyright />
+
       </Container>
     </footer>
   );

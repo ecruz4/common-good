@@ -105,7 +105,7 @@ function App() {
             <Route path="/profile/:uid" exact component={Profile} />
             <Route path="/chat/:uid" exact component={ChatScreen} />
           </Switch>
-          <Footer title="Footer" description="Something here to give the footer a purpose!" />
+          <Footer title="Footer" description="Want to see more? Follow us!" />
         </Router>
       </UserContext.Provider>
     </>
