@@ -6,7 +6,7 @@ import capitalize from '../utils/capitalize';
 
 const useStyles = makeStyles((theme) => ({
   moreButton: {
-    marginTop: 20,
+    marginTop: 30,
   },
 }));
 
@@ -105,7 +105,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid className={classes.grid} container spacing={3}>
         {docs.map((doc) => (
           <CharityTile className="charity-tile" doc={doc} key={doc.name} />
         ))}

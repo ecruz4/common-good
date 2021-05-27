@@ -9,7 +9,7 @@ import {
   Checkbox,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 import db from '../../db/firebase';
 import UserContext from '../../contexts/UserContext';
@@ -38,7 +38,7 @@ function RequestModal({ handleClose }) {
     const requestData = {
       org_id: user.uid,
       date: new Date(),
-      id: uuid(),
+      id: uuidv4(),
       title,
       description,
       quantity,
