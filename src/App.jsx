@@ -9,6 +9,7 @@ import db from './db/firebase';
 import UserContext from './contexts/UserContext';
 
 // Routed Components
+import Footer from './HomePageComponents/Footer';
 import SearchOrgs from './components/SearchOrgs';
 import SearchDonations from './components/SearchDonations';
 import Profile from './components/profile-page/Profile';
@@ -16,6 +17,10 @@ import Header from './HomePageComponents/Header';
 import Homepage from './HomePageComponents/Homepage';
 import ChatScreen from './components/chat/ChatScreen';
 import donationDetail from './components/details/Donations';
+
+
+
+
 
 function App() {
   const [user] = useAuthState(db.auth);
@@ -104,6 +109,7 @@ function App() {
             <Route path="/profile/:uid" exact component={Profile} />
             <Route path="/chat/:uid" exact component={ChatScreen} />
           </Switch>
+          <Footer title="Footer" description="Want to see more? Follow us!" />
         </Router>
       </UserContext.Provider>
     </>
