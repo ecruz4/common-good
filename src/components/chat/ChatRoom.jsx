@@ -49,7 +49,7 @@ function ChatRoom({ otherUser, setOtherUser }) {
   const [formValue, setFormValue] = useState('');
   const [relevantMessages, setRelevantMessages] = useState([]);
 
-  const { user, userInfo } = useContext(UserContext);
+  const { user, userInfo, setNewMessagesCount } = useContext(UserContext);
 
   const classes = useStyles();
 
@@ -58,6 +58,13 @@ function ChatRoom({ otherUser, setOtherUser }) {
   const [messages] = useCollectionData(query, { idField: 'id' });
 
   useEffect(() => {
+    setNewMessagesCount(0);
+  }, []);
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
     if (messages) {
       setRelevantMessages(
         messages.filter(
@@ -65,7 +72,7 @@ function ChatRoom({ otherUser, setOtherUser }) {
         )
       );
     }
-  }, [messages, user.uid]);
+  }, [messages, user]);
 
   const dummy = useRef();
 
