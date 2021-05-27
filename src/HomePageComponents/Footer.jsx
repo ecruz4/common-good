@@ -41,7 +41,7 @@ export default function Footer(props) {
         {/* <Typography variant="h6" align="center" gutterBottom>
           {title}
         </Typography> */}
-        <Typography variant="subtitle2" align="center" color="textSecondary" component="p" gutterBottom>
+        <Typography variant="subtitle2" align="center" color="textSecondary" component="p" style={{fontFamily: "'Halant', serif"}} gutterBottom>
           {description}
         </Typography>
         <Copyright />
