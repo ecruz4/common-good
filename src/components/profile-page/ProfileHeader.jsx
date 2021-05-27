@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: {
-    htmlFontSize: 5,
+    htmlFontSize: 6,
     fontFamily: [
       'Pattaya',
       'sans-serif',
