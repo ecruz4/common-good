@@ -1,5 +1,5 @@
-/* eslint-disable prefer-const */
 /* eslint-disable object-shorthand */
+/* eslint-disable prefer-const */
 /* eslint-disable import/order */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
@@ -22,13 +22,17 @@ const useStyles = makeStyles({
   },
 });
 
-function EditProfileModal({ handleClose }) {
+function EditOrgModal({ handleClose }) {
   const { userInfo, setUserInfo } = useContext(UserContext);
 
   const [name, setName] = useState(userInfo.name);
   const [phone, setPhone] = useState(userInfo.phone);
+  const [address, setAddress] = useState(userInfo.address);
+  const [city, setCity] = useState(userInfo.city);
+  const [state, setState] = useState(userInfo.state);
   const [zip, setZip] = useState(userInfo.zipcode);
   const [bio, setBio] = useState(userInfo.bio);
+  const [url, setURL] = useState(userInfo.url);
   const [photo, setPhoto] = useState(userInfo.photo_url);
 
 
@@ -44,8 +48,12 @@ function EditProfileModal({ handleClose }) {
           .update({
             name: name,
             phone: phone,
+            address: address,
+            city: city,
+            state: state,
             zipcode: zip,
             bio: bio,
+            url: url,
             photo_url: photo
           })
           .then(() => {
@@ -53,8 +61,12 @@ function EditProfileModal({ handleClose }) {
             setUserInfo({
               name: name,
               phone: phone,
+              address: address,
+              city: city,
+              state: state,
               zipcode: zip,
               bio: bio,
+              url: url,
               photo_url: photo,
               email: userInfo.email,
               uid: userInfo.uid
@@ -91,6 +103,39 @@ function EditProfileModal({ handleClose }) {
       />
       <TextField
         id="standard-full-width"
+        label="Address"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={address}
+        onChange={(event) => setAddress(event.target.value)}
+      />
+      <TextField
+        id="standard-full-width"
+        label="City"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={city}
+        onChange={(event) => setCity(event.target.value)}
+      />
+      <TextField
+        id="standard-full-width"
+        label="State"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={state}
+        onChange={(event) => setState(event.target.value)}
+      />
+      <TextField
+        id="standard-full-width"
         label="Zip"
         style={{ margin: 8 }}
         margin="normal"
@@ -113,6 +158,17 @@ function EditProfileModal({ handleClose }) {
       />
       <TextField
         id="standard-full-width"
+        label="URL"
+        style={{ margin: 8 }}
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        value={url}
+        onChange={(event) => setURL(event.target.value)}
+      />
+      <TextField
+        id="standard-full-width"
         label="Photo"
         style={{ margin: 8 }}
         margin="normal"
@@ -121,7 +177,7 @@ function EditProfileModal({ handleClose }) {
         }}
         value={photo}
         onChange={(event) => setPhoto(event.target.value)}
-      />
+      />      
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
           Update
@@ -134,4 +190,4 @@ function EditProfileModal({ handleClose }) {
   );
 }
 
-export default EditProfileModal;
+export default EditOrgModal;

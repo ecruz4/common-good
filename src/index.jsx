@@ -4,9 +4,6 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
 
-
-
-
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -22,16 +19,15 @@ const theme = createMuiTheme({
       contrastText: '#000000',
     },
     background: {
-      default: '#6ec6ff'
+      default: '#6ec6ff',
     },
   },
-
 });
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-    <CssBaseline />
+      <CssBaseline />
       <App />
     </ThemeProvider>
   </React.StrictMode>,

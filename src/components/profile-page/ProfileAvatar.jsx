@@ -5,12 +5,11 @@
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
-import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
-import profileImage from '../../assets/profileImage.jpg'
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
 import EditProfileModal from './EditProfileModal';
+import EditOrgModal from './EditOrgModal';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -40,15 +39,15 @@ function ProfileAvatar(data, edit) {
       <Dialog open={open}>
         <DialogTitle>Edit Profile</DialogTitle>
         <DialogContent>
-          <EditProfileModal handleClose={handleClose} />
+          {data.data.type === "user" ? <EditProfileModal handleClose={handleClose} /> : <EditOrgModal handleClose={handleClose} />}
         </DialogContent>
       </Dialog>
       {data.edit === true ? 
       <StyledBadge color="primary" badgeContent={<EditIcon style={{color: "#6ec6ff", fontSize: '45px'}} onClick={handleClickOpen}
       onClose={handleClose} />} anchorOrigin={{vertical: "bottom", horizontal: "right"}}>
-        <Avatar alt={data.name} src={profileImage} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
+        <Avatar alt={data.data.name} src={data.data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
       </StyledBadge> : 
-        <Avatar alt={data.name} src={profileImage} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
+        <Avatar alt={data.data.name} src={data.data.photo_url} style={{border: "5px solid rgb(255, 0, 0, 0)", height: "250px", width: "250px"}} />
       }
       
     </div>
@@ -57,12 +56,4 @@ function ProfileAvatar(data, edit) {
 
 export default ProfileAvatar
 
-
-
-
-
-
-
-
-
-
+//
