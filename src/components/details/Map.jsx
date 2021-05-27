@@ -5,14 +5,11 @@ import RoomTwoToneIcon from '@material-ui/icons/RoomTwoTone';
 import config from '../../config.js';
 import MapMarker from './MapMarker';
 
-const MapMarkerIcon = () => <RoomTwoToneIcon />;
-
 export default function Map({ zip, pic }) {
   if (!zip) {
     return null;
   }
   const apiKey = config.googleApiKey;
-  // const zip = 97203;
   const zipInfo = zipcodes.lookup(zip);
   const { latitude, longitude } = zipInfo;
   const center = {

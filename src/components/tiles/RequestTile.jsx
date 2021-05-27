@@ -66,7 +66,7 @@ const RequestTile = ({ doc }) => {
           <CardActionArea disableTouchRipple>
             <CardHeader
               avatar={
-                emergency ? (
+                !emergency ? (
                   <Link
                     key="charity"
                     to={{
@@ -121,11 +121,11 @@ const RequestTile = ({ doc }) => {
                     state: {
                       productId: id,
                       userId: org_id,
-                      title: title,
-                      emergency: emergency,
-                      description: description,
-                      quantity: quantity,
-                      date: date,
+                      title,
+                      emergency,
+                      description,
+                      quantity,
+                      date,
                       context: 'organizations'
                     },
                   }}
@@ -154,6 +154,7 @@ const RequestTile = ({ doc }) => {
                   productId: id,
                   userId: org_id,
                   title,
+                  emergency,
                   description,
                   quantity,
                   date,

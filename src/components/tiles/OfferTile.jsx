@@ -50,6 +50,7 @@ const OfferTile = ({ doc }) => {
   const classes = useStyles();
   const { userInfo } = useContext(UserContext);
   const { donor_id, title, description, quantity, date, expiry, id } = doc;
+  const imgURL = `https://source.unsplash.com/600x400/?${title}`;
 
   const [donor, setDonor] = useState({});
 
@@ -118,6 +119,7 @@ const OfferTile = ({ doc }) => {
                   productId: id,
                   userId: donor_id,
                   title,
+                  imgURL,
                   description,
                   quantity,
                   date,
@@ -141,6 +143,7 @@ const OfferTile = ({ doc }) => {
                   productId: id,
                   userId: donor_id,
                   title,
+                  imgURL,
                   description,
                   quantity,
                   date,
