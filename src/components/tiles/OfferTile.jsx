@@ -111,7 +111,7 @@ const OfferTile = ({ doc }) => {
               subheader={donor.name}
             />
             <Link
-              key="donationDetail"
+              key={`donationDetail-${id}`}
               to={{
                 pathname: `/donations/${id}`,
                 state: {

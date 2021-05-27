@@ -123,7 +123,7 @@ const RequestTile = ({ doc }) => {
 
             <Link
               style={{ textDecoration: 'none' }}
-              key="donationDetail"
+              key={`donationDetail-${id}`}
               to={{
                 pathname: `/donations/${id}`,
                 state: {
