@@ -27,6 +27,7 @@ function RequestButton() {
         color="primary"
         onClick={handleClickOpen}
         onClose={handleClose}
+        size="small"
       >
         Make a Request
       </Button>

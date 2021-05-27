@@ -27,6 +27,7 @@ function OfferButton() {
         color="primary"
         onClick={handleClickOpen}
         onClose={handleClose}
+        size="small"
       >
         Make a Donation
       </Button>
