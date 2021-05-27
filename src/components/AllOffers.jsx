@@ -22,7 +22,7 @@ const AllOffers = ({ uid, searchTerm }) => {
     firestore.firestore
       .collection('offers')
       .orderBy('date', 'asc')
-      .limit(2)
+      .limit(9)
       .get()
       .then((querySnapshot) => {
         setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
@@ -48,7 +48,7 @@ const AllOffers = ({ uid, searchTerm }) => {
       .collection('offers')
       .orderBy('date', 'asc')
       .startAfter(lastVisibleDoc)
-      .limit(2)
+      .limit(9)
       .get()
       .then((querySnapshot) => {
         const numOfDocsFetched = querySnapshot.docs.length;
@@ -136,7 +136,7 @@ const AllOffers = ({ uid, searchTerm }) => {
         <Slide direction="up" in>
           <Button
             className={classes.moreButton}
-            color='secondary'
+            color="secondary"
             onClick={() => findMore()}
           >
             more
