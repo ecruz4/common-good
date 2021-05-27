@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-nested-ternary */
+import React, { useState, useContext } from 'react';
 import {
   TextField,
   FormGroup,
@@ -7,8 +8,11 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
+import UserContext from '../contexts/UserContext';
 import AllOffers from './AllOffers';
 import AllRequests from './AllRequests';
+import RequestButton from './modals/RequestButton';
+import OfferButton from './modals/OfferButton';
 
 const useStyles = makeStyles((theme) => ({
   field: {
@@ -29,8 +33,9 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchOrgs = () => {
   const classes = useStyles();
+  const { userInfo } = useContext(UserContext);
   const [searchTerm, setSearchTerm] = useState('');
-  const [switchState, setSwitchState] = useState(false);
+  const [switchState, setSwitchState] = useState(false); // false => reqs | true => donations
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,10 +70,27 @@ const SearchOrgs = () => {
         <TextField
           className={classes.field}
           label="Search by Item Name"
-          color='secondary'
+          color="secondary"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
+
+      {/* Button for listing creation appears only if user is logged in, and depends on whether user is an donor or an org */}
+      {userInfo && userInfo.uid ? (
+        !switchState ? (
+          userInfo.type === 'org' ? (
+            <RequestButton>Make a Request</RequestButton>
+          ) : (
+            <></>
+          )
+        ) : userInfo.type === 'user' ? (
+          <OfferButton>Make a Donation</OfferButton>
+        ) : (
+          <></>
+        )
+      ) : (
+        <></>
+      )}
 
       {switchState ? (
         <AllOffers searchTerm={searchTerm} />
