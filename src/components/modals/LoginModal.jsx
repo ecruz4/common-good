@@ -8,9 +8,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import db from '../../db/firebase';
 
 const useStyles = makeStyles({
-  container: {
+  ModalContainer: {
     display: 'flex',
     flexDirection: 'column',
+
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+
   },
 });
 
@@ -35,7 +43,7 @@ function LoginModal({ handleClose }) {
   };
 
   return (
-    <Container className={classes.container}>
+    <Container className={classes.ModalContainer}>
       <TextField
         id="standard-full-width"
         label="Email"
@@ -58,11 +66,11 @@ function LoginModal({ handleClose }) {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Container>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+      <Container className={classes.buttonContainer}>
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
           Login
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose}>
           Cancel
         </Button>
       </Container>

@@ -50,6 +50,7 @@ const SearchOrgs = () => {
             <Grid item>
               <Switch
                 checked={switchState}
+                color="primary"
                 onChange={handleSwitch}
                 name="search-type"
                 color="primary"
@@ -64,7 +65,7 @@ const SearchOrgs = () => {
         <TextField
           className={classes.field}
           label="Search by Item Name"
-          color="secondary"
+          color='secondary'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
