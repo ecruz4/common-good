@@ -14,6 +14,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
   },
+  button: {
+    margin: 10,
+    marginTop: 30,
+  },
 });
 
 function OfferModal({ handleClose }) {
@@ -37,7 +41,7 @@ function OfferModal({ handleClose }) {
       title,
       description,
       quantity,
-      imgURL,
+      imgURL: `https://source.unsplash.com/400x200/?${title}`,
     };
     db.firestore
       .collection('offers')
@@ -87,7 +91,7 @@ function OfferModal({ handleClose }) {
         value={quantity}
         onChange={(event) => setQuantity(event.target.value)}
       />
-      <TextField
+      {/* <TextField
         id="standard-full-width"
         label="Image URL"
         style={{ margin: 8 }}
@@ -96,19 +100,25 @@ function OfferModal({ handleClose }) {
           shrink: true,
         }}
         value={imgURL}
-        onChange={(event) =>
-          setImgURL(
-            event.target.value ||
-              `https://source.unsplash.com/400x200/?${title}`
-          )
-        }
-      />
+        onChange={(event) => setImgURL(event.target.value)}
+      /> */}
 
       <Container>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Make a Donation
+        <Button
+          className={classes.button}
+          size="small"
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+        >
+          Submit
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button
+          className={classes.button}
+          size="small"
+          variant="contained"
+          onClick={handleClose}
+        >
           Cancel
         </Button>
       </Container>
