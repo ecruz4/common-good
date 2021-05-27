@@ -126,7 +126,7 @@ const RequestTile = ({ doc }) => {
                       description: description,
                       quantity: quantity,
                       date: date,
-                      context: 'request'
+                      context: 'organizations'
                     },
                   }}
                 >

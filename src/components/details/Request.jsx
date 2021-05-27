@@ -55,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Request({ doc }) {
   const classes = useStyles();
 
+  console.log(doc);
+
   const { productId, userId, title, description, quantity, date } = doc;
 
   const [org, setOrg] = useState({});
