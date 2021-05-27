@@ -55,7 +55,11 @@ function App() {
 
     setNewMessagesCount(messagesToUserCount - relevantMessagesLength);
     setRelevantMessagesLength(messagesToUserCount);
-  }, [relevantMessages]);
+  }, [relevantMessages, user]);
+
+  useEffect(() => {
+    setRelevantMessagesLength(0);
+  }, [user]);
 
   useEffect(() => {
     if (user === null) {
