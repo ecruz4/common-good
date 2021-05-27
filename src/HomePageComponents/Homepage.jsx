@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
-import Footer from './Footer';
+
 
 
 const mainFeaturedPost = {
@@ -40,7 +40,7 @@ function Homepage() {
     <>
 
       {/* <CssBaseline /> */}
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" >
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
@@ -50,7 +50,7 @@ function Homepage() {
           </Grid>
         </main>
       </Container>
-      <Footer title="Footer" description="Something here to give the footer a purpose!" />
+
 
     </>
   );
