@@ -82,14 +82,17 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   height1: {
-    height: '30%'
+    // height: '30%'
   },
   height2: {
-    height: '50%'
+    paddingTop: 20,
+    paddingRight: 20
   },
   height3: {
-    height: '20%',
-    alignItems: 'center'
+    // height: '20%',
+    // alignItems: 'center'
+    position: 'absolute',
+    bottom: 20
   },
   avatarSpacing: {
     paddingLeft: 30
@@ -109,6 +112,9 @@ const useStyles = makeStyles((theme) => ({
   redText: {
     color: 'red',
     paddingLeft: 4
+  },
+  relative: {
+    position: 'relative'
   }
 }));
 
@@ -150,7 +156,7 @@ export default function Request({ doc }) {
             }
           </Grid>
           <Grid container item xs={6}>
-            <Grid container direction="column">
+            <Grid container direction="column" className={classes.relative}>
               {emergency ?
               <Grid container direction="row" className={classes.height1}>
                 <Grid item xs={6} className={classes.title}>
