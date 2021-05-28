@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   image: {
     border: '2px solid black',
     height: 250,
+    maxWidth: 450,
     display: 'flex',
     justifyContent: 'center',
     borderRadius: '20px',
@@ -82,14 +83,17 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   height1: {
-    height: '30%'
+    paddingTop: 15
   },
   height2: {
-    height: '50%'
+    paddingTop: 20,
+    paddingRight: 20
   },
   height3: {
-    height: '20%',
-    alignItems: 'center'
+    // height: '20%',
+    // alignItems: 'center'
+    position: 'absolute',
+    bottom: 20
   },
   avatarSpacing: {
     paddingLeft: 30
@@ -100,13 +104,17 @@ const useStyles = makeStyles((theme) => ({
   },
   descSpacing: {
     paddingTop: 10
+  },
+  relative: {
+    position: 'relative'
   }
 }));
 
 export default function Offer({ doc }) {
   const classes = useStyles();
-  const { productId, userId, title, imgURL, description, quantity, date } = doc;
+  const { productId, userId, title, description, quantity, date } = doc;
   const formattedDate = timeAgo.format(new Date(date.seconds * 1000));
+  let imgURL = doc.imgURL || `https://source.unsplash.com/400x200/?${title}`;
   const [donor, setDonor] = useState({});
 
   useEffect(() => {
@@ -132,7 +140,7 @@ export default function Offer({ doc }) {
             }
           </Grid>
           <Grid container item xs={6}>
-            <Grid container direction="column">
+            <Grid container direction="column" className={classes.relative}>
               <Grid container direction="row" className={classes.height1}>
                 <Grid item xs={6} className={classes.title}>
                   <Typography variant="h3">
