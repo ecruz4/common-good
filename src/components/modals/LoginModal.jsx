@@ -64,6 +64,7 @@ function LoginModal({ handleClose }) {
         }}
         value={password}
         onChange={(event) => setPassword(event.target.value)}
+        type="password"
       />
       <Container className={classes.buttonContainer} style={{ marginTop: 20 }}>
         <Button
