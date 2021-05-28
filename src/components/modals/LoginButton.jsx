@@ -23,22 +23,29 @@ function LoginButton() {
 
   return (
     !user && (
-    <>
-      <Dialog open={open}>
-        <DialogTitle style={{ background: '#ffed03', color: '#2196f3'}}>Login</DialogTitle>
-        <DialogContent style={{ background: '#ffed03' }}>
-          <LoginModal handleClose={handleClose} />
-        </DialogContent>
-      </Dialog>
-      <Button
-
-        color='secondary'
-        onClick={handleClickOpen}
-        onClose={handleClose}
-      >
-        Login
-      </Button>
-    </>
+      <>
+        <Dialog open={open}>
+          <DialogTitle
+            style={{
+              background: '#ffed03',
+              color: '#2196f3',
+              textAlign: 'center',
+            }}
+          >
+            Login
+          </DialogTitle>
+          <DialogContent style={{ background: '#ffed03' }}>
+            <LoginModal handleClose={handleClose} />
+          </DialogContent>
+        </Dialog>
+        <Button
+          style={{ color: '#0069c0' }}
+          onClick={handleClickOpen}
+          onClose={handleClose}
+        >
+          Login
+        </Button>
+      </>
     )
   );
 }

@@ -40,18 +40,37 @@ export default function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
+    <Paper
+      className={classes.mainFeaturedPost}
+      style={{ backgroundImage: `url(${post.image})` }}
+    >
       {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+      {
+        <img
+          style={{ display: 'none' }}
+          src={post.image}
+          alt={post.imageText}
+        />
+      }
       <div className={classes.overlay} />
       <Grid container>
         <Grid item md={6}>
           <div className={classes.mainFeaturedPostContent}>
-            <Typography component="h1" variant="h3" color="inherit"
-            style={{fontFamily: "'Satisfy', cursive"}} gutterBottom>
+            <Typography
+              component="h1"
+              variant="h3"
+              color="inherit"
+              style={{ fontFamily: "'Satisfy', cursive" }}
+              gutterBottom
+            >
               {post.title}
             </Typography>
-            <Typography variant="h5" color="inherit" style={{fontFamily: "'Halant', serif", fontSize: 20}} paragraph>
+            <Typography
+              variant="h5"
+              color="inherit"
+              style={{ fontFamily: "'Halant', serif", fontSize: 20 }}
+              paragraph
+            >
               {post.description}
             </Typography>
           </div>

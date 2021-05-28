@@ -11,14 +11,11 @@ const useStyles = makeStyles({
   ModalContainer: {
     display: 'flex',
     flexDirection: 'column',
-
   },
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-
-
   },
 });
 
@@ -45,6 +42,7 @@ function LoginModal({ handleClose }) {
   return (
     <Container className={classes.ModalContainer}>
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Email"
         style={{ margin: 8 }}
@@ -56,6 +54,7 @@ function LoginModal({ handleClose }) {
         onChange={(event) => setEmail(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Password"
         style={{ margin: 8 }}
@@ -66,11 +65,17 @@ function LoginModal({ handleClose }) {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <Container className={classes.buttonContainer}>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
+      <Container className={classes.buttonContainer} style={{ marginTop: 20 }}>
+        <Button
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          onClick={handleSubmit}
+        >
           Login
         </Button>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose}>
+        <Button
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          onClick={handleClose}
+        >
           Cancel
         </Button>
       </Container>
