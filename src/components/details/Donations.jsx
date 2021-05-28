@@ -39,7 +39,5 @@ export default function Donations() {
   } else {
     return null;
   }
-
-
 }
 
