@@ -6,7 +6,7 @@
     A website that connects charities to donors.
     <br />
     <h3 align="center">
-     <strong>Contributers »</strong>
+     <strong>Contributors »</strong>
     <br />
     <br />
     <a href="https://github.com/ChrisRPeterson">Christian Peterson</a>
@@ -50,7 +50,7 @@
       <li><a href="#repo">Repo</a></li>
       <li><a href="#install">Install</a></li>
       <li><a href="#start-scripts">Start Scripts</a></li>
-      <li><a href="#github-api-token">Github API token</a></li>
+      <li><a href="#google-maps-api-key">Google Maps API Key</a></li>
      </ul>
     </li>
   </ol>
@@ -59,8 +59,6 @@
 # About
 The objective of the Common Good website was to make a site that allowed charity organizations to connect with prospective donors in order to exchange donated goods.  Our team of software engineers was given one week to create the application.  It is comprised of the features and pages detailed below.
 
-*GIF placeholder*
-
 ## Home Page --[Amanda Klein](https://github.com/amandaklein1)
 **Features:**
 
@@ -68,8 +66,9 @@ The objective of the Common Good website was to make a site that allowed charity
   * *Charity Information*
   * *Charity Feature Cards*
   * *Footer*
+  * *Routing*
 
-  *GIF placeholder*
+![](https://media.giphy.com/media/ybgGMjoo5WwTPMZSlk/giphy.gif)
 
   ## Profile Page --[Eric Cruz](https://github.com/ecruz4)
 **Features:**
@@ -79,7 +78,7 @@ The objective of the Common Good website was to make a site that allowed charity
   * *Offer Detail Cards Display*
   * *Editable Information*
 
-  *GIF placeholder*
+![](https://media.giphy.com/media/G3BnuZbinL4YfMFMsc/giphy.gif)
 
   ## Donations and Charities Lists --[Pongsak Pattamasaevi](https://github.com/ppattamasaevi)
 **Features:**
@@ -89,7 +88,7 @@ The objective of the Common Good website was to make a site that allowed charity
   * *Make a Request or Donation Modal*
   * *Request and Donation Toggle Feature*
 
-  *GIF placeholder*
+![](https://media.giphy.com/media/vLcXs7vLscfDvj68Iu/giphy.gif)
 
   ## Details Page --[Dylan Reid](https://github.com/dylanreid7)
 **Features:**
@@ -99,7 +98,7 @@ The objective of the Common Good website was to make a site that allowed charity
   * *Profile*: the donor or organization's profile is listed at the bottom of the page with their profile picture, title, and bio.
   * *Other Features*: links to the chat application and profile pages.  If the item is listed as urgently needed, an alert is conditionally rendered.
 
-  *GIF placeholder*
+![](https://media.giphy.com/media/35Ymi4CExwpON31OV6/giphy.gif)
 
   ## Chat --[Christian Peterson](https://github.com/ChrisRPeterson)
 **Features:**
@@ -109,7 +108,7 @@ The objective of the Common Good website was to make a site that allowed charity
   * *Notifications*
   * *Sidebar*
 
-  *GIF placeholder*
+![](https://media.giphy.com/media/vM3TbhQthPscHnS30J/giphy.gif)
 
   # Stack
 
@@ -128,7 +127,6 @@ The objective of the Common Good website was to make a site that allowed charity
       <td>
         <img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB" />
         <img alt="Material-UI" src="https://img.shields.io/badge/-Material--UI-%230081CB?&style=for-the-badge&logo=material-ui&logoColor=white" />
-        <img alt="Express.js" src="https://img.shields.io/badge/express.js-%23404d59.svg?&style=for-the-badge"/>
       </td>
     </tr>
     <tr>
