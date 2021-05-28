@@ -9,7 +9,7 @@ import UserContext from '../../contexts/UserContext';
 function ProfileInfo({ data }) {
   const location = zipcodes.lookup(data.zipcode);
 
-  const { userInfo, setUserInfo } = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
 
   return (
     <Grid item container justify="flex-end" spacing={8} align="center">
