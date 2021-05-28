@@ -211,26 +211,10 @@ function OrgSignupModal({ handleClose }) {
         </Select>
       </FormControl> */}
       <Container>
-        <Button
-          style={{
-            margin: 8,
-            background: '#2196f3',
-            color: 'white',
-            marginTop: 20,
-          }}
-          onClick={handleSubmit}
-        >
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
           Sign Up
         </Button>
-        <Button
-          style={{
-            margin: 8,
-            background: '#2196f3',
-            color: 'white',
-            marginTop: 20,
-          }}
-          onClick={handleClose}
-        >
+        <Button onClick={handleClose} style={{ margin: 8, background: '#2196f3', color: 'white'}}>
           Cancel
         </Button>
       </Container>

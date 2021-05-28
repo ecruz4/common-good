@@ -104,19 +104,17 @@ function OfferModal({ handleClose }) {
       /> */}
 
       <Container>
+
         <Button
           className={classes.button}
-          size="small"
-          variant="contained"
-          color="primary"
+          style={{ margin: 8, background: '#2196f3', color: 'white'}}
           onClick={handleSubmit}
         >
           Submit
         </Button>
         <Button
           className={classes.button}
-          size="small"
-          variant="contained"
+          style={{ margin: 8, background: '#2196f3', color: 'white'}}
           onClick={handleClose}
         >
           Cancel

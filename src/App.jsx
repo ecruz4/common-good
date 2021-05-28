@@ -18,10 +18,6 @@ import Homepage from './HomePageComponents/Homepage';
 import ChatScreen from './components/chat/ChatScreen';
 import donationDetail from './components/details/Donations';
 
-
-
-
-
 function App() {
   const [user] = useAuthState(db.auth);
   const [userInfo, setUserInfo] = useState(null);
@@ -73,6 +69,19 @@ function App() {
     }
     db.firestore
       .collection('users')
+      .where('uid', '==', user.uid)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setUserInfo(doc.data());
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
+
+    db.firestore
+      .collection('organizations')
       .where('uid', '==', user.uid)
       .get()
       .then((querySnapshot) => {
