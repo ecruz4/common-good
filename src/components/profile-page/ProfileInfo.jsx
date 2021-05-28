@@ -13,23 +13,22 @@ function ProfileInfo({ data }) {
 
   return (
     <Grid item container justify="flex-end" spacing={8} align="center">
-      {userInfo && userInfo.uid === data.uid ? null : (
-        <Grid item>
-          <Link
-            key="chat"
-            to={{
-              pathname: `/chat/${data.uid}`,
-              state: {
-                userId: data.uid,
-              },
-            }}
-          >
-            <IconButton aria-label="chat">
-              <ForumIcon />
-            </IconButton>
-          </Link>
-        </Grid>
-      )}
+      {userInfo && userInfo.uid === data.uid ? null :
+      <Grid item>
+        <Link
+          key="chat"
+          to={{
+            pathname: `/chat/${data.uid}`,
+            state: {
+              userId: data.uid,
+            },
+          }}
+        >
+          <IconButton aria-label="chat">
+            <ForumIcon />
+          </IconButton>
+        </Link>
+      </Grid>}
       <Grid item>
         <Typography
           color="textSecondary"

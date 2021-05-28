@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AllRequests = ({ uid, searchTerm }) => {
+
   const classes = useStyles();
   const [docs, setDocs] = useState([]);
   const retrievedDocs = [];
@@ -70,6 +71,7 @@ const AllRequests = ({ uid, searchTerm }) => {
   };
 
   const findByCriteria = (field, operator, term) => {
+    console.log(field, operator, term);
     firestore.firestore
       .collection('requests')
       .where(field, operator, term)
@@ -104,7 +106,7 @@ const AllRequests = ({ uid, searchTerm }) => {
     } else {
       findByName(searchTerm);
     }
-  }, [searchTerm]);
+  }, [uid, searchTerm]);
 
   return (
     <Container className={classes.container}>
