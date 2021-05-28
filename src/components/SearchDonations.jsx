@@ -49,7 +49,7 @@ const SearchOrgs = () => {
 
   return (
     <Container>
-      <div style={{ paddingLeft: 24, marginBottom: 40 }}>
+      <div style={{ paddingLeft: 24, marginBottom: 20 }}>
         <FormGroup>
           <Typography className={classes.switch} variant="overline">
             <Grid component="label" container alignItems="center" spacing={1}>
@@ -78,21 +78,23 @@ const SearchOrgs = () => {
         </form>
       </div>
       {/* Button for listing creation appears only if user is logged in, and depends on whether user is an donor or an org */}
-      {userInfo && userInfo.uid ? (
-        !switchState ? (
-          userInfo.type === 'org' ? (
-            <RequestButton>Make a Request</RequestButton>
+      <div style={{ paddingLeft: 24, marginBottom: 20 }}>
+        {userInfo && userInfo.uid ? (
+          !switchState ? (
+            userInfo.type === 'org' ? (
+              <RequestButton>Make a Request</RequestButton>
+            ) : (
+              <></>
+            )
+          ) : userInfo.type === 'user' ? (
+            <OfferButton>Make a Donation</OfferButton>
           ) : (
             <></>
           )
-        ) : userInfo.type === 'user' ? (
-          <OfferButton>Make a Donation</OfferButton>
         ) : (
           <></>
-        )
-      ) : (
-        <></>
-      )}
+        )}
+      </div>
 
       {switchState ? (
         <AllOffers searchTerm={searchTerm} />

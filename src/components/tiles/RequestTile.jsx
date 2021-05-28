@@ -77,9 +77,17 @@ const RequestTile = ({ doc }) => {
                       },
                     }}
                   >
-                    <Avatar aria-label="request" className={classes.avatar}>
-                      <LocationCityIcon />
-                    </Avatar>
+                    {org && org.photo_url ? (
+                      <Avatar
+                        src={org.photo_url}
+                        aria-label="request"
+                        className={classes.avatar}
+                      />
+                    ) : (
+                      <Avatar aria-label="request" className={classes.avatar}>
+                        <LocationCityIcon />
+                      </Avatar>
+                    )}
                   </Link>
                 ) : (
                   <Link
