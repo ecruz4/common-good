@@ -3,10 +3,9 @@ import AllOffers from '../AllOffers';
 import AllRequests from '../AllRequests';
 
 function ProfileFeed({data}) {
-  console.log(data.uid);
   return (
     <div style={{backgroundColor: '#FFB341', height: '80vh', borderRadius: "15px 0px 0px 0px", padding: "40px"}}>
-      {data.type === 'user' ? <AllOffers uid={data.uid} /> : <AllRequests uid={data.uid} />}
+      {data.type === 'org' ? <AllRequests uid={data.uid} /> : <AllOffers uid={data.uid} />}
     </div>
   )
 }

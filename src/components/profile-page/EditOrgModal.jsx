@@ -181,7 +181,7 @@ function EditOrgModal({ handleClose }) {
         <Button variant="contained" color="primary" onClick={handleSubmit}>
           Update
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleClose} variant="contained" color="primary">
           Cancel
         </Button>
       </Container>

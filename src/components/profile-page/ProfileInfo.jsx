@@ -13,7 +13,7 @@ function ProfileInfo({ data }) {
 
   return (
     <Grid item container justify="flex-end" spacing={8} align="center">
-      {userInfo.uid === data.uid ? null :
+      {userInfo && userInfo.uid === data.uid ? null :
       <Grid item>
         <Link
           key="chat"
