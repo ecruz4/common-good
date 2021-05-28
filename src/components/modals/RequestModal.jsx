@@ -63,6 +63,7 @@ function RequestModal({ handleClose }) {
   return (
     <Container className={classes.container}>
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Title"
         style={{ margin: 8 }}
@@ -74,6 +75,7 @@ function RequestModal({ handleClose }) {
         onChange={(event) => setTitle(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Description"
         style={{ margin: 8 }}
@@ -86,6 +88,7 @@ function RequestModal({ handleClose }) {
         onChange={(event) => setDescription(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Quantity"
         style={{ margin: 8 }}
@@ -107,10 +110,16 @@ function RequestModal({ handleClose }) {
         label="Emergency Request"
       />
       <Container>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
+        <Button
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          onClick={handleSubmit}
+        >
           Make a Request
         </Button>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose}>
+        <Button
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          onClick={handleClose}
+        >
           Cancel
         </Button>
       </Container>

@@ -23,8 +23,6 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-
-
   },
 });
 
@@ -37,24 +35,27 @@ function EditProfileModal({ handleClose }) {
   const [bio, setBio] = useState(userInfo.bio);
   const [photo, setPhoto] = useState(userInfo.photo_url);
 
-
   const classes = useStyles();
 
   const handleSubmit = () => {
-    db.firestore.collection("users").where("uid", "==", userInfo.uid)
+    db.firestore
+      .collection('users')
+      .where('uid', '==', userInfo.uid)
       .get()
       .then((query) => {
         let docId = query.docs[0].id;
-        db.firestore.collection("users").doc(docId)
+        db.firestore
+          .collection('users')
+          .doc(docId)
           .update({
             name: name,
             phone: phone,
             zipcode: zip,
             bio: bio,
-            photo_url: photo
+            photo_url: photo,
           })
           .then(() => {
-            console.log('Document successfully updated!')
+            console.log('Document successfully updated!');
             setUserInfo({
               name: name,
               phone: phone,
@@ -62,8 +63,8 @@ function EditProfileModal({ handleClose }) {
               bio: bio,
               photo_url: photo,
               email: userInfo.email,
-              uid: userInfo.uid
-            })
+              uid: userInfo.uid,
+            });
           })
           .catch((err) => console.log(err.message));
       })
@@ -73,6 +74,7 @@ function EditProfileModal({ handleClose }) {
   return (
     <Container className={classes.container}>
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Name"
         style={{ margin: 8 }}
@@ -84,6 +86,7 @@ function EditProfileModal({ handleClose }) {
         onChange={(event) => setName(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Phone"
         style={{ margin: 8 }}
@@ -95,6 +98,7 @@ function EditProfileModal({ handleClose }) {
         onChange={(event) => setPhone(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Zip"
         style={{ margin: 8 }}
@@ -106,6 +110,7 @@ function EditProfileModal({ handleClose }) {
         onChange={(event) => setZip(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Bio"
         style={{ margin: 8 }}
@@ -117,6 +122,7 @@ function EditProfileModal({ handleClose }) {
         onChange={(event) => setBio(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Photo"
         style={{ margin: 8 }}
@@ -128,10 +134,16 @@ function EditProfileModal({ handleClose }) {
         onChange={(event) => setPhoto(event.target.value)}
       />
       <Container className={classes.buttonContainer}>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
+        <Button
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          onClick={handleSubmit}
+        >
           Update
         </Button>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose} >
+        <Button
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          onClick={handleClose}
+        >
           Cancel
         </Button>
       </Container>
