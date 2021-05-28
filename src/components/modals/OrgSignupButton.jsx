@@ -43,7 +43,7 @@ function OrgSignupButton({ closeMenu }) {
         fullWidth
         className={classes.button}
         disableElevation
-        variant="contained"
+        color='secondary'
         onClick={handleClickOpen}
         onClose={handleClose}
       >

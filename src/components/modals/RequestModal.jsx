@@ -107,22 +107,10 @@ function RequestModal({ handleClose }) {
         label="Emergency Request"
       />
       <Container>
-        <Button
-          className={classes.button}
-          size="small"
-          variant="contained"
-          color="primary"
-          onClick={handleSubmit}
-        >
-          Submit
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
+          Make a Request
         </Button>
-        <Button
-          className={classes.button}
-          size="small"
-          variant="contained"
-          onClick={handleClose}
-          color="primary"
-        >
+        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleClose}>
           Cancel
         </Button>
       </Container>
