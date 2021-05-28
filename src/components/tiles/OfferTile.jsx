@@ -85,9 +85,19 @@ const OfferTile = ({ doc }) => {
                     },
                   }}
                 >
-                  <Avatar aria-label="offer" className={classes.avatar}>
-                    <AccountCircleIcon />
-                  </Avatar>
+                  {donor && donor.photo_url ? (
+                    <Avatar
+                      aria-label="donor_profile"
+                      className={classes.avatar}
+                      src={donor.photo_url}
+                    >
+                      <AccountCircleIcon />
+                    </Avatar>
+                  ) : (
+                    <Avatar aria-label="user_icon" className={classes.avatar}>
+                      <AccountCircleIcon />
+                    </Avatar>
+                  )}
                 </Link>
               }
               action={
@@ -142,7 +152,6 @@ const OfferTile = ({ doc }) => {
               to={{
                 pathname: `/donations/${id}`,
                 state: {
-                  context: 'users',
                   productId: id,
                   userId: donor_id,
                   title,

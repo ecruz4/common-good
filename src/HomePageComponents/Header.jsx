@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottom: `0.5px solid ${theme.palette.divider}`,
+    // borderBottom: `0.5px solid ${theme.palette.divider}`,
   },
   toolbarTitle: {
     flex: 1,

@@ -27,13 +27,12 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: 16,
     },
     minHeight: 200,
-    overflow: 'scroll',
   },
 }));
 
 const CharityTile = ({ doc }) => {
   const classes = useStyles();
-  const { uid, name, bio, focus, city, state } = doc;
+  const { uid, name, bio, focus, city, state, photo_url } = doc;
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -52,12 +51,20 @@ const CharityTile = ({ doc }) => {
                     },
                   }}
                 >
-                  <Avatar
-                    aria-label="charity profile"
-                    className={classes.avatar}
-                  >
-                    <LocationCityIcon />
-                  </Avatar>
+                  {doc && doc.photo_url ? (
+                    <Avatar
+                      src={doc.photo_url}
+                      aria-label="charity profile"
+                      className={classes.avatar}
+                    />
+                  ) : (
+                    <Avatar
+                      aria-label="charity profile"
+                      className={classes.avatar}
+                    >
+                      <LocationCityIcon />
+                    </Avatar>
+                  )}
                 </Link>
               }
               title={name}

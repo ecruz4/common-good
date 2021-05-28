@@ -16,5 +16,10 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'no-unused-vars': [
+      'warn',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+    ],
+  },
 };
