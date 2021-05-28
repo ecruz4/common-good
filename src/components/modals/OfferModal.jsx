@@ -58,6 +58,7 @@ function OfferModal({ handleClose }) {
   return (
     <Container className={classes.container}>
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Donation Item"
         style={{ margin: 8 }}
@@ -69,6 +70,7 @@ function OfferModal({ handleClose }) {
         onChange={(event) => setTitle(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Description"
         style={{ margin: 8 }}
@@ -81,6 +83,7 @@ function OfferModal({ handleClose }) {
         onChange={(event) => setDescription(event.target.value)}
       />
       <TextField
+        color="secondary"
         id="standard-full-width"
         label="Quantity"
         style={{ margin: 8 }}
@@ -104,17 +107,16 @@ function OfferModal({ handleClose }) {
       /> */}
 
       <Container>
-
         <Button
           className={classes.button}
-          style={{ margin: 8, background: '#2196f3', color: 'white'}}
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
           onClick={handleSubmit}
         >
           Submit
         </Button>
         <Button
           className={classes.button}
-          style={{ margin: 8, background: '#2196f3', color: 'white'}}
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
           onClick={handleClose}
         >
           Cancel
