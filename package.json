@@ -25,11 +25,10 @@
     "zipcodes": "^8.0.0"
   },
   "scripts": {
-    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "serve": "serve -s build -l 3000"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
