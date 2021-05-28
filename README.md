@@ -68,7 +68,7 @@ The objective of the Common Good website was to make a site that allowed charity
   * *Footer*
   * *Routing*
 
-![](https://media.giphy.com/media/ybgGMjoo5WwTPMZSlk/giphy.gif)
+![](https://media.giphy.com/media/sfsgh7c7HZuJyUmQhS/giphy.gif)
 
   ## Profile Page --[Eric Cruz](https://github.com/ecruz4)
 **Features:**
