@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // Material UI
+import { Grid } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -82,22 +83,28 @@ export default function Header(props) {
           className={classes.appbar}
         >
           <Toolbar className={classes.toolbar}>
-            <SignupEntryPt className={classes.signup} />
-            <Typography
-              className={classes.navtexts}
-              component="h2"
-              variant="h5"
-              color="inherit"
-              align="center"
-              noWrap
-              style={{ justifyContent: 'center' }}
-            >
-              <Link key="homepage" to="/" style={logoStyle}>
-                {title}
-              </Link>
-            </Typography>
-            <LoginButton />
-            <LogoutButton />
+            <Grid item xs={4}>
+              <SignupEntryPt className={classes.signup} />
+            </Grid>
+            <Grid item xs={4} style={{ display: 'flex', justifyContent: 'center'}}>
+              <Typography
+                className={classes.navtexts}
+                component="h2"
+                variant="h5"
+                color="inherit"
+                align="center"
+                noWrap
+                style={{ justifyContent: 'center' }}
+              >
+                <Link key="homepage" to="/" style={logoStyle}>
+                  {title}
+                </Link>
+              </Typography>
+            </Grid>
+            <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end'}}>
+              <LoginButton />
+              <LogoutButton />
+            </Grid>
           </Toolbar>
           <Toolbar
             component="nav"

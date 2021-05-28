@@ -83,15 +83,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   height1: {
-    paddingTop: 15
+    paddingTop: 20
   },
   height2: {
     paddingTop: 20,
     paddingRight: 20
   },
   height3: {
-    // height: '20%',
-    // alignItems: 'center'
     position: 'absolute',
     bottom: 20
   },
