@@ -45,7 +45,7 @@ function SignupButton({ closeMenu }) {
         fullWidth
         className={classes.button}
         disableElevation
-        variant="contained"
+        style={{ color: '#2196f3' }}
         onClick={handleClickOpen}
         // onClose={handleClose}
       >

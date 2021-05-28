@@ -6,14 +6,12 @@ import {
   Select,
   MenuItem,
   makeStyles,
+  Container,
 } from '@material-ui/core';
 import AllCharities from './AllCharities';
 import capitalize from '../utils/capitalize';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    // display: 'flex',
-  },
   field: {
     marginTop: 20,
     marginBottom: 10,
@@ -51,43 +49,45 @@ const SearchOrgs = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <TextField
-          className={classes.field}
-          label={`Find Charity by ${capitalize(criteria)}`}
-          color="secondary"
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </form>
+    <Container>
+      <div style={{ paddingLeft: 24, marginBottom: 40 }}>
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <TextField
+            className={classes.field}
+            label={`Find Charity by ${capitalize(criteria)}`}
+            color="secondary"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </form>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="charity-search-criteria" color="secondary">
-          Criteria
-        </InputLabel>
-        <Select
-          color="secondary"
-          labelId="charity-search-criteria"
-          id="charity-search-criteria-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={criteria}
-          onChange={handleChange}
-        >
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="city">City</MenuItem>
-          <MenuItem value="state">State</MenuItem>
-          <MenuItem value="theme">Charity Theme</MenuItem>
-        </Select>
-      </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="charity-search-criteria" color="secondary">
+            Criteria
+          </InputLabel>
+          <Select
+            color="secondary"
+            labelId="charity-search-criteria"
+            id="charity-search-criteria-open-select"
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={criteria}
+            onChange={handleChange}
+          >
+            <MenuItem value="name">Name</MenuItem>
+            <MenuItem value="city">City</MenuItem>
+            <MenuItem value="state">State</MenuItem>
+            <MenuItem value="theme">Charity Theme</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
 
       <AllCharities
         searchTerm={searchTerm}
         criteria={criteria}
         className={classes.tiles}
       />
-    </div>
+    </Container>
   );
 };
 

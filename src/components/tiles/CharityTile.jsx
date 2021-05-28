@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardContent,
   Avatar,
-  IconButton,
   CardActionArea,
   Typography,
   Grid,
@@ -27,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
     '&:last-child': {
       paddingBottom: 16,
     },
+    minHeight: 200,
+    overflow: 'scroll',
   },
 }));
 
@@ -35,27 +36,29 @@ const CharityTile = ({ doc }) => {
   const { uid, name, bio, focus, city, state } = doc;
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3}>
+    <Grid item xs={12} sm={6} md={4}>
       <Grow in {...{ timeout: 500 }}>
-        <Card variant="outlined" className={classes.root}>
+        <Card raised className={classes.root}>
           <CardActionArea disableTouchRipple>
             <CardHeader
               avatar={
                 <Link
-              key="charity"
-              to={{
-                pathname: `/charities/${uid}`,
-                state: {
-                  userId: uid,
-                  type: "charity"
-                }
-              }}
-            >
-              <Avatar aria-label="charity profile" className={classes.avatar}>
-                  <LocationCityIcon />
-                </Avatar>
-            </Link>
-
+                  key="charity"
+                  to={{
+                    pathname: `/charities/${uid}`,
+                    state: {
+                      userId: uid,
+                      type: 'charity',
+                    },
+                  }}
+                >
+                  <Avatar
+                    aria-label="charity profile"
+                    className={classes.avatar}
+                  >
+                    <LocationCityIcon />
+                  </Avatar>
+                </Link>
               }
               title={name}
               subheader={focus}

@@ -32,19 +32,18 @@ function OfferButton() {
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle>Make a Donation</DialogTitle>
-        <DialogContent>
+        <DialogTitle style={{ background: '#ffed03', color: '#2196f3'}}>Make a Donation</DialogTitle>
+        <DialogContent style={{ background: '#ffed03' }}>
           <OfferModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
       <Grow in {...{ timeout: 500 }}>
         <Button
           className={classes.button}
-          variant="contained"
-          color="primary"
+          color='secondary'
           onClick={handleClickOpen}
           onClose={handleClose}
-          size="small"
+          // size="small"
         >
           Make a Donation
         </Button>

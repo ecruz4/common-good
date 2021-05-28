@@ -45,7 +45,9 @@ const SignupEntryPt = () => {
       ) : (
         <>
           <Button
+            style={{ color: '#0069c0' }}
             ref={anchorRef}
+            color='secondary'
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
             onClick={handleToggle}

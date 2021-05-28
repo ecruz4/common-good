@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Grid, Button, Slide, makeStyles } from '@material-ui/core';
+import { Grid, Button, Slide, makeStyles, Container } from '@material-ui/core';
 import firestore from '../db/firebase';
 import OfferTile from './tiles/OfferTile';
 import capitalize from '../utils/capitalize';
@@ -8,6 +8,13 @@ import { expiryThreshold } from '../utils/moment';
 const useStyles = makeStyles((theme) => ({
   moreButton: {
     marginTop: 30,
+    padding: 20,
+    minWidth: 200,
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 25,
   },
 }));
 
@@ -22,7 +29,7 @@ const AllOffers = ({ uid, searchTerm }) => {
     firestore.firestore
       .collection('offers')
       .orderBy('date', 'asc')
-      .limit(9)
+      .limit(6)
       .get()
       .then((querySnapshot) => {
         setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
@@ -48,7 +55,7 @@ const AllOffers = ({ uid, searchTerm }) => {
       .collection('offers')
       .orderBy('date', 'asc')
       .startAfter(lastVisibleDoc)
-      .limit(9)
+      .limit(6)
       .get()
       .then((querySnapshot) => {
         const numOfDocsFetched = querySnapshot.docs.length;
@@ -123,8 +130,8 @@ const AllOffers = ({ uid, searchTerm }) => {
   }, [uid, searchTerm]);
 
   return (
-    <>
-      <Grid container spacing={3}>
+    <Container>
+      <Grid container spacing={4}>
         {docs.map((doc) => (
           <OfferTile doc={doc} key={doc.title} />
         ))}
@@ -133,17 +140,20 @@ const AllOffers = ({ uid, searchTerm }) => {
       {noMoreDocs || searchTerm ? (
         <></>
       ) : (
-        <Slide direction="up" in>
-          <Button
-            className={classes.moreButton}
-            color="secondary"
-            onClick={() => findMore()}
-          >
-            more
-          </Button>
-        </Slide>
+        <div className={classes.buttonContainer}>
+          <Slide direction="up" in>
+            <Button
+              size="large"
+              className={classes.moreButton}
+              color="secondary"
+              onClick={() => findMore()}
+            >
+              show more
+            </Button>
+          </Slide>
+        </div>
       )}
-    </>
+    </Container>
   );
 };
 

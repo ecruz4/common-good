@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Button, Slide, makeStyles } from '@material-ui/core';
+import { Grid, Button, Slide, makeStyles, Container } from '@material-ui/core';
 import firestore from '../db/firebase';
 import CharityTile from './tiles/CharityTile';
 import capitalize from '../utils/capitalize';
 
 const useStyles = makeStyles((theme) => ({
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 25,
+  },
   moreButton: {
     marginTop: 30,
+    padding: 20,
+    minWidth: 200,
   },
 }));
 
@@ -21,7 +28,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
     firestore.firestore
       .collection('organizations')
       .orderBy('name', 'asc')
-      .limit(9)
+      .limit(6)
       .get()
       .then((querySnapshot) => {
         setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
@@ -39,7 +46,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
       .collection('organizations')
       .orderBy('name', 'asc')
       .startAfter(lastVisibleDoc)
-      .limit(9)
+      .limit(6)
       .get()
       .then((querySnapshot) => {
         const numOfDocsFetched = querySnapshot.docs.length;
@@ -104,8 +111,8 @@ const AllCharities = ({ searchTerm, criteria }) => {
   }, [searchTerm]);
 
   return (
-    <>
-      <Grid className={classes.grid} container spacing={3}>
+    <Container>
+      <Grid className={classes.grid} container spacing={4}>
         {docs.map((doc) => (
           <CharityTile className="charity-tile" doc={doc} key={doc.name} />
         ))}
@@ -114,17 +121,20 @@ const AllCharities = ({ searchTerm, criteria }) => {
       {noMoreDocs || searchTerm ? (
         <></>
       ) : (
-        <Slide direction="up" in>
-          <Button
-            className={classes.moreButton}
-            color="secondary"
-            onClick={() => findMoreCharities()}
-          >
-            more
-          </Button>
-        </Slide>
+        <div className={classes.buttonContainer}>
+          <Slide direction="up" in>
+            <Button
+              size="large"
+              className={classes.moreButton}
+              color="secondary"
+              onClick={() => findMoreCharities()}
+            >
+              show more
+            </Button>
+          </Slide>
+        </div>
       )}
-    </>
+    </Container>
   );
 };
 
