@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   height1: {
-    // height: '30%'
+    paddingTop: 20
   },
   height2: {
     paddingTop: 20,
@@ -120,11 +120,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Request({ doc }) {
   const classes = useStyles();
-
-  console.log('doc: ', doc);
-
   const { productId, userId, title, emergency, description, quantity, date } = doc;
-
+  const formattedDate = timeAgo.format(new Date(date.seconds * 1000));
   const [org, setOrg] = useState({});
 
   useEffect(() => {
@@ -139,10 +136,6 @@ export default function Request({ doc }) {
       })
       .catch((err) => console.log(err.message));
   }, []);
-
-  console.log('org: ', org);
-
-  const formattedDate = timeAgo.format(new Date(date.seconds * 1000));
 
   return (
     <Grid item xs={12} className={classes.root}>
