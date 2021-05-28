@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import zipcodes from 'zipcodes';
 import { Grid, Typography, IconButton } from '@material-ui/core';
 import { Link } from 'react-router-dom';
@@ -13,22 +13,23 @@ function ProfileInfo({ data }) {
 
   return (
     <Grid item container justify="flex-end" spacing={8} align="center">
-      {userInfo.uid === data.uid ? null :
-      <Grid item>
-        <Link
-          key="chat"
-          to={{
-            pathname: `/chat/${data.uid}`,
-            state: {
-              userId: data.uid,
-            },
-          }}
-        >
-          <IconButton aria-label="chat">
-            <ForumIcon />
-          </IconButton>
-        </Link>
-      </Grid>}
+      {userInfo && userInfo.uid === data.uid ? null : (
+        <Grid item>
+          <Link
+            key="chat"
+            to={{
+              pathname: `/chat/${data.uid}`,
+              state: {
+                userId: data.uid,
+              },
+            }}
+          >
+            <IconButton aria-label="chat">
+              <ForumIcon />
+            </IconButton>
+          </Link>
+        </Grid>
+      )}
       <Grid item>
         <Typography
           color="textSecondary"
