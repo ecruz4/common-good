@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import MailIcon from '@material-ui/icons/Mail';
-import { Badge } from '@material-ui/core';
+import { Badge, Container } from '@material-ui/core';
 
 // Login Components
 import LoginButton from '../components/modals/LoginButton';
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `0.5px solid ${theme.palette.divider}`,
   },
   toolbarTitle: {
     flex: 1,
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   toolbarSecondary: {
     justifyContent: 'space-between',
     overflowX: 'auto',
+    borderBottom: `2px solid white`,
   },
   toolbarLink: {
     padding: theme.spacing(1),
@@ -48,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
   },
   appbar: {
     zIndex: 1,
+  },
+  navtexts: {
+    fontSize: '0.9em',
   },
 }));
 
@@ -70,7 +74,7 @@ export default function Header(props) {
   };
 
   return (
-    <>
+    <Container>
       <div className={classes.root}>
         <AppBar
           position="fixed"
@@ -80,6 +84,7 @@ export default function Header(props) {
           <Toolbar className={classes.toolbar}>
             <SignupEntryPt className={classes.signup} />
             <Typography
+              className={classes.navtexts}
               component="h2"
               variant="h5"
               color="inherit"
@@ -112,16 +117,22 @@ export default function Header(props) {
                   }}
                   style={navStyle}
                 >
-                  <Typography>Profile</Typography>
+                  <Typography className={classes.navtexts} variant="overline">
+                    Profile
+                  </Typography>
                 </Link>
               )}
             </div>
 
             <Link key="donations" to="/donations" style={navStyle}>
-              <Typography>Requests & Donations</Typography>
+              <Typography className={classes.navtexts} variant="overline">
+                Listings
+              </Typography>
             </Link>
             <Link key="charities" to="/charities" style={navStyle}>
-              <Typography>Charities</Typography>
+              <Typography className={classes.navtexts} variant="overline">
+                Charities
+              </Typography>
             </Link>
             <div>
               {userInfo && (
@@ -144,7 +155,7 @@ export default function Header(props) {
           </Toolbar>
         </AppBar>
       </div>
-    </>
+    </Container>
   );
 }
 

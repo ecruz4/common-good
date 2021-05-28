@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Button, Slide, makeStyles } from '@material-ui/core';
+import { Grid, Button, Slide, makeStyles, Container } from '@material-ui/core';
 import firestore from '../db/firebase';
 import RequestTile from './tiles/RequestTile';
 import capitalize from '../utils/capitalize';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 25,
+  },
   moreButton: {
     marginTop: 30,
+    padding: 20,
+    minWidth: 200,
   },
 }));
 
@@ -20,8 +31,8 @@ const AllRequests = ({ uid, searchTerm }) => {
   const findAllByUrgency = () => {
     firestore.firestore
       .collection('requests')
-      .orderBy('emergency', 'asc')
-      .limit(9)
+      .orderBy('emergency', 'desc')
+      .limit(6)
       .get()
       .then((querySnapshot) => {
         setLastVisibleDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
@@ -37,9 +48,9 @@ const AllRequests = ({ uid, searchTerm }) => {
   const findMoreByUrgency = () => {
     firestore.firestore
       .collection('requests')
-      .orderBy('emergency', 'asc')
+      .orderBy('emergency', 'desc')
       .startAfter(lastVisibleDoc)
-      .limit(9)
+      .limit(6)
       .get()
       .then((querySnapshot) => {
         const numOfDocsFetched = querySnapshot.docs.length;
@@ -62,7 +73,7 @@ const AllRequests = ({ uid, searchTerm }) => {
     firestore.firestore
       .collection('requests')
       .where(field, operator, term)
-      .orderBy('emergency', 'asc')
+      .orderBy('emergency', 'desc')
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -96,8 +107,8 @@ const AllRequests = ({ uid, searchTerm }) => {
   }, [searchTerm]);
 
   return (
-    <>
-      <Grid container spacing={3}>
+    <Container className={classes.container}>
+      <Grid style={{ justifyContent: 'space-between' }} container spacing={4}>
         {docs.map((doc) => (
           <RequestTile doc={doc} key={doc.title} />
         ))}
@@ -106,17 +117,20 @@ const AllRequests = ({ uid, searchTerm }) => {
       {noMoreDocs || searchTerm ? (
         <></>
       ) : (
-        <Slide direction="up" in>
-          <Button
-            className={classes.moreButton}
-            color="secondary"
-            onClick={() => findMoreByUrgency()}
-          >
-            more
-          </Button>
-        </Slide>
+        <div className={classes.buttonContainer}>
+          <Slide direction="up" in>
+            <Button
+              size="large"
+              className={classes.moreButton}
+              color="secondary"
+              onClick={() => findMoreByUrgency()}
+            >
+              show more
+            </Button>
+          </Slide>
+        </div>
       )}
-    </>
+    </Container>
   );
 };
 

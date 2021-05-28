@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import zipcodes from 'zipcodes';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ForumIcon from '@material-ui/icons/Forum';
 import {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#ffed03',
   },
   content: {
-    minHeight: 75,
+    minHeight: 80,
   },
   cardactions: {
     padding: 16,
@@ -68,9 +69,9 @@ const OfferTile = ({ doc }) => {
   }, []);
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3}>
+    <Grid item xs={12} sm={6} md={4}>
       <Grow in {...{ timeout: 500 }}>
-        <Card variant="outlined" className={classes.root}>
+        <Card raised className={classes.root}>
           <CardActionArea disableTouchRipple>
             <CardHeader
               avatar={
@@ -162,7 +163,10 @@ const OfferTile = ({ doc }) => {
 
             <CardActions className={classes.cardactions}>
               <Typography variant="overline">
-                {`${donor.city}, ${donor.state}`}
+                {donor.zip &&
+                  `${zipcodes.lookup(Number(donor.zip)).city}, ${
+                    zipcodes.lookup(Number(donor.zip)).state
+                  }`}
               </Typography>
               <Typography className={classes.expiry} variant="overline">
                 {`${convertMsToDays(expiry)} days left`}

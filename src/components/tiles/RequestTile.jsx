@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FF0000',
   },
   content: {
-    minHeight: 75,
+    minHeight: 120,
   },
   cardactions: {
     paddingLeft: 16,
@@ -60,9 +60,9 @@ const RequestTile = ({ doc }) => {
   }, []);
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3}>
+    <Grid item xs={12} sm={6} md={4}>
       <Grow in {...{ timeout: 500 }}>
-        <Card variant="outlined" className={classes.root}>
+        <Card raised className={classes.root}>
           <CardActionArea disableTouchRipple>
             <CardHeader
               avatar={

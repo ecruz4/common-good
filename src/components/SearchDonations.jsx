@@ -7,6 +7,7 @@ import {
   Switch,
   makeStyles,
   Typography,
+  Container,
 } from '@material-ui/core';
 import UserContext from '../contexts/UserContext';
 import AllOffers from './AllOffers';
@@ -47,34 +48,35 @@ const SearchOrgs = () => {
   };
 
   return (
-    <>
-      <FormGroup>
-        <Typography className={classes.switch} variant="overline">
-          <Grid component="label" container alignItems="center" spacing={1}>
-            <Grid item>Requests</Grid>
-            <Grid item>
-              <Switch
-                checked={switchState}
-                color="primary"
-                onChange={handleSwitch}
-                name="search-type"
-                color="primary"
-              />
+    <Container>
+      <div style={{ paddingLeft: 24, marginBottom: 40 }}>
+        <FormGroup>
+          <Typography className={classes.switch} variant="overline">
+            <Grid component="label" container alignItems="center" spacing={1}>
+              <Grid item>Requests</Grid>
+              <Grid item>
+                <Switch
+                  checked={switchState}
+                  color="primary"
+                  onChange={handleSwitch}
+                  name="search-type"
+                  color="primary"
+                />
+              </Grid>
+              <Grid item>Donations</Grid>
             </Grid>
-            <Grid item>Donations</Grid>
-          </Grid>
-        </Typography>
-      </FormGroup>
+          </Typography>
+        </FormGroup>
 
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <TextField
-          className={classes.field}
-          label="Search by Item Name"
-          color="secondary"
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </form>
-
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <TextField
+            className={classes.field}
+            label="Search by Item Name"
+            color="secondary"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </form>
+      </div>
       {/* Button for listing creation appears only if user is logged in, and depends on whether user is an donor or an org */}
       {userInfo && userInfo.uid ? (
         !switchState ? (
@@ -97,7 +99,7 @@ const SearchOrgs = () => {
       ) : (
         <AllRequests searchTerm={searchTerm} />
       )}
-    </>
+    </Container>
   );
 };
 

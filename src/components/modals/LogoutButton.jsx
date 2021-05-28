@@ -11,8 +11,9 @@ function LogoutButton() {
     user && (
       <div>
         <Button
+          style={{ color: '#0069c0' }}
           onClick={() => fire.auth.signOut()}
-          color='secondary'
+          color="secondary"
         >
           Signout
         </Button>
