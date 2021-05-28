@@ -123,6 +123,7 @@ function OrgSignupModal({ handleClose }) {
         }}
         value={password}
         onChange={(event) => setPassword(event.target.value)}
+        type="password"
       />
       <TextField
         color="secondary"
@@ -211,10 +212,16 @@ function OrgSignupModal({ handleClose }) {
         </Select>
       </FormControl> */}
       <Container>
-        <Button style={{ margin: 8, background: '#2196f3', color: 'white'}} onClick={handleSubmit}>
+        <Button
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          onClick={handleSubmit}
+        >
           Sign Up
         </Button>
-        <Button onClick={handleClose} style={{ margin: 8, background: '#2196f3', color: 'white'}}>
+        <Button
+          onClick={handleClose}
+          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+        >
           Cancel
         </Button>
       </Container>

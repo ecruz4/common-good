@@ -22,7 +22,7 @@ export default function Map({ zip, pic }) {
     <div
       style={{
         width: '80%',
-        height: '300px',
+        height: '500px',
         display: 'flex',
         margin: 'auto',
         marginTop: '20px',

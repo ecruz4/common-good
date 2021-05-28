@@ -41,7 +41,6 @@ function EditProfileModal({ handleClose }) {
   const classes = useStyles();
 
   const handleSubmit = () => {
-    console.log('Need to edit user in Users collection')
     db.firestore.collection("users").where("uid", "==", userInfo.uid)
       .get()
       .then((query) => {
