@@ -39,12 +39,11 @@ function EditOrgModal({ handleClose }) {
   const classes = useStyles();
 
   const handleSubmit = () => {
-    console.log('Need to edit user in Users collection')
-    db.firestore.collection("users").where("uid", "==", userInfo.uid)
+    db.firestore.collection("organizations").where("uid", "==", userInfo.uid)
       .get()
       .then((query) => {
         let docId = query.docs[0].id;
-        db.firestore.collection("users").doc(docId)
+        db.firestore.collection("organizations").doc(docId)
           .update({
             name: name,
             phone: phone,
