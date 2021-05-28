@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-  <h1 align="center">Adriatic Commond Ground</h1>
+  <h1 align="center">Adriatic Common Ground</h1>
 
   <p align="center">
     A website that connects charities to donors.
@@ -64,34 +64,34 @@ The objective of the Common Good website was to make a site that allowed charity
 ## Home Page --[Amanda Klein](https://github.com/amandaklein1)
 **Features:**
 
-  * *Product Information*: renders information such as product rating, category, title and price dynamically
-  * *Style Selector*: presents the user with all styles and has the ability to toggle between them
-  * *Add to Cart*: includes a size selector, capable of handling an out of stock size, button will add the currently selected item to the cart
-  * *Image Gallery*: displays photos specific to the currently selected style, user can toggle main image, and zoom
+  * *Nav Bar*
+  * *Charity Information*
+  * *Charity Feature Cards*
+  * *Footer*
 
   *GIF placeholder*
 
   ## Profile Page --[Eric Cruz](https://github.com/ecruz4)
 **Features:**
 
-  * *Product Information*: renders information such as product rating, category, title and price dynamically
-  * *Style Selector*: presents the user with all styles and has the ability to toggle between them
-  * *Add to Cart*: includes a size selector, capable of handling an out of stock size, button will add the currently selected item to the cart
-  * *Image Gallery*: displays photos specific to the currently selected style, user can toggle main image, and zoom
+  * *Profile Picture*
+  * *Profile Information*
+  * *Offer Detail Cards Display*
+  * *Editable Information*
 
   *GIF placeholder*
 
-    ## Donations and Charities Lists --[Pongsak Pattamasaevi](https://github.com/ppattamasaevi)
+  ## Donations and Charities Lists --[Pongsak Pattamasaevi](https://github.com/ppattamasaevi)
 **Features:**
 
-  * *Product Information*: renders information such as product rating, category, title and price dynamically
-  * *Style Selector*: presents the user with all styles and has the ability to toggle between them
-  * *Add to Cart*: includes a size selector, capable of handling an out of stock size, button will add the currently selected item to the cart
-  * *Image Gallery*: displays photos specific to the currently selected style, user can toggle main image, and zoom
+  * *Offer and Details Cards*
+  * *Search Feature*
+  * *Make a Request or Donation Modal*
+  * *Request and Donation Toggle Feature*
 
   *GIF placeholder*
 
-    ## Details Page --[Dylan Reid](https://github.com/dylanreid7)
+  ## Details Page --[Dylan Reid](https://github.com/dylanreid7)
 **Features:**
 
   * *Details*: renders the item picture, title, description, quantity, and time stamp dynamically.
@@ -101,13 +101,13 @@ The objective of the Common Good website was to make a site that allowed charity
 
   *GIF placeholder*
 
-    ## Chat --[Christian Peterson](https://github.com/ChrisRPeterson)
+  ## Chat --[Christian Peterson](https://github.com/ChrisRPeterson)
 **Features:**
 
-  * *Product Information*: renders information such as product rating, category, title and price dynamically
-  * *Style Selector*: presents the user with all styles and has the ability to toggle between them
-  * *Add to Cart*: includes a size selector, capable of handling an out of stock size, button will add the currently selected item to the cart
-  * *Image Gallery*: displays photos specific to the currently selected style, user can toggle main image, and zoom
+  * *Chat Display*
+  * *Chat Messages*
+  * *Notifications*
+  * *Sidebar*
 
   *GIF placeholder*
 
