@@ -103,10 +103,10 @@ The objective of the Common Good website was to make a site that allowed charity
   ## Chat --[Christian Peterson](https://github.com/ChrisRPeterson)
 **Features:**
 
-  * *Chat Display*
-  * *Chat Messages*
-  * *Notifications*
-  * *Sidebar*
+  * Makes full use of user authentication and sessions.
+  * Designed to be fast and easy to understand.
+  * Persists messages via a firebase database.
+  * Renders a dynamic notification icon when new messages are recieved. 
 
 ![](https://media.giphy.com/media/vM3TbhQthPscHnS30J/giphy.gif)
 
