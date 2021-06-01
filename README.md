@@ -34,7 +34,7 @@
     </li>
     <li><a href="#home-page---amanda-klein">Home Page</a></li>
     <li><a href="#profile-page---eric-cruz">Profile Page</a></li>
-    <li><a href="#donations-and-charities-lists---pongsak-pattamasaevi">Donations and Charities Lists</a></li>
+    <li><a href="#donations-and-charities-lists---pongsak-pattamasaevi">Listings and Search Feature</a></li>
     <li><a href="#details-page---dylan-reid">Details Page</a></li>
     <li><a href="#chat---christian-peterson">Chat</a></li>
     <li>
@@ -57,60 +57,64 @@
 </details>
 
 # About
-The objective of the Common Good website was to make a site that allowed charity organizations to connect with prospective donors in order to exchange donated goods.  Our team of software engineers was given one week to create the application.  It is comprised of the features and pages detailed below.
+
+The objective of the Common Good website was to make a site that allowed charity organizations to connect with prospective donors in order to exchange donated goods. Our team of software engineers was given one week to create the application. It is comprised of the features and pages detailed below.
 
 ## Home Page --[Amanda Klein](https://github.com/amandaklein1)
+
 **Features:**
 
-  * *Nav Bar*
-  * *Charity Information*
-  * *Charity Feature Cards*
-  * *Footer*
-  * *Routing*
+- _Nav Bar_
+- _Charity Information_
+- _Charity Feature Cards_
+- _Footer_
+- _Routing_
 
 ![](https://media.giphy.com/media/sfsgh7c7HZuJyUmQhS/giphy.gif)
 
-  ## Profile Page --[Eric Cruz](https://github.com/ecruz4)
+## Profile Page -- [Eric Cruz](https://github.com/ecruz4)
+
 **Features:**
 
-  * *Profile Picture*
-  * *Profile Information*
-  * *Offer Detail Cards Display*
-  * *Editable Information*
+- _Profile Picture_: Created using the Material UI Avatar component and also has an added Edit Icon using Material UI Badges if the user is viewing their own profile.
+- _Profile Information_: Displays the user's basic contact information and location.
+- _Offer Detail Cards Display_: The Card Display/Profile Feed is a list of all the offers/requests made by that particular user.
+- _Editable Information_: By clicking on the Edit Icon, a modal will appear for the user to modify any of their profile information. These changes occur real-time.
 
 ![](https://media.giphy.com/media/G3BnuZbinL4YfMFMsc/giphy.gif)
 
-  ## Donations and Charities Lists --[Pongsak Pattamasaevi](https://github.com/ppattamasaevi)
+## Listings and Search -- [Pongsak Pattamasaevi](https://github.com/ppattamasaevi)
+
 **Features:**
 
-  * *Offer and Details Cards*
-  * *Search Feature*
-  * *Make a Request or Donation Modal*
-  * *Request and Donation Toggle Feature*
+- _Charitable requests & donations listing_: User is able to toggle between an interface displaying all requests from organizations, sorted by urgency, and one showing all charitable donations, sorted by time to expiration. Data is paginated and fetched as needed to improve performance, and presented on animated, interactive Material-UI cards. From within each card, the user can view more details about the listing, its owner, or initiate a live chat with the associated account.
+- _Search Feature_: A case-insensitive search by item name, allowing the user to quickly find relevant donations or requests on the listings page. On the "Charities" page, more criteria is available for search, including by name, city, state, and charitable theme.
 
 ![](https://media.giphy.com/media/vLcXs7vLscfDvj68Iu/giphy.gif)
 
-  ## Details Page --[Dylan Reid](https://github.com/dylanreid7)
+## Details Page -- [Dylan Reid](https://github.com/dylanreid7)
+
 **Features:**
 
-  * *Details*: renders the item picture, title, description, quantity, and time stamp dynamically.
-  * *Map*: a map of the approximate location is shown using the google maps api.  The marker shown is the user's profile picture.
-  * *Profile*: the donor or organization's profile is listed at the bottom of the page with their profile picture, title, and bio.
-  * *Other Features*: links to the chat application and profile pages.  If the item is listed as urgently needed, an alert is conditionally rendered.
+- _Details_: renders the item picture, title, description, quantity, and time stamp dynamically.
+- _Map_: a map of the approximate location is shown using the google maps api. The marker shown is the user's profile picture.
+- _Profile_: the donor or organization's profile is listed at the bottom of the page with their profile picture, title, and bio.
+- _Other Features_: links to the chat application and profile pages. If the item is listed as urgently needed, an alert is conditionally rendered.
 
 ![](https://media.giphy.com/media/35Ymi4CExwpON31OV6/giphy.gif)
 
-  ## Chat --[Christian Peterson](https://github.com/ChrisRPeterson)
+## Chat -- [Christian Peterson](https://github.com/ChrisRPeterson)
+
 **Features:**
 
-  * *Chat Display*
-  * *Chat Messages*
-  * *Notifications*
-  * *Sidebar*
+- Makes full use of user authentication and sessions.
+- Designed to be fast and easy to understand.
+- Persists messages via a firebase database.
+- Renders a dynamic notification icon when new messages are recieved.
 
 ![](https://media.giphy.com/media/vM3TbhQthPscHnS30J/giphy.gif)
 
-  # Stack
+# Stack
 
 <table>
   <tbody>
@@ -157,6 +161,7 @@ The objective of the Common Good website was to make a site that allowed charity
     <tr>
       <th>Deployment</th>
       <td>
+        <img alt="Docker" src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
         <img alt="AWS" src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" />
       </td>
     </tr>
@@ -164,23 +169,29 @@ The objective of the Common Good website was to make a site that allowed charity
 </table>
 
 # Workflow
+
 Our team used Agile workflow for this sprint.
 
 ## Trello
-A Trello board was used to create and track tickets.  We held daily scrum meetings to discuss accomplishments, challenges, and upcoming tickets.  To effectively collaborate remotely while allowing for quick communication if needed, we utilized Discord, Slack, and Zoom.
+
+A Trello board was used to create and track tickets. We held daily scrum meetings to discuss accomplishments, challenges, and upcoming tickets. To effectively collaborate remotely while allowing for quick communication if needed, we utilized Discord, Slack, and Zoom.
 
 ## Version Control
-We implemented Git Feature Branch Workflow.  All pull requests in Github were reviewed by another team member before being merged into the main branch.
+
+We implemented Git Feature Branch Workflow. All pull requests in Github were reviewed by another team member before being merged into the main branch.
 
 # Development
 
 ## Repo
+
 `git clone https://github.com/hratx-blue-ocean/adriatic-common-ground`
 
 ## Install
+
 `npm install`
 
 ## Start Scripts
+
 ```
 npm start
 npm run build
@@ -188,13 +199,13 @@ npm run build
 
 ## Google Maps API Key
 
-To properly render the map in the details page, you must create a Google Maps API token and place it into file named config.js in the src folder.
+To properly render the map in the details page, you must create a Google Maps API token and place it into config.js within the src directory.
 
 To create an API key:
 
 1. Go to: https://console.cloud.google.com/project/_/apiui/credential
 2. On the credentials page, click Create credentials > API Key.
-    The API key created dialog displays your newly created API key.
+   The API key created dialog displays your newly created API key.
 3. Click Close.
-    The new API key is listed on the Credentials page under API keys.
-    (Remember to restrict the API key before using it in production.)
+   The new API key is listed on the Credentials page under API keys.
+   (Remember to restrict the API key before using it in production.)
