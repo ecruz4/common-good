@@ -78,7 +78,7 @@ The objective of the Common Good website was to make a site that allowed charity
 
 - _Profile Picture_: Created using the Material UI Avatar component and also has an added Edit Icon using Material UI Badges if the user is viewing their own profile.
 - _Profile Information_: Displays the user's basic contact information and location.
-- _Offer Detail Cards Display_: 
+- _Offer Detail Cards Display_: The Card Display/Profile Feed is a list of all the offers/requests made by that particular user.
 - _Editable Information_: By clicking on the Edit Icon, a modal will appear for the user to modify any of their profile information. These changes occur real-time.
 
 ![](https://media.giphy.com/media/G3BnuZbinL4YfMFMsc/giphy.gif)
