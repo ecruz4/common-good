@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-  <h1 align="center">Adriatic Common Ground</h1>
+  <h1 align="center">Common Good</h1>
 
   <p align="center">
     A website that connects charities to donors.
