@@ -5,20 +5,20 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useContext, useState } from 'react';
-import UserContext from '../../contexts/UserContext';
-import TextField from '@material-ui/core/TextField';
-import { Button, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useContext, useState } from "react";
+import UserContext from "../../contexts/UserContext";
+import TextField from "@material-ui/core/TextField";
+import { Button, Container } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // import { makeStyles } from '@material-ui/core/styles';
 // import firebase from 'firebase/app';
 
-import db from '../../db/firebase';
+import db from "../../db/firebase";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
 });
 
@@ -35,15 +35,18 @@ function EditOrgModal({ handleClose }) {
   const [url, setURL] = useState(userInfo.url);
   const [photo, setPhoto] = useState(userInfo.photo_url);
 
-
   const classes = useStyles();
 
   const handleSubmit = () => {
-    db.firestore.collection("organizations").where("uid", "==", userInfo.uid)
+    db.firestore
+      .collection("organizations")
+      .where("uid", "==", userInfo.uid)
       .get()
       .then((query) => {
         let docId = query.docs[0].id;
-        db.firestore.collection("organizations").doc(docId)
+        db.firestore
+          .collection("organizations")
+          .doc(docId)
           .update({
             name: name,
             phone: phone,
@@ -53,10 +56,10 @@ function EditOrgModal({ handleClose }) {
             zipcode: zip,
             bio: bio,
             url: url,
-            photo_url: photo
+            photo_url: photo,
           })
           .then(() => {
-            console.log('Document successfully updated!')
+            console.log("Document successfully updated!");
             setUserInfo({
               name: name,
               phone: phone,
@@ -68,8 +71,8 @@ function EditOrgModal({ handleClose }) {
               url: url,
               photo_url: photo,
               email: userInfo.email,
-              uid: userInfo.uid
-            })
+              uid: userInfo.uid,
+            });
           })
           .catch((err) => console.log(err.message));
       })
@@ -176,7 +179,7 @@ function EditOrgModal({ handleClose }) {
         }}
         value={photo}
         onChange={(event) => setPhoto(event.target.value)}
-      />      
+      />
       <Container>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
           Update

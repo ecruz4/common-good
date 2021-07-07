@@ -5,24 +5,24 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useContext, useState } from 'react';
-import UserContext from '../../contexts/UserContext';
-import TextField from '@material-ui/core/TextField';
-import { Button, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useContext, useState } from "react";
+import UserContext from "../../contexts/UserContext";
+import TextField from "@material-ui/core/TextField";
+import { Button, Container } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // import firebase from 'firebase/app';
 
-import db from '../../db/firebase';
+import db from "../../db/firebase";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   buttonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
 
@@ -39,13 +39,13 @@ function EditProfileModal({ handleClose }) {
 
   const handleSubmit = () => {
     db.firestore
-      .collection('users')
-      .where('uid', '==', userInfo.uid)
+      .collection("users")
+      .where("uid", "==", userInfo.uid)
       .get()
       .then((query) => {
         let docId = query.docs[0].id;
         db.firestore
-          .collection('users')
+          .collection("users")
           .doc(docId)
           .update({
             name: name,
@@ -55,7 +55,7 @@ function EditProfileModal({ handleClose }) {
             photo_url: photo,
           })
           .then(() => {
-            console.log('Document successfully updated!');
+            console.log("Document successfully updated!");
             setUserInfo({
               name: name,
               phone: phone,
@@ -135,13 +135,13 @@ function EditProfileModal({ handleClose }) {
       />
       <Container className={classes.buttonContainer}>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleSubmit}
         >
           Update
         </Button>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleClose}
         >
           Cancel

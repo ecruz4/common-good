@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import zipcodes from 'zipcodes';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ForumIcon from '@material-ui/icons/Forum';
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import zipcodes from "zipcodes";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import ForumIcon from "@material-ui/icons/Forum";
 import {
   makeStyles,
   Card,
@@ -16,34 +16,34 @@ import {
   Typography,
   Grid,
   Grow,
-} from '@material-ui/core';
-import firestore from '../../db/firebase';
-import { convertMsToDays } from '../../utils/moment';
-import UserContext from '../../contexts/UserContext';
+} from "@material-ui/core";
+import firestore from "../../db/firebase";
+import { convertMsToDays } from "../../utils/moment";
+import UserContext from "../../contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 350,
   },
   image: {
-    border: '1px solid red',
+    border: "1px solid red",
     margin: 20,
   },
   media: {
     height: 180,
   },
   avatar: {
-    backgroundColor: '#ffed03',
+    backgroundColor: "#ffed03",
   },
   content: {
     minHeight: 80,
   },
   cardactions: {
     padding: 16,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   expiry: {
-    color: '#2196f3',
+    color: "#2196f3",
   },
 }));
 
@@ -57,8 +57,8 @@ const OfferTile = ({ doc }) => {
 
   useEffect(() => {
     firestore.firestore
-      .collection('users')
-      .where('uid', '==', donor_id)
+      .collection("users")
+      .where("uid", "==", donor_id)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -81,7 +81,7 @@ const OfferTile = ({ doc }) => {
                     pathname: `/profile/${donor_id}`,
                     state: {
                       userId: donor.uid,
-                      type: 'user',
+                      type: "user",
                     },
                   }}
                 >
@@ -134,7 +134,7 @@ const OfferTile = ({ doc }) => {
                   description,
                   quantity,
                   date,
-                  context: 'offer',
+                  context: "offer",
                 },
               }}
             >
@@ -147,7 +147,7 @@ const OfferTile = ({ doc }) => {
               />
             </Link>
             <Link
-              style={{ textDecoration: 'none' }}
+              style={{ textDecoration: "none" }}
               key="donationDetail"
               to={{
                 pathname: `/donations/${id}`,
@@ -159,7 +159,7 @@ const OfferTile = ({ doc }) => {
                   description,
                   quantity,
                   date,
-                  context: 'offer',
+                  context: "offer",
                 },
               }}
             >

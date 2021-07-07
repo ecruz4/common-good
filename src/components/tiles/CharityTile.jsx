@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import LocationCityIcon from '@material-ui/icons/LocationCity';
+import LocationCityIcon from "@material-ui/icons/LocationCity";
 import {
   makeStyles,
   Card,
@@ -12,18 +12,18 @@ import {
   Typography,
   Grid,
   Grow,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 350,
   },
   avatar: {
-    backgroundColor: '#ffed03',
+    backgroundColor: "#ffed03",
   },
   content: {
     padding: 16,
-    '&:last-child': {
+    "&:last-child": {
       paddingBottom: 16,
     },
     minHeight: 200,
@@ -47,7 +47,7 @@ const CharityTile = ({ doc }) => {
                     pathname: `/charities/${uid}`,
                     state: {
                       userId: uid,
-                      type: 'charity',
+                      type: "charity",
                     },
                   }}
                 >
