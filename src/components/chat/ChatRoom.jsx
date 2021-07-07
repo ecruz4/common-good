@@ -1,52 +1,52 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useRef, useContext, useEffect } from 'react';
-import { Button, TextField, Container, Card } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useRef, useContext, useEffect } from "react";
+import { Button, TextField, Container, Card } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import db from '../../db/firebase';
-import ChatMessage from './ChatMessage';
-import ChatSidebar from './ChatSidebar';
-import UserContext from '../../contexts/UserContext';
+import db from "../../db/firebase";
+import ChatMessage from "./ChatMessage";
+import ChatSidebar from "./ChatSidebar";
+import UserContext from "../../contexts/UserContext";
 
 const useStyles = makeStyles(() => ({
   appContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    background: '#FAF9F6',
+    display: "flex",
+    flexDirection: "row",
+    background: "#FAF9F6",
   },
   chatContainer: {
-    borderLeftWidth: '2px',
-    justify: 'center',
-    padding: '7px',
+    borderLeftWidth: "2px",
+    justify: "center",
+    padding: "7px",
   },
   formContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    margin: '10px',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    margin: "10px",
   },
   messagesContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '500px',
-    maxHeight: '500px',
-    overflow: 'auto',
-    borderRadius: '5px',
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "500px",
+    maxHeight: "500px",
+    overflow: "auto",
+    borderRadius: "5px",
   },
   submitButton: {
-    margin: '0 0 0 10px',
+    margin: "0 0 0 10px",
   },
   textField: {
-    maxWidth: '400px',
-    minWidth: '400px',
+    maxWidth: "400px",
+    minWidth: "400px",
   },
 }));
 
 function ChatRoom({ otherUser, setOtherUser }) {
-  const [formValue, setFormValue] = useState('');
+  const [formValue, setFormValue] = useState("");
 
-  const messagesRef = db.firestore.collection('messages');
+  const messagesRef = db.firestore.collection("messages");
 
   const { userInfo, setNewMessagesCount, relevantMessages } =
     useContext(UserContext);
@@ -66,7 +66,7 @@ function ChatRoom({ otherUser, setOtherUser }) {
       return;
     }
     if (!otherUser) {
-      console.error('No other user');
+      console.error("No other user");
       return;
     }
 
@@ -82,9 +82,9 @@ function ChatRoom({ otherUser, setOtherUser }) {
       photoURL,
     });
 
-    setFormValue('');
+    setFormValue("");
 
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
+    dummy.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

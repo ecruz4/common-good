@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useContext } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { Button, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useContext } from "react";
+import TextField from "@material-ui/core/TextField";
+import { Button, Container } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { v4 as uuidv4 } from "uuid";
 
-import db from '../../db/firebase';
-import UserContext from '../../contexts/UserContext';
+import db from "../../db/firebase";
+import UserContext from "../../contexts/UserContext";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   button: {
     margin: 10,
@@ -21,17 +21,17 @@ const useStyles = makeStyles({
 });
 
 function OfferModal({ handleClose }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [imgURL, setImgURL] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [imgURL, setImgURL] = useState("");
   const { user } = useContext(UserContext);
 
   const classes = useStyles();
 
   const handleSubmit = () => {
     if (!user) {
-      console.log('Must be logged in to make a donation');
+      console.log("Must be logged in to make a donation");
       return;
     }
     const offerData = {
@@ -44,7 +44,7 @@ function OfferModal({ handleClose }) {
       imgURL: `https://source.unsplash.com/400x200/?${title}`,
     };
     db.firestore
-      .collection('offers')
+      .collection("offers")
       .doc()
       .set(offerData)
       .then(() => {
@@ -109,14 +109,14 @@ function OfferModal({ handleClose }) {
       <Container>
         <Button
           className={classes.button}
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleSubmit}
         >
           Submit
         </Button>
         <Button
           className={classes.button}
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleClose}
         >
           Cancel

@@ -1,27 +1,27 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { Button, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from "react";
+import TextField from "@material-ui/core/TextField";
+import { Button, Container } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import db from '../../db/firebase';
+import db from "../../db/firebase";
 
 const useStyles = makeStyles({
   ModalContainer: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   buttonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
 
 function LoginModal({ handleClose }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const classes = useStyles();
 
@@ -68,13 +68,13 @@ function LoginModal({ handleClose }) {
       />
       <Container className={classes.buttonContainer} style={{ marginTop: 20 }}>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleSubmit}
         >
           Login
         </Button>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleClose}
         >
           Cancel

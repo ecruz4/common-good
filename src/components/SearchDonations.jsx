@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import {
   TextField,
   FormGroup,
@@ -8,18 +8,18 @@ import {
   makeStyles,
   Typography,
   Container,
-} from '@material-ui/core';
-import UserContext from '../contexts/UserContext';
-import AllOffers from './AllOffers';
-import AllRequests from './AllRequests';
-import RequestButton from './modals/RequestButton';
-import OfferButton from './modals/OfferButton';
+} from "@material-ui/core";
+import UserContext from "../contexts/UserContext";
+import AllOffers from "./AllOffers";
+import AllRequests from "./AllRequests";
+import RequestButton from "./modals/RequestButton";
+import OfferButton from "./modals/OfferButton";
 
 const useStyles = makeStyles((theme) => ({
   field: {
     marginTop: 10,
     marginBottom: 10,
-    display: 'block',
+    display: "block",
   },
   formControl: {
     margin: theme.spacing(1),
@@ -35,12 +35,12 @@ const useStyles = makeStyles((theme) => ({
 const SearchOrgs = () => {
   const classes = useStyles();
   const { userInfo } = useContext(UserContext);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [switchState, setSwitchState] = useState(false); // false => reqs | true => donations
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit', searchTerm);
+    console.log("submit", searchTerm);
   };
 
   const handleSwitch = () => {
@@ -81,12 +81,12 @@ const SearchOrgs = () => {
       <div style={{ paddingLeft: 24, marginBottom: 20 }}>
         {userInfo && userInfo.uid ? (
           !switchState ? (
-            userInfo.type === 'org' ? (
+            userInfo.type === "org" ? (
               <RequestButton>Make a Request</RequestButton>
             ) : (
               <></>
             )
-          ) : userInfo.type === 'user' ? (
+          ) : userInfo.type === "user" ? (
             <OfferButton>Make a Donation</OfferButton>
           ) : (
             <></>

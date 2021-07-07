@@ -1,23 +1,23 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useContext } from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { useState, useContext } from "react";
+import TextField from "@material-ui/core/TextField";
 import {
   Button,
   Container,
   FormControlLabel,
   Checkbox,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { v4 as uuidv4 } from 'uuid';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { v4 as uuidv4 } from "uuid";
 
-import db from '../../db/firebase';
-import UserContext from '../../contexts/UserContext';
+import db from "../../db/firebase";
+import UserContext from "../../contexts/UserContext";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   button: {
     margin: 10,
@@ -26,17 +26,17 @@ const useStyles = makeStyles({
 });
 
 function RequestModal({ handleClose }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [emergency, setEmergency] = useState(false);
-  const [quantity, setQuantity] = useState('');
+  const [quantity, setQuantity] = useState("");
   const { user } = useContext(UserContext);
 
   const classes = useStyles();
 
   const handleSubmit = () => {
     if (!user) {
-      console.log('Must be logged in to make a request');
+      console.log("Must be logged in to make a request");
       return;
     }
     const requestData = {
@@ -49,7 +49,7 @@ function RequestModal({ handleClose }) {
       emergency,
     };
     db.firestore
-      .collection('requests')
+      .collection("requests")
       .doc()
       .set(requestData)
       .then(() => {
@@ -111,13 +111,13 @@ function RequestModal({ handleClose }) {
       />
       <Container>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleSubmit}
         >
           Make a Request
         </Button>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleClose}
         >
           Cancel

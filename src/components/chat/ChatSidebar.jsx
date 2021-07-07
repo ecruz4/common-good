@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import {
   Avatar,
   Divider,
@@ -8,10 +8,10 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-} from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
+} from "@material-ui/core";
+import PersonIcon from "@material-ui/icons/Person";
 
-import UserContext from '../../contexts/UserContext';
+import UserContext from "../../contexts/UserContext";
 
 function ChatSidebar({ setOtherUser, otherUser, relevantMessages }) {
   const [contacts, setContacts] = useState([]);
@@ -42,7 +42,7 @@ function ChatSidebar({ setOtherUser, otherUser, relevantMessages }) {
       }
     });
     if (otherUser && !tempNames.has(otherUser.name)) {
-      console.log('No message history, adding sidebar tab');
+      console.log("No message history, adding sidebar tab");
       tempNames.add(otherUser.name);
       tempIds.add(otherUser.id);
     }

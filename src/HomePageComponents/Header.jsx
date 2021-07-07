@@ -1,44 +1,44 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { Fragment, useState, useContext, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState, useContext, useRef } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // Material UI
-import { Grid } from '@material-ui/core';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import MailIcon from '@material-ui/icons/Mail';
-import { Badge, Container } from '@material-ui/core';
+import { Grid } from "@material-ui/core";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import MailIcon from "@material-ui/icons/Mail";
+import { Badge, Container } from "@material-ui/core";
 
 // Login Components
-import LoginButton from '../components/modals/LoginButton';
-import LogoutButton from '../components/modals/LogoutButton';
-import SignupButton from '../components/modals/SignupButton';
-import OrgSignupButton from '../components/modals/OrgSignupButton';
-import UserContext from '../contexts/UserContext';
+import LoginButton from "../components/modals/LoginButton";
+import LogoutButton from "../components/modals/LogoutButton";
+import SignupButton from "../components/modals/SignupButton";
+import OrgSignupButton from "../components/modals/OrgSignupButton";
+import UserContext from "../contexts/UserContext";
 
-import SignupEntryPt from './SignupEntryPt';
+import SignupEntryPt from "./SignupEntryPt";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginBottom: 150,
-    zIndex: 1
+    zIndex: 1,
   },
   toolbar: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     // borderBottom: `0.5px solid ${theme.palette.divider}`,
   },
   toolbarTitle: {
     flex: 1,
   },
   toolbarSecondary: {
-    justifyContent: 'space-between',
-    overflowX: 'auto',
+    justifyContent: "space-between",
+    overflowX: "auto",
     borderBottom: `2px solid white`,
   },
   toolbarLink: {
@@ -46,14 +46,14 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
   },
   signup: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: 2,
   },
   appbar: {
     zIndex: 1,
   },
   navtexts: {
-    fontSize: '0.9em',
+    fontSize: "0.9em",
   },
 }));
 
@@ -63,16 +63,16 @@ export default function Header(props) {
   const { userInfo, newMessagesCount } = useContext(UserContext);
 
   const navStyle = {
-    color: 'black',
-    textDecoration: 'none',
+    color: "black",
+    textDecoration: "none",
   };
 
   const logoStyle = {
-    color: 'white',
-    textDecoration: 'none',
+    color: "white",
+    textDecoration: "none",
     // fontFamily: "'Abril Fatface', cursive"
     fontFamily: "'Pattaya', sans-serif",
-    fontSize: '45px',
+    fontSize: "45px",
   };
 
   return (
@@ -80,14 +80,18 @@ export default function Header(props) {
       <div className={classes.root}>
         <AppBar
           position="fixed"
-          style={{ boxShadow: 'none', background: '#6ec6ff' }}
+          style={{ boxShadow: "none", background: "#6ec6ff" }}
           className={classes.appbar}
         >
           <Toolbar className={classes.toolbar}>
             <Grid item xs={4}>
               <SignupEntryPt className={classes.signup} />
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex', justifyContent: 'center'}}>
+            <Grid
+              item
+              xs={4}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <Typography
                 className={classes.navtexts}
                 component="h2"
@@ -95,14 +99,18 @@ export default function Header(props) {
                 color="inherit"
                 align="center"
                 noWrap
-                style={{ justifyContent: 'center' }}
+                style={{ justifyContent: "center" }}
               >
                 <Link key="homepage" to="/" style={logoStyle}>
                   {title}
                 </Link>
               </Typography>
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end'}}>
+            <Grid
+              item
+              xs={4}
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
               <LoginButton />
               <LogoutButton />
             </Grid>
@@ -120,7 +128,7 @@ export default function Header(props) {
                     pathname: `/profile/${userInfo.uid}`,
                     state: {
                       userId: userInfo.uid,
-                      type: 'user',
+                      type: "user",
                     },
                   }}
                   style={navStyle}

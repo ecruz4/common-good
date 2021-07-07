@@ -1,22 +1,22 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { Fragment, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Database
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import db from './db/firebase';
-import UserContext from './contexts/UserContext';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import db from "./db/firebase";
+import UserContext from "./contexts/UserContext";
 
 // Routed Components
-import Footer from './HomePageComponents/Footer';
-import SearchOrgs from './components/SearchOrgs';
-import SearchDonations from './components/SearchDonations';
-import Profile from './components/profile-page/Profile';
-import Header from './HomePageComponents/Header';
-import Homepage from './HomePageComponents/Homepage';
-import ChatScreen from './components/chat/ChatScreen';
-import donationDetail from './components/details/Donations';
+import Footer from "./HomePageComponents/Footer";
+import SearchOrgs from "./components/SearchOrgs";
+import SearchDonations from "./components/SearchDonations";
+import Profile from "./components/profile-page/Profile";
+import Header from "./HomePageComponents/Header";
+import Homepage from "./HomePageComponents/Homepage";
+import ChatScreen from "./components/chat/ChatScreen";
+import donationDetail from "./components/details/Donations";
 
 function App() {
   const [user] = useAuthState(db.auth);
@@ -25,9 +25,9 @@ function App() {
   const [relevantMessages, setRelevantMessages] = useState([]);
   const [relevantMessagesLength, setRelevantMessagesLength] = useState(0);
 
-  const messagesRef = db.firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt');
-  const [messages] = useCollectionData(query, { idField: 'id' });
+  const messagesRef = db.firestore.collection("messages");
+  const query = messagesRef.orderBy("createdAt");
+  const [messages] = useCollectionData(query, { idField: "id" });
 
   useEffect(() => {
     if (!user) {
@@ -40,7 +40,7 @@ function App() {
         )
       );
     }
-    console.log('Updating messages');
+    console.log("Updating messages");
   }, [messages, user]);
 
   useEffect(() => {
@@ -68,8 +68,8 @@ function App() {
       return;
     }
     db.firestore
-      .collection('users')
-      .where('uid', '==', user.uid)
+      .collection("users")
+      .where("uid", "==", user.uid)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -77,12 +77,12 @@ function App() {
         });
       })
       .catch((error) => {
-        console.log('Error getting documents: ', error);
+        console.log("Error getting documents: ", error);
       });
 
     db.firestore
-      .collection('organizations')
-      .where('uid', '==', user.uid)
+      .collection("organizations")
+      .where("uid", "==", user.uid)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -90,7 +90,7 @@ function App() {
         });
       })
       .catch((error) => {
-        console.log('Error getting documents: ', error);
+        console.log("Error getting documents: ", error);
       });
   }, [user]);
 

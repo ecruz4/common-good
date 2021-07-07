@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useContext, useRef } from 'react';
+import React, { Fragment, useState, useContext, useRef } from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button, Paper, Popper, MenuList } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Button, Paper, Popper, MenuList } from "@material-ui/core";
 
-import UserContext from '../contexts/UserContext';
-import SignupButton from '../components/modals/SignupButton';
-import OrgSignupButton from '../components/modals/OrgSignupButton';
+import UserContext from "../contexts/UserContext";
+import SignupButton from "../components/modals/SignupButton";
+import OrgSignupButton from "../components/modals/OrgSignupButton";
 
 const useStyles = makeStyles((theme) => ({
   MuiTypography: {
@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme) => ({
   },
   menulist: {
     maxWidth: 100,
-    position: 'relative',
+    position: "relative",
     left: 11,
     top: 5,
     zIndex: 2,
   },
   popper: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: 2,
   },
 }));
@@ -45,10 +45,10 @@ const SignupEntryPt = () => {
       ) : (
         <>
           <Button
-            style={{ color: '#0069c0' }}
+            style={{ color: "#0069c0" }}
             ref={anchorRef}
-            color='secondary'
-            aria-controls={open ? 'menu-list-grow' : undefined}
+            color="secondary"
+            aria-controls={open ? "menu-list-grow" : undefined}
             aria-haspopup="true"
             onClick={handleToggle}
           >

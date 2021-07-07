@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Button } from '@material-ui/core';
-import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { Button } from "@material-ui/core";
+import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-import fire from '../../db/firebase';
+import fire from "../../db/firebase";
 
 function LogoutButton() {
   const [user] = useAuthState(fire.auth);
@@ -11,7 +11,7 @@ function LogoutButton() {
     user && (
       <div>
         <Button
-          style={{ color: '#0069c0' }}
+          style={{ color: "#0069c0" }}
           onClick={() => fire.auth.signOut()}
           color="secondary"
         >

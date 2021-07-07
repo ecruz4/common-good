@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   TextField,
   FormControl,
@@ -7,15 +7,15 @@ import {
   MenuItem,
   makeStyles,
   Container,
-} from '@material-ui/core';
-import AllCharities from './AllCharities';
-import capitalize from '../utils/capitalize';
+} from "@material-ui/core";
+import AllCharities from "./AllCharities";
+import capitalize from "../utils/capitalize";
 
 const useStyles = makeStyles((theme) => ({
   field: {
     marginTop: 20,
     marginBottom: 10,
-    display: 'block',
+    display: "block",
   },
   formControl: {
     margin: theme.spacing(1),
@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchOrgs = () => {
   const classes = useStyles();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [open, setOpen] = useState(false);
   const [criteria, setCriteria] = useState(`name`);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit', searchTerm);
+    console.log("submit", searchTerm);
   };
 
   const handleChange = (e) => {

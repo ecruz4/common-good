@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Grid, Button, Slide, makeStyles, Container } from '@material-ui/core';
-import firestore from '../db/firebase';
-import OfferTile from './tiles/OfferTile';
-import capitalize from '../utils/capitalize';
-import { expiryThreshold } from '../utils/moment';
+import React, { useEffect, useState, useContext } from "react";
+import { Grid, Button, Slide, makeStyles, Container } from "@material-ui/core";
+import firestore from "../db/firebase";
+import OfferTile from "./tiles/OfferTile";
+import capitalize from "../utils/capitalize";
+import { expiryThreshold } from "../utils/moment";
 
 const useStyles = makeStyles((theme) => ({
   moreButton: {
@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 200,
   },
   buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
     marginTop: 25,
   },
 }));
@@ -27,8 +27,8 @@ const AllOffers = ({ uid, searchTerm }) => {
 
   const findAll = () => {
     firestore.firestore
-      .collection('offers')
-      .orderBy('date', 'asc')
+      .collection("offers")
+      .orderBy("date", "asc")
       .limit(6)
       .get()
       .then((querySnapshot) => {
@@ -52,8 +52,8 @@ const AllOffers = ({ uid, searchTerm }) => {
 
   const findMore = () => {
     firestore.firestore
-      .collection('offers')
-      .orderBy('date', 'asc')
+      .collection("offers")
+      .orderBy("date", "asc")
       .startAfter(lastVisibleDoc)
       .limit(6)
       .get()
@@ -77,7 +77,7 @@ const AllOffers = ({ uid, searchTerm }) => {
             }
           });
         } else {
-          console.log('No more offers to fetch.');
+          console.log("No more offers to fetch.");
           setNoMoreDocs(true);
         }
       })
@@ -86,9 +86,9 @@ const AllOffers = ({ uid, searchTerm }) => {
 
   const findByCriteria = (field, operator, term) => {
     firestore.firestore
-      .collection('offers')
+      .collection("offers")
       .where(field, operator, term)
-      .orderBy('date', 'asc')
+      .orderBy("date", "asc")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -108,11 +108,11 @@ const AllOffers = ({ uid, searchTerm }) => {
   };
 
   const findByName = (term) => {
-    findByCriteria('title', '==', capitalize(term));
+    findByCriteria("title", "==", capitalize(term));
   };
 
   const findByUid = (id) => {
-    findByCriteria('donor_id', '==', id);
+    findByCriteria("donor_id", "==", id);
   };
 
   useEffect(() => {
@@ -122,7 +122,7 @@ const AllOffers = ({ uid, searchTerm }) => {
 
     if (uid) {
       findByUid(uid);
-    } else if (!searchTerm || searchTerm === '') {
+    } else if (!searchTerm || searchTerm === "") {
       findAll();
     } else {
       findByName(searchTerm);

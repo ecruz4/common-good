@@ -1,16 +1,16 @@
-import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
-import React, { useState, useContext } from 'react';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import UserContext from '../../contexts/UserContext';
-import SignupModal from './SignupModal';
+import { Button, Dialog, DialogTitle, DialogContent } from "@material-ui/core";
+import React, { useState, useContext } from "react";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import UserContext from "../../contexts/UserContext";
+import SignupModal from "./SignupModal";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
   },
 }));
 
@@ -33,11 +33,11 @@ function SignupButton({ closeMenu }) {
       <Dialog open={open}>
         <DialogTitle
           className={classes.title}
-          style={{ background: '#ffed03', color: '#2196f3' }}
+          style={{ background: "#ffed03", color: "#2196f3" }}
         >
           Join as a Donor
         </DialogTitle>
-        <DialogContent style={{ background: '#ffed03' }}>
+        <DialogContent style={{ background: "#ffed03" }}>
           <SignupModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
@@ -45,7 +45,7 @@ function SignupButton({ closeMenu }) {
         fullWidth
         className={classes.button}
         disableElevation
-        style={{ color: '#2196f3' }}
+        style={{ color: "#2196f3" }}
         onClick={handleClickOpen}
         // onClose={handleClose}
       >

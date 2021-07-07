@@ -4,11 +4,11 @@ import {
   DialogTitle,
   DialogContent,
   Grow,
-} from '@material-ui/core';
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
-import OfferModal from './OfferModal';
+import OfferModal from "./OfferModal";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -32,15 +32,17 @@ function OfferButton() {
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle style={{ background: '#ffed03', color: '#2196f3'}}>Make a Donation</DialogTitle>
-        <DialogContent style={{ background: '#ffed03' }}>
+        <DialogTitle style={{ background: "#ffed03", color: "#2196f3" }}>
+          Make a Donation
+        </DialogTitle>
+        <DialogContent style={{ background: "#ffed03" }}>
           <OfferModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
       <Grow in {...{ timeout: 500 }}>
         <Button
           className={classes.button}
-          color='secondary'
+          color="secondary"
           onClick={handleClickOpen}
           onClose={handleClose}
           // size="small"

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { useState } from "react";
+import TextField from "@material-ui/core/TextField";
 import {
   Button,
   Container,
@@ -9,31 +9,31 @@ import {
   InputLabel,
   Select,
   MenuItem,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // import { makeStyles } from '@material-ui/core/styles';
 // import firebase from 'firebase/app';
 
-import db from '../../db/firebase';
+import db from "../../db/firebase";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
 });
 
 function OrgSignupModal({ handleClose }) {
-  const [orgName, setOrgName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [zip, setZip] = useState('');
-  const [url, setUrl] = useState('');
-  const [focus, setFocus] = useState('');
-  const [password, setPassword] = useState('');
+  const [orgName, setOrgName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [url, setUrl] = useState("");
+  const [focus, setFocus] = useState("");
+  const [password, setPassword] = useState("");
 
   const classes = useStyles();
 
@@ -46,7 +46,7 @@ function OrgSignupModal({ handleClose }) {
           name: orgName,
           search_name: orgName
             .toLowerCase()
-            .split(' ')
+            .split(" ")
             .concat([orgName.toLowerCase()]),
           email,
           address,
@@ -54,13 +54,13 @@ function OrgSignupModal({ handleClose }) {
           state,
           zip,
           phone,
-          photo_url: '',
-          bio: '',
-          type: 'org',
+          photo_url: "",
+          bio: "",
+          type: "org",
         };
 
         db.firestore
-          .collection('organizations')
+          .collection("organizations")
           .doc()
           .set(orgData)
           .then(() => {
@@ -213,14 +213,14 @@ function OrgSignupModal({ handleClose }) {
       </FormControl> */}
       <Container>
         <Button
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
           onClick={handleSubmit}
         >
           Sign Up
         </Button>
         <Button
           onClick={handleClose}
-          style={{ margin: 8, background: '#2196f3', color: 'white' }}
+          style={{ margin: 8, background: "#2196f3", color: "white" }}
         >
           Cancel
         </Button>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import {
   makeStyles,
@@ -13,22 +13,22 @@ import {
   Typography,
   Grid,
   Grow,
-} from '@material-ui/core';
-import LocationCityIcon from '@material-ui/icons/LocationCity';
-import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
-import ForumIcon from '@material-ui/icons/Forum';
-import UserContext from '../../contexts/UserContext';
-import firestore from '../../db/firebase';
+} from "@material-ui/core";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
+import NotificationImportantIcon from "@material-ui/icons/NotificationImportant";
+import ForumIcon from "@material-ui/icons/Forum";
+import UserContext from "../../contexts/UserContext";
+import firestore from "../../db/firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 350,
   },
   avatar: {
-    backgroundColor: '#ffed03',
+    backgroundColor: "#ffed03",
   },
   avatarEmg: {
-    backgroundColor: '#FF0000',
+    backgroundColor: "#FF0000",
   },
   content: {
     minHeight: 120,
@@ -48,8 +48,8 @@ const RequestTile = ({ doc }) => {
 
   useEffect(() => {
     firestore.firestore
-      .collection('organizations')
-      .where('uid', '==', org_id)
+      .collection("organizations")
+      .where("uid", "==", org_id)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -73,7 +73,7 @@ const RequestTile = ({ doc }) => {
                       pathname: `/charities/${org_id}`,
                       state: {
                         userId: org_id,
-                        type: 'charity',
+                        type: "charity",
                       },
                     }}
                   >
@@ -96,7 +96,7 @@ const RequestTile = ({ doc }) => {
                       pathname: `/charities/${org_id}`,
                       state: {
                         userId: org_id,
-                        type: 'charity',
+                        type: "charity",
                       },
                     }}
                   >
@@ -134,7 +134,7 @@ const RequestTile = ({ doc }) => {
                       description,
                       quantity,
                       date,
-                      context: 'organizations',
+                      context: "organizations",
                     },
                   }}
                 >
@@ -153,12 +153,12 @@ const RequestTile = ({ doc }) => {
             />
 
             <Link
-              style={{ textDecoration: 'none' }}
+              style={{ textDecoration: "none" }}
               key={`donationDetail-${id}`}
               to={{
                 pathname: `/donations/${id}`,
                 state: {
-                  context: 'organizations',
+                  context: "organizations",
                   productId: id,
                   userId: org_id,
                   title,

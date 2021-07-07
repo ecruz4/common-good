@@ -1,15 +1,15 @@
-import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, Dialog, DialogTitle, DialogContent } from "@material-ui/core";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
-import OrgSignupModal from './OrgSignupModal';
+import OrgSignupModal from "./OrgSignupModal";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
   },
 }));
 
@@ -31,11 +31,11 @@ function OrgSignupButton({ closeMenu }) {
       <Dialog open={open}>
         <DialogTitle
           className={classes.title}
-          style={{ background: '#ffed03', color: '#2196f3' }}
+          style={{ background: "#ffed03", color: "#2196f3" }}
         >
           Join as an Organization
         </DialogTitle>
-        <DialogContent style={{ background: '#ffed03' }}>
+        <DialogContent style={{ background: "#ffed03" }}>
           <OrgSignupModal handleClose={handleClose} />
         </DialogContent>
       </Dialog>
@@ -43,7 +43,7 @@ function OrgSignupButton({ closeMenu }) {
         fullWidth
         className={classes.button}
         disableElevation
-        color='secondary'
+        color="secondary"
         onClick={handleClickOpen}
         onClose={handleClose}
       >

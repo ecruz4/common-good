@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Grid, Button, Slide, makeStyles, Container } from '@material-ui/core';
-import firestore from '../db/firebase';
-import CharityTile from './tiles/CharityTile';
-import capitalize from '../utils/capitalize';
+import React, { useEffect, useState } from "react";
+import { Grid, Button, Slide, makeStyles, Container } from "@material-ui/core";
+import firestore from "../db/firebase";
+import CharityTile from "./tiles/CharityTile";
+import capitalize from "../utils/capitalize";
 
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
     marginTop: 25,
   },
   moreButton: {
@@ -26,8 +26,8 @@ const AllCharities = ({ searchTerm, criteria }) => {
 
   const findInitialCharities = () => {
     firestore.firestore
-      .collection('organizations')
-      .orderBy('name', 'asc')
+      .collection("organizations")
+      .orderBy("name", "asc")
       .limit(6)
       .get()
       .then((querySnapshot) => {
@@ -43,8 +43,8 @@ const AllCharities = ({ searchTerm, criteria }) => {
 
   const findMoreCharities = () => {
     firestore.firestore
-      .collection('organizations')
-      .orderBy('name', 'asc')
+      .collection("organizations")
+      .orderBy("name", "asc")
       .startAfter(lastVisibleDoc)
       .limit(6)
       .get()
@@ -58,7 +58,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
           });
           setDocs([...docs, ...retrievedDocs]);
         } else {
-          console.log('No more docs to fetch.');
+          console.log("No more docs to fetch.");
           setNoMoreDocs(true);
         }
       })
@@ -67,7 +67,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
 
   const findCharityByCriteria = (field, operator, term) => {
     firestore.firestore
-      .collection('organizations')
+      .collection("organizations")
       .where(field, operator, term)
       .get()
       .then((querySnapshot) => {
@@ -80,19 +80,19 @@ const AllCharities = ({ searchTerm, criteria }) => {
   };
 
   const findCharitiesByName = (term) => {
-    findCharityByCriteria('search_name', 'array-contains', term);
+    findCharityByCriteria("search_name", "array-contains", term);
   };
 
   const findCharitiesByCity = (term) => {
-    findCharityByCriteria('city', '==', capitalize(term));
+    findCharityByCriteria("city", "==", capitalize(term));
   };
 
   const findCharitiesByState = (term) => {
-    findCharityByCriteria('state', '==', term.toUpperCase());
+    findCharityByCriteria("state", "==", term.toUpperCase());
   };
 
   const findCharitiesByTheme = (term) => {
-    findCharityByCriteria('focus', '==', capitalize(term));
+    findCharityByCriteria("focus", "==", capitalize(term));
   };
 
   const searchSelection = {
@@ -103,7 +103,7 @@ const AllCharities = ({ searchTerm, criteria }) => {
   };
 
   useEffect(() => {
-    if (!searchTerm || searchTerm === '') {
+    if (!searchTerm || searchTerm === "") {
       findInitialCharities();
     } else {
       searchSelection[criteria](searchTerm);

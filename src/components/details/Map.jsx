@@ -1,9 +1,9 @@
-import React from 'react';
-import zipcodes from 'zipcodes';
-import GoogleMapReact from 'google-map-react';
-import RoomTwoToneIcon from '@material-ui/icons/RoomTwoTone';
-import config from '../../config.js';
-import MapMarker from './MapMarker';
+import React from "react";
+import zipcodes from "zipcodes";
+import GoogleMapReact from "google-map-react";
+import RoomTwoToneIcon from "@material-ui/icons/RoomTwoTone";
+import config from "../../config.js";
+import MapMarker from "./MapMarker";
 
 export default function Map({ zip, pic }) {
   if (!zip) {
@@ -21,11 +21,11 @@ export default function Map({ zip, pic }) {
   return (
     <div
       style={{
-        width: '80%',
-        height: '500px',
-        display: 'flex',
-        margin: 'auto',
-        marginTop: '20px',
+        width: "80%",
+        height: "500px",
+        display: "flex",
+        margin: "auto",
+        marginTop: "20px",
       }}
     >
       <GoogleMapReact

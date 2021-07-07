@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Grid, Button, Slide, makeStyles, Container } from '@material-ui/core';
-import firestore from '../db/firebase';
-import RequestTile from './tiles/RequestTile';
-import capitalize from '../utils/capitalize';
+import React, { useEffect, useState } from "react";
+import { Grid, Button, Slide, makeStyles, Container } from "@material-ui/core";
+import firestore from "../db/firebase";
+import RequestTile from "./tiles/RequestTile";
+import capitalize from "../utils/capitalize";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
     marginTop: 25,
   },
   moreButton: {
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AllRequests = ({ uid, searchTerm }) => {
-
   const classes = useStyles();
   const [docs, setDocs] = useState([]);
   const retrievedDocs = [];
@@ -31,8 +30,8 @@ const AllRequests = ({ uid, searchTerm }) => {
 
   const findAllByUrgency = () => {
     firestore.firestore
-      .collection('requests')
-      .orderBy('emergency', 'desc')
+      .collection("requests")
+      .orderBy("emergency", "desc")
       .limit(6)
       .get()
       .then((querySnapshot) => {
@@ -48,8 +47,8 @@ const AllRequests = ({ uid, searchTerm }) => {
 
   const findMoreByUrgency = () => {
     firestore.firestore
-      .collection('requests')
-      .orderBy('emergency', 'desc')
+      .collection("requests")
+      .orderBy("emergency", "desc")
       .startAfter(lastVisibleDoc)
       .limit(6)
       .get()
@@ -63,7 +62,7 @@ const AllRequests = ({ uid, searchTerm }) => {
           });
           setDocs([...docs, ...retrievedDocs]);
         } else {
-          console.log('No more requests to fetch.');
+          console.log("No more requests to fetch.");
           setNoMoreDocs(true);
         }
       })
@@ -73,9 +72,9 @@ const AllRequests = ({ uid, searchTerm }) => {
   const findByCriteria = (field, operator, term) => {
     console.log(field, operator, term);
     firestore.firestore
-      .collection('requests')
+      .collection("requests")
       .where(field, operator, term)
-      .orderBy('emergency', 'desc')
+      .orderBy("emergency", "desc")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -87,11 +86,11 @@ const AllRequests = ({ uid, searchTerm }) => {
   };
 
   const findByName = (term) => {
-    findByCriteria('title', '==', capitalize(term));
+    findByCriteria("title", "==", capitalize(term));
   };
 
   const findByUid = (id) => {
-    findByCriteria('org_id', '==', id);
+    findByCriteria("org_id", "==", id);
   };
 
   useEffect(() => {
@@ -101,7 +100,7 @@ const AllRequests = ({ uid, searchTerm }) => {
 
     if (uid) {
       findByUid(uid);
-    } else if (!searchTerm || searchTerm === '') {
+    } else if (!searchTerm || searchTerm === "") {
       findAllByUrgency();
     } else {
       findByName(searchTerm);
@@ -110,7 +109,7 @@ const AllRequests = ({ uid, searchTerm }) => {
 
   return (
     <Container className={classes.container}>
-      <Grid style={{ justifyContent: 'space-between' }} container spacing={4}>
+      <Grid style={{ justifyContent: "space-between" }} container spacing={4}>
         {docs.map((doc) => (
           <RequestTile doc={doc} key={doc.title} />
         ))}
