@@ -5,13 +5,12 @@
 /* eslint-disable import/order */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import React, { useContext, useEffect, useState } from 'react';
-import UserContext from '../../contexts/UserContext';
-import ProfileHeader from './ProfileHeader';
-import db from '../../db/firebase';
-import { Grid } from '@material-ui/core';
-import ProfileBody from './ProfileBody';
-
+import React, { useContext, useEffect, useState } from "react";
+import UserContext from "../../contexts/UserContext";
+import ProfileHeader from "./ProfileHeader";
+import db from "../../db/firebase";
+import { Grid } from "@material-ui/core";
+import ProfileBody from "./ProfileBody";
 
 // PROPS PASSED FROM ROUTER
 import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
@@ -23,7 +22,6 @@ import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 // const { user } = useContext(UserContext);
 // You can now use user like any other variable!
 
-
 function Profile() {
   // Will receive "docs" prop from previous component. Docs will contain all necessary information needed to render profile:
   const location = useLocation();
@@ -32,59 +30,64 @@ function Profile() {
   const [user, setUser] = useState(userInfo);
 
   useEffect(() => {
-    if (location.state.type === 'user') {
-      db.firestore.collection("users").where("uid", "==", location.state.userId)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setUser(doc.data());
-        });
-      })
-      .catch((err) => console.log(err.message))
+    if (location.state.type === "user") {
+      db.firestore
+        .collection("users")
+        .where("uid", "==", location.state.userId)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            setUser(doc.data());
+          });
+        })
+        .catch((err) => console.log(err.message));
     } else if (location.state.type === "charity") {
-      db.firestore.collection("organizations").where("uid", "==", location.state.userId)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setUser(doc.data());
-        });
-      })
-      .catch((err) => console.log(err.message))
+      db.firestore
+        .collection("organizations")
+        .where("uid", "==", location.state.userId)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            setUser(doc.data());
+          });
+        })
+        .catch((err) => console.log(err.message));
     }
   }, [location.state, userInfo]);
 
-  const getEdit = function() {
+  const getEdit = function () {
     if (userInfo && userInfo.uid === location.state.userId) {
-      return true
-    } 
-    return false
-  }
-
-  const getType = function() {
-    if (location.state.type === "user") {
-      return true
-    } else {
-      return false
+      return true;
     }
-  }
+    return false;
+  };
+
+  const getType = function () {
+    if (location.state.type === "user") {
+      return true;
+    } else {
+      return false;
+    }
+  };
   // Pass the 'docs' prop to both components below:
   return (
     <Grid container direction="column" justify="center" alignItems="stretch">
-      {user ? <ProfileHeader data={user} edit={getEdit()} location={getType()}
-      // Add an edit prop that gets sent to the header. If the currUser uid and the uid of the profile being viewed match, set this prop to true:
-      /> : null}
-      {user ? <ProfileBody data={user} edit={getEdit()} location={getType()} /> : null}
-      
+      {user ? (
+        <ProfileHeader
+          data={user}
+          edit={getEdit()}
+          location={getType()}
+          // Add an edit prop that gets sent to the header. If the currUser uid and the uid of the profile being viewed match, set this prop to true:
+        />
+      ) : null}
+      {user ? (
+        <ProfileBody data={user} edit={getEdit()} location={getType()} />
+      ) : null}
     </Grid>
-  )
+  );
 }
 
-export default Profile
-
-
-
-
-
+export default Profile;
 
 // if (!location.state && userInfo !== null) {
 //   db.firestore.collection("users").where("uid", "==", userInfo.uid)
@@ -136,9 +139,6 @@ export default Profile
 //     .catch((err) => console.log(err.message));
 //   }
 // }
-
-
-
 
 // if (location.state && userInfo !== null) {
 //   if (location.state.userId === userInfo.uid) {
